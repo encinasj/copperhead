@@ -7,15 +7,15 @@ urlpatterns = [
         view=views.FeedView,
         name='feed'),
    path(
-        route='/Category',
+        route='Category',
         view=views.Category,
         name='category'),
     path(
-        route='/location',
+        route='location',
         view=views.Location,
         name='location'),
     path(
-        route='/Login',
+        route='Login',
         view=views.Login,
         name='login'),
 ]
