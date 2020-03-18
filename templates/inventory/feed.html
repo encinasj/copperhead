@@ -1,137 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
-    <div class="col-sm-12">
-        <h4 class="pull-left page-title">Inventario</h4>
-        <ol class="breadcrumb pull-right">
-            <div class="m-b-30">
-                <button id="PDF" class="btn btn-primary waves-effect waves-light"> PDF <i class="ion-ios7-paper"></i></button>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="pull-left page-title">Inventario</h4>
+            <ol class="breadcrumb pull-right">
+                <div class="m-b-30">
+                    <button id="PDF" class="btn btn-primary waves-effect waves-light"> PDF <i class="ion-ios7-paper"></i></button>
 
-                <button id="add" class="btn btn-primary waves-effect waves-light">Agregar <i class="fa fa-plus"></i></button>
-            </div>
-        </ol>
+                    <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" >Agregar <i class="fa fa-plus"></i></button>
+                </div>
+            </ol>
+        </div>
     </div>
-</div>
 
-<div class="row">
-
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="input-group">
-                    <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control input-lg" placeholder="Buscar . . .">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn-lg btn waves-effect waves-light btn-primary w-md"><i class="fa fa-search"></i></button>
-                    </span>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="input-group">
+                        <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control input-lg" placeholder="Buscar . . .">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn-lg btn waves-effect waves-light btn-primary w-md"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
-
-<div class="row">
-    <div class="col-sm-6 col-lg-4">
-        <div class="panel">
-            <div class="panel-body">
-                <div class="media-main">
-                    <a class="pull-left" href="#">
-                        <img class="thumb-lg img-circle" src="images/users/avatar-2.jpg" alt="">
-                    </a>
-                    <div class="pull-right btn-group-sm">
-                        <a href="#" class="btn btn-success waves-effect waves-light tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger waves-effect waves-light tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </div>
-                    <div class="info">
-                        <h4>Nombre del producto</h4>
-                        <p class="text-muted">Categoria</p>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <hr/>
-                <ul class="list-inline">
-                    <li>
-                        <a class="text-muted">Ubicación</a>
-                    </li>
-                    <li>
-                        <a class="text-muted">Cantidad</a>
-                    </li>
-                </ul>
-            </div> <!-- panel-body -->
-        </div> <!-- panel -->
-    </div> <!-- end col -->
-
-    <div class="col-sm-6 col-lg-4">
-        <div class="panel">
-            <div class="panel-body">
-                <div class="media-main">
-                    <a class="pull-left" href="#">
-                        <img class="thumb-lg img-circle" src="images/users/avatar-2.jpg" alt="">
-                    </a>
-                    <div class="pull-right btn-group-sm">
-                        <a href="#" class="btn btn-success waves-effect waves-light tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger waves-effect waves-light tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </div>
-                    <div class="info">
-                        <h4>Nombre del producto</h4>
-                        <p class="text-muted">Categoria</p>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <hr/>
-                <ul class="list-inline">
-                    <li>
-                        <a class="text-muted">Ubicación</a>
-                    </li>
-                    <li>
-                        <a class="text-muted">Cantidad</a>
-                    </li>
-                </ul>
-            </div> <!-- panel-body -->
-        </div> <!-- panel -->
-    </div> <!-- end col -->
-    <div class="col-sm-6 col-lg-4">
-        <div class="panel">
-            <div class="panel-body">
-                <div class="media-main">
-                    <a class="pull-left" href="#">
-                        <img class="thumb-lg img-circle" src="images/users/avatar-4.jpg" alt="">
-                    </a>
-                    <div class="pull-right btn-group-sm">
-                        <a href="#" class="btn btn-success waves-effect waves-light tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger waves-effect waves-light tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </div>
-                    <div class="info">
-                        <h4>Nombre del producto</h4>
-                        <p class="text-muted">Categoria</p> 
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <hr/>
-                <ul class=" list-inline">
-                    <li>
-                        <a class="text-muted">Ubicación</a>
-                    </li>
-                    <li>
-                        <a class="text-muted">Cantidad</a>
-                    </li>
-                </ul>
-            </div> <!-- panel-body -->
-        </div> <!-- panel -->
-    </div> <!-- end col -->
-</div> <!-- End row -->
-
+    <div class="row" id="all-table">
+        <ul>
+            {% include 'inventory/list_feed.html' %}
+        </ul>
+    </div>
 {% endblock content %}

@@ -1,0 +1,43 @@
+{% for articles in  articles %}
+  <div class="row">
+        <div class="col-sm-6 col-lg-4">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="media-main">
+                        <a class="pull-left" href="#">
+                            <img class="thumb-lg img-circle" src="images/users/avatar-2.jpg" alt="">
+                        </a>
+                        <div class="pull-right btn-group-sm">
+                            <a href="#" class="btn btn-success waves-effect waves-light tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger waves-effect waves-light tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </div>
+                        <div class="info">
+                            <h4>Nombre del producto</h4>
+                            <p class="text-muted">Categoria</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr/>
+                    <ul class="list-inline">
+                        <li>
+                            <a class="text-muted">Ubicación</a>
+                        </li>
+                        <li>
+                            <a class="text-muted">Cantidad</a>
+                        </li>
+                    </ul>
+                </div> <!-- panel-body -->
+            </div> <!-- panel -->
+        </div> <!-- end col --> 
+
+{% empty %}
+        <tr class="text-center">
+            <td colspan="7" class="page-title"> No hay articulos! </td>
+        </tr>
+
+    </div> <!-- End row -->
+{% endfor %}
