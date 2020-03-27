@@ -1,0 +1,62 @@
+/* All styles created for demo purposes only, you may not need this for your project */
+.demo-button button {
+  margin-bottom: 5px; }
+
+.demo-icons li {
+  margin-bottom: 50px;
+  text-align: center; }
+
+.demo-icons .lnr,
+.demo-icons .fa {
+  font-size: 28px; }
+
+.demo-icons .cssclass {
+  display: block;
+  margin-top: 5px;
+  margin-left: 5px; }
+
+/*# sourceMappingURL=demo.css.map */
+/* .grid {
+  
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+  padding: 1rem;
+  background-color: pink;
+  width: 100vw;
+  height: 100vh;
+
+  justify-items: center;
+  align-items: center;
+
+  grid-auto-flow: dense;
+
+  }
+
+.grid-item {
+
+width: 100%;
+height: 100%;;
+background-color: gold;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.grid-featured-top {
+
+background-color: blue;
+grid-column: 1 / span 2;
+grid-row: 1;
+
+}
+
+.grid-featured-bottom {
+
+background-color: green;
+grid-column: 2/ span 2;
+grid-row: 6;
+
+} */

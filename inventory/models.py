@@ -63,7 +63,6 @@ class Category(models.Model):
     update = models.DateTimeField(auto_now=True)
     delete = models.DateField(auto_now=True)
 
-    
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categorys'
@@ -88,31 +87,33 @@ class Brand(models.Model):
 
 class Articles(models.Model):
     #models article
+    Nuevo = 'Nuevo_1'
+    Semi_nuevo = 'Semi_nuevo_2'
+    Usado = 'Usado_3'
+    Otros = 'Otros_4'
     STATE_ACTUAL = (
-        ('N', 'Nuevo'),
-        ('S','Semi nuevo'),
-        ('U','Usado'),
-        ('O','Otros')
+        (Nuevo, 'Nuevo'),
+        (Semi_nuevo,'Semi_nuevo'),
+        (Usado,'Usado'),
+        (Otros,'Otros')
     )
-    name = models.CharField((""), max_length=50)
-    img =   models.ImageField(upload_to='inventory/articles')
-    quantity = models.DecimalField(max_digits=4, decimal_places=3)
-    fk_brand = models.ManyToManyField(Brand)
+    name = models.CharField(max_length=50)
+    quantity = models.DecimalField(max_digits=10, decimal_places=4)
+    fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE)
     model = models.CharField(max_length=50)
-    fk_category = models.ManyToManyField(Category)
+    fk_category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
     coust_buy = models.DecimalField(max_digits=10, decimal_places=2)
-    fk_supplier = models.ManyToManyField(Supplier)
+    fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     userful_life = models.DateField()
-    actual_state = models.CharField(max_length=1, choices=STATE_ACTUAL)
+    actual_state = models.CharField(max_length=12, choices=STATE_ACTUAL)
     date_check = models.DateField()
-    fk_user = models.ManyToManyField(User)
-    fk_microbusiness = models.ManyToManyField(MicroBusiness)
+    fk_user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    fk_microbusiness = models.ForeignKey(MicroBusiness, null=True, on_delete=models.CASCADE)
     location = models.CharField(max_length=50)
     #actions
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
-    delete = models.DateField(auto_now=True)
 
     class Meta:
         verbose_name = 'Article'

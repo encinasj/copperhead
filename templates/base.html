@@ -1,157 +1,64 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="{% static 'images/favicon_1.ico' %}">
-        <title> Dashboard </title>
-        <!-- Base Css Files -->
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-        <!-- Font Icons -->
-        <link href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" />
-        <link href="{% static 'assets/ionicon/css/ionicons.min.css' %}" rel="stylesheet" />
-        <link href="{% static 'css/material-design-iconic-font.min.css' %}" rel="stylesheet">
-        <!-- animate css -->
-        <link href="{% static 'css/animate.css' %}" rel="stylesheet" />
-        <!-- Waves-effect -->
-        <link href="{% static 'css/waves-effect.css' %}" rel="stylesheet">
-        <!-- sweet alerts -->
-        <link href="{% static 'assets/sweet-alert/sweet-alert.min.css' %}" rel="stylesheet">
-        <!-- Custom Files -->
-        <link href="{% static 'css/helper.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
-        <script src="{% static 'js/modernizr.min.js' %}"></script>
-    </head>
-    <body class="fixed-left">
-        <!-- Begin page -->
-        <div id="wrapper">
-            <!-- Top Bar Start -->
-            <div class="topbar">
-                <!-- LOGO -->
-                <div class="topbar-left">
-                    <div class="text-center">
-                        <a href="#" class="logo"><i class="md md-terrain"></i> <span> Inventario </span></a>
-                    </div>
-                </div>
-                <!-- Button mobile view to collapse sidebar menu -->
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="container">
-                        <div class="">
-                            <div class="pull-left">
-                                <button class="button-menu-mobile open-left">
-                                    <i class="fa fa-bars"></i>
-                                </button>
-                                <span class="clearfix"></span>
-                            </div>
-        
-                            <ul class="nav navbar-nav navbar-right pull-right">
-                                <li class="dropdown">
-                                    <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{% static 'images/users/avatar-1.jpg' %}" alt="user-img" class="img-circle"> </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="md md-face-unlock"></i> Profile</a></li>
-                                        <li><a href="#"><i class="md md-settings"></i> Settings</a></li>
-                                        <li><a href="#"><i class="md md-settings-power"></i> Logout</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--/.nav-collapse -->
-                    </div>
-                </div>
-            </div>
-            <!-- Top Bar End -->
-            <!-- ========== Left Sidebar Start ========== -->
-            <div class="left side-menu">
-                <div class="sidebar-inner slimscrollleft">
-                    <div class="user-details">
-                        <div class="pull-left">
-                            <img src="{% static 'images/users/avatar-1.jpg' %}" alt="" class="thumb-md img-circle">
-                        </div>
-                        <div class="user-info">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">José <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
-                                    <li><a href="#"><i class="md md-settings"></i> Settings</a></li>
-                                    <li><a href="{% url 'inv:login' %}"><i class="md md-settings-power"></i> Logout</a></li>
-                                </ul>
-                            </div>
-                            <p class="text-muted m-0">Administrator</p>
-                        </div>
-                    </div>
-                    <!--- Divider -->
-                    <div id="sidebar-menu">
-                        <ul>
-                            <li>
-                                <a href="{% url 'inv:feed' %}" class="waves-effect active"><i class="md md-home"></i><span> Inicio </span></a>
-                            </li>
-                            <li>
-                                <a href="{% url 'inv:category' %}" class="waves-effect active"><i class="ion-android-stair-drawer"></i><span> Categorias </span></a>
-                            </li>
-                            <li>
-                                <a href="{% url 'inv:location' %}" class="waves-effect active"><i class="ion-android-location"></i><span> Ubicación </span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="waves-effect active"><i class="ion-ios7-briefcase"></i><span> Micro Negocio </span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="waves-effect active"><i class="ion-document-text"></i><span> Informes </span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="waves-effect active"><i class="md-assignment-ind"></i><span> Usuarios </span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="waves-effect active"><i class="ion-gear-a"></i><span> Configuraciones </span></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <!-- Left Sidebar End -->
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="content-page">
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container">
-                        <!-- Page-Title -->
-                    
-                        <div class="row">
-                            {% block content %}
-                                
-                            {% endblock content %}
-                        </div>
-                    </div> <!-- container -->
-                </div> <!-- content -->
-                <footer class="footer text-right">
-                    2020 © je.
-                </footer>
-            </div>
-        </div>
-        
-        <script>
-            var resizefunc = [];
-        </script>
-        <!-- jQuery  -->
-        <script src="{% static 'js/jquery.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/jquery.nicescroll.js' %}" type="text/javascript"></script>
-        <script src="{% static 'js/jquery.scrollTo.min.js' %}"></script>
-        <!-- sweet alerts -->
-        <script src="{% static 'assets/sweet-alert/sweet-alert.min.js' %}"></script>
-        <!-- Counter-up -->
-        <script src="{% static 'assets/counterup/waypoints.min.js' %}" type="text/javascript"></script>
-        <script src="{% static 'assets/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
-        <!-- CUSTOM JS -->
-        <script src="{% static 'js/jquery.app.js' %}"></script>
-        <script src="{% static 'js/actions.js' %}"></script>
-        <!-- Dashboard -->
-        <script src="{% static 'js/jquery.dashboard.js' %}"></script>
-        <!-- Todo -->
-        <script src="{% static 'js/jquery.todo.js' %}"></script>
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Inventario</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/vendor/linearicons/style.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/vendor/chartist/css/chartist-custom.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.css'%}">
+	<link rel="stylesheet" href="{% static 'assets/css/demo.css'%}">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+</head>
+<body>
+	<div id="wrapper">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="brand">
+				<a href="#"><img src="{% static 'assets/img/logo-dark.png' %}" alt="Buscador" class="img-responsive logo"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+			</div>
+		</nav>
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="{% url 'feed' %}" class=""><i class="lnr lnr-database"></i> <span>Inventario</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="main">
+			<div class="content">
+				<div class="auto">
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							{% block body_block %}
+							{% endblock body_block %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'assets/js/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/chartist/js/chartist.min.js' %}"></script>
+	<script src="{% static 'assets/js/klorofil-common.js' %}"></script>
+	<script src="{% static 'assets/js/actions.js' %}"></script>
+	<script src="{% static 'assets/js/searchbar.js' %}"></script>
+	{% block javascript %}
+	{% endblock javascript %}
+</body>
 </html>

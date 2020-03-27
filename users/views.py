@@ -72,7 +72,7 @@ def update_profile(request):
             'form': form
         }
     )
-    
+
 class UserDetailView(LoginRequiredMixin,DeleteView):
     #User detail view
     template_name = 'users/detail.html'
