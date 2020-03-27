@@ -35,8 +35,17 @@ class ArticlesForm(forms.ModelForm):
     #Article Form
     class Meta():
         model = Articles
+
         fields = ('name','quantity',
                 'fk_brand','model','fk_category', 
                 'coust_buy', 'fk_supplier', 'description',
                 'userful_life','actual_state',
                 'date_check','fk_user','fk_microbusiness','location')
+        labels = {
+                'name':'', 'quantity':'',
+                'fk_brand':'','model':'','fk_category':'', 
+                'coust_buy':'','fk_supplier':'', 'description':'',
+                'userful_life':'','actual_state':'',
+                'date_check':'','fk_user':'','fk_microbusiness':'','location':'',
+        }
+
