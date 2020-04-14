@@ -4,43 +4,43 @@ from django import forms
 from django.contrib.auth.models import User
 from users.models import Profile
 
-class SignupForm(forms.Form):
+class RegisterForm(forms.Form):
     #Signup Forms, this classs is for register user with profile 
     username = forms.CharField(min_length=4, max_length=20,required=True, 
                             widget=forms.TextInput(attrs={
                                 'class': 'form-control',
-                                'placeholder': 'Username',
+                                'placeholder': 'Usuario',
                                 'autocomplete': 'off',
                                 }))
     password = forms.CharField(max_length=70, required=True, 
                             widget=forms.PasswordInput(attrs={
                                 'class': 'form-control',
-                                'placeholder': 'Password',
+                                'placeholder': 'Contraseña',
                                 'autocomplete': 'off',
                                 }))
     password_confirmation = forms.CharField(max_length=70, required=True, 
                             widget=forms.PasswordInput(attrs={
                                 'class': 'form-control',
-                                'placeholder': 'Password confirmation',
+                                'placeholder': 'Confirmar contraseña',
                                 'autocomplete': 'off',
                                 }))
 
     first_name = forms.CharField(min_length=2, max_length=50, required=True,
                                 widget=forms.TextInput(attrs={
                                 'class': 'form-control',
-                                'placeholder': 'Fist Name',
+                                'placeholder': 'Nombres',
                                 'autocomplete': 'off',
                                 }))
     last_name = forms.CharField(min_length=2, max_length=50, required=True,  
                             widget=forms.TextInput(attrs={
                                 'class': 'form-control',
-                                'placeholder': 'Last Name',
+                                'placeholder': 'Apellidos',
                                 'autocomplete': 'off',
                                 }))
     email = forms.EmailField(min_length=6, max_length=30, required=False, 
                             widget=forms.EmailInput(attrs={
                                 'class': 'form-control',
-                                'placeholder': 'Email',
+                                'placeholder': 'Correo',
                                 'autocomplete': 'off',
                                 }))
     def clean_username(self):
@@ -48,7 +48,7 @@ class SignupForm(forms.Form):
         username = self.clean_data['username']
         username_taken = User.objects.filter(username=username).exists()
         if username_taken:
-            raise forms.ValidationError('Username is already in use.')
+            raise forms.ValidationError('Nombre de usuario en uso.')
         return username
     def clean(self):
         #verify password conformation match.
@@ -56,7 +56,7 @@ class SignupForm(forms.Form):
         password = data['password']
         password_confirmation = data['password_confirmation']
         if password != password_confirmation:
-            raise forms.ValidationError('Password do not match.')
+            raise forms.ValidationError('La contraseña no coincide.')
         return data
     def save(self):
         #Create user and profile.

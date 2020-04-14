@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from users.models import Profile
 from inventory.models import Articles
 #Forms
-from users.forms import SignupForm,ProfileForm
+from users.forms import RegisterForm,ProfileForm
 
 def login_views(request, *args, **kwargs):
     #Login views
@@ -21,21 +21,27 @@ def login_views(request, *args, **kwargs):
         user = authenticate(request,username=username, password=password)
         if user:
             login(request,user)
-            return redirect('inv:feed')
+            return redirect('feed')
         else:
-            return render(request,'users/login.html', {'error': 'Invalid username and password'})
+            return render(request,'users/login.html', {'error': 'Credenciales invalidas'})
     return render(request,'users/login.html')
 
-def signup(request):
+@login_required
+def logout_views(request):
+    #view log out
+    logout(request)
+    return redirect('users:login')
+
+@login_required
+def register(request):
     #Sign up view
     if request.method == 'POST':
-        form = SignupForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('users:login')
     else:
-        form.SigupForm()
-
+        form.RegisterForm()
     return render(
         request=request,
         template_name='users/signup.html',
@@ -87,9 +93,3 @@ class UserDetailView(LoginRequiredMixin,DeleteView):
         user = self.get_object()
         context['inventory'] = Articles.objects.filter(user=user).order_by('-created')
         return context
-
-@login_required
-def logout_view(request):
-    #view log out
-    logout(request)
-    return redirect('user:login')

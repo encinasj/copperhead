@@ -6,47 +6,76 @@
         <h4 class="pull-left page-title"> Utilities </h4>
         <ol class="breadcrumb pull-right">
             <li><a href="#">Utilities</a></li>
-            <li class="active">Inventario</li>
+            <li class="active"><a href="{% url 'feed' %}">Inventario</a></li>
         </ol>
     </div>
 </div>
-
-    <div class="main-content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- TABLE category -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title lnr lnr-list"> Categorias</h3>
-                            <a type="button" class="btn btn-primary category-form" data-url="{% url 'add_c' %}">
-                                <span class="glyphicon glyphicon-plus"></span> 
-                                Agregar 
-                            </a>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="modal fade" id="modal-cat">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        </div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+            <!-- TABLE category -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title lnr lnr-list"> Categorias</h3>
+                        <a type="button" class="btn btn-primary category-form" data-url="{% url 'add_c' %}">
+                            <span class="glyphicon glyphicon-plus"></span> 
+                            Agregar 
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="modal fade" id="modal-cat">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="tablec">
-                            <ul>
-                                {% include 'inventory/category_list.html' %}
-                            </ul>
+                    </div>
+                    <div class="row" id="tablec">
+                        <ul>
+                            {% include 'inventory/category_list.html' %}
+                        </ul>
+                    </div>
+                </div>
+            <!-- END category -->
+            </div>
+            <div class="col-md-6">
+            <!-- TABLE Microbusiness -->
+                <div class="panel-heading">
+                    <h3 class="panel-title lnr lnr-apartment"> Micronegocio</h3>
+                    <a type="button" class="btn btn-primary Microb-form" data-url-m="{% url 'add_m' %}">
+                        <span class="glyphicon glyphicon-plus"></span> 
+                        Agregar 
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="modal fade" id="modal-mb">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- END category -->
+                    <div class="row" id="tableM">
+                        <ul>
+                            {% include 'inventory/microbusiness_list.html'%}
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-6">
+            <!-- END Microbusiness -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <!-- TABLE Microbusiness -->
                     <div class="panel-heading">
-                        <h3 class="panel-title lnr lnr-apartment"> Micronegocio</h3>
-                        <a type="button" class="btn btn-primary Microb-form" data-url-m="{% url 'add_m' %}">
+                        <h3 class="panel-title lnr lnr-tag"> Marcas</h3>
+                        <a type="button" class="btn btn-primary Brand-form" data-url-b="{% url 'add_b' %}">
                             <span class="glyphicon glyphicon-plus"></span> 
                             Agregar 
                         </a>
@@ -54,7 +83,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="modal fade" id="modal-mb">
+                                <div class="modal fade" id="modal-b">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                         </div>
@@ -62,22 +91,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="tableM">
+                        <div class="row" id="tableB">
                             <ul>
-                                {% include 'inventory/microbusiness_list.html'%}
+                                {% include 'inventory/brand_list.html'%}
                             </ul>
                         </div>
                     </div>
                 <!-- END Microbusiness -->
             </div>
-
-            </div>
-            <div class="row">
- 
-            </div>
         </div>
     </div>
-
-
+</div>
 {% endblock body_block  %}
 

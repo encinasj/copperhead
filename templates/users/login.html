@@ -1,60 +1,57 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="{% static 'images/favicon_1.ico' %}">
-        <title> Login </title>
-        <!-- Base Css Files -->
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-        <!-- Font Icons -->
-        <link href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" />
-        <!-- Custom Files -->
-        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
-    </head>
-    <body class="fixed-left">
-        <div class="wrapper-page">
-            <div class="panel panel-color panel-primary panel-pages">
-                <div class="panel-heading bg-img"> 
-                    <div class="bg-overlay"></div>
-                    <h3 class="text-center m-t-10 text-white"> Inventario <strong>ISEI</strong> </h3>
-                </div> 
-                <div class="panel-body">
-                    <form class="form-horizontal m-t-20" action="{% url 'inv:feed' %}">
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                <input class="form-control input-lg "  autocomplete="off" type="text" required="" placeholder="Usuario">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <input class="form-control input-lg" autocomplete="off" type="password" required="" placeholder="Contraseña">
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                <div class="checkbox checkbox-primary">
-                                    <input id="checkbox-signup" type="checkbox">
-                                    <label for="checkbox-signup">
-                                        Recordar
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group text-center m-t-40">
-                            <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg w-lg waves-effect waves-light" type="submit">Ingresar</button>
-                            </div>
-                        </div>
-                        <div class="form-group m-t-30">
-                            <div class="col-sm-7">
-                                <a href="recoverpw.html"><i class="fa fa-lock m-r-5"></i> Olvidaste tu contraseña?</a>
-                            </div>
-                        </div>
-                    </form> 
-                </div>                                 
-            </div>
-        </div>
-    </body>
+<!doctype html>
+<html lang="en" class="fullscreen-bg">
+<head>
+	<title>Login | Copperhead </title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/vendor/linearicons/style.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/demo.css' %}">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+</head>
+<body>
+    <div class="col-md-6 col-xl-5 mt-xl-5 wow fadeInRight" data-wow-delay="0.3s">
+        <img src="" alt="" class="img-fluid">
+    </div>
+    <div id="wrapper">
+		<div class="vertical-align-wrap">
+			<div class="vertical-align-middle">
+				<div class="auth-box ">
+					<div class="left">
+						<div class="content">
+                            {% if error %}
+                                <p class="alert alert-danger">{{error}}</p>
+                            {% endif %}
+                            <form action="{% url 'users:login' %}" method="POST">
+                                {% csrf_token %}
+								<div class="form-group">
+                                    <input class="form-control" type="text" 
+                                    placeholder="Username" name="username" autocomplete="off" required="true" >
+								</div>
+								<div class="form-group">
+                                    <input class="form-control" type="password" 
+                                    placeholder="Password" name="password" autocomplete="off" required="true">
+								</div>							
+								<button type="submit" class="btn btn-primary btn-lg btn-block">Ingresar</button>
+							</form>
+						</div>
+					</div>
+					<div class="right">
+						<div class="overlay"></div>
+						<div class="content text">
+							<h1 class="heading">Sistema de inventario</h1>
+							<p>ISEI</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

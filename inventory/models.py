@@ -95,16 +95,16 @@ class Articles(models.Model):
     )
     name = models.CharField(max_length=50)
     quantity = models.DecimalField(max_digits=10, decimal_places=4)
-    fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE)
+    fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE) #listo
     model = models.CharField(max_length=50)
-    fk_category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
+    fk_category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE) #listo
     coust_buy = models.DecimalField(max_digits=10, decimal_places=2)
-    fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.CASCADE)
+    fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.CASCADE) #listo
     userful_life = models.DateField()
     actual_state = models.CharField(max_length=12, choices=STATE_ACTUAL)
     date_check = models.DateField()
-    fk_user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    fk_microbusiness = models.ForeignKey(MicroBusiness, null=True, on_delete=models.CASCADE)
+    fk_user = models.ForeignKey(User, null=True, on_delete=models.CASCADE) #listo
+    fk_microbusiness = models.ForeignKey(MicroBusiness, null=True, on_delete=models.CASCADE) #listo
     location = models.CharField(max_length=50)
 #    img = models.ImageField(upload_to='inventory/articles')
     description = models.TextField(blank=True)

@@ -82,7 +82,6 @@ $("#modal-cat").on("submit",".create-category",Savecat);
 $('#tablec').on("click",".create-category-delete",ShowFormu);
 $('#modal-cat').on("submit",".delete-formc",Savecat) 
 });
-
 //++======================================Microbusiness
 $(document).ready(function(){
 	var ShowFormmb = function(){
@@ -124,3 +123,86 @@ $("#modal-mb").on("submit",".create-mb",Savemb);
 $('#tableM').on("click",".mb-delete",ShowFormmb);
 $('#modal-mb').on("submit",".delete-formmb",Savemb) 
 });
+//++======================================Category
+$(document).ready(function(){
+	var ShowFormu = function(){
+		var btn = $(this);
+		$.ajax({
+			url: btn.attr("data-url"),
+			type: 'get',
+			dataType:'json',
+			beforeSend: function(){
+				$('#modal-cat').modal('show');
+			},
+			success: function(data){
+				$('#modal-cat .modal-content').html(data.html_form);
+			}
+		});
+	};
+	var Savecat = function(){
+		var form = $(this);
+		$.ajax({
+			url: form.attr('data-url'),
+			data: form.serialize(),
+			type: form.attr('method'),
+			dataType: 'json',
+			success: function(data){
+				if(data.form_is_valid){
+					$('#tablec ul').html(data.feedc);
+					$('#modal-cat').modal('hide');
+				} else {
+					$('#modal-cat .modal-content').html(data.html_form)
+				}
+			}
+		})
+		return false;
+	}
+//create 
+$(".category-form").click(ShowFormu);
+$("#modal-cat").on("submit",".create-category",Savecat);
+//delete
+$('#tablec').on("click",".create-category-delete",ShowFormu);
+$('#modal-cat').on("submit",".delete-formc",Savecat) 
+});
+//++======================================Brand
+$(document).ready(function(){
+	var ShowFormb = function(){
+		var btn = $(this);
+		$.ajax({
+			url: btn.attr("data-url-b"),
+			type: 'get',
+			dataType:'json',
+			beforeSend: function(){
+				$('#modal-b').modal('show');
+			},
+			success: function(data){
+				$('#modal-b .modal-content').html(data.html_form);
+			}
+		});
+	};
+	var Saveb = function(){
+		var form = $(this);
+		$.ajax({
+			url: form.attr('data-url-b'),
+			data: form.serialize(),
+			type: form.attr('method'),
+			dataType: 'json',
+			success: function(data){
+				if(data.form_is_valid){
+					$('#tableB ul').html(data.feedc);
+					$('#modal-b').modal('hide');
+				} else {
+					$('#modal-b .modal-content').html(data.html_form)
+				}
+			}
+		})
+		return false;
+	}
+//create 
+$(".Brand-form").click(ShowFormb);
+$("#modal-b").on("submit",".create-b",Saveb);
+//delete
+$('#tableB').on("click",".b-delete",ShowFormb);
+$('#modal-b').on("submit",".delete-formb",Saveb) 
+});
+//++======================================Brand

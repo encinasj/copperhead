@@ -1,0 +1,19 @@
+<form method="POST" data-url-b="{% url 'add_b' %}" class="create-b">
+	{% csrf_token %}
+	<div class="modal-header"> 
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+		<h4 class="modal-title">Nuevo Marca</h4> 
+	</div> 
+	<div class="modal-body"> 
+		<div class="form-row">
+			<!-- Name Category-->
+			<input type="text" autocomplete="off" class="form-control {% if form.name.errors %}is-invalid{% endif %}" 
+				id="name" name="name" placeholder="Nombre de la marca">
+		</div>
+	</div>
+    <br>
+	<div class="modal-footer">
+		<input type="button" value="Cancelar" class="btn btn-secundary" data-dismiss="modal">
+		<input type="submit" value="Agregar"  class="btn btn-primary">
+	</div>
+</form>

@@ -8,19 +8,19 @@
             </tr>
         </thead>
         <tbody>
-            {% for microbusiness in microbusiness %}
+            {% for brand in brand %}
                 <tr>
-                    <td><a class="desactivate lnr lnr-apartment"></a></td>
-                    <td>{{microbusiness.name}}</td>
+                    <td><a class="deactivate lnr lnr-tag"></a></td>
+                    <td>{{brand.name}}</td>
                     <td></td>
                     <td></td>
                     <td align="center">
-                        <a class="btn btn-danger mb-delete" data-url-m="{% url 'delete_m' microbusiness.id %}">Eliminar</a>
+                        <a class="btn btn-danger b-delete" data-url-b="{% url 'delete_b' brand.id  %}">Eliminar</a>
                     </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="7" class="text-center bg-warning">No hay Micronegocios!</td>
+                    <td colspan="7" class="text-center bg-warning">No hay articulos!</td>
                 </tr>
             {% endfor %}
         </tbody>

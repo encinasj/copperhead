@@ -33,7 +33,9 @@ class CategoryForm(forms.ModelForm):
 
 class BrandForm(forms.ModelForm):
     #Brand Form
-    name_b = forms.CharField(min_length=4, max_length=50, required=True)
+    class Meta():
+        model = Brand
+        fields = ('name',)
 
 class ArticlesForm(forms.ModelForm):
     #Article Form
