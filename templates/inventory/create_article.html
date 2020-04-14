@@ -7,69 +7,81 @@
 		<h4 class="modal-title">Articulo nuevo</h4> 
 	</div> 
 	<div class="modal-body"> 
-
 		<div class="form-row">
-			<div class="form-group col-md-5 mb-0">
-				<input class="form-control {% if form.name.errors %}is-invalid{% endif %}"
-				type="text" name="name" placeholder="Nombre" autocomplete="off">
-				<div class="invalid-feedback">
-					{% for error in form.name.errors %}{{ error }}{% endfor %}
-				</div>
+			<!-- Name article-->
+			<div class="form-group col-md-5">
+				<input type="text" autocomplete="off" class="form-control {% if form.name.errors %}is-invalid{% endif %}" 
+				id="name" name="name" placeholder="Nombre">
 			</div>
-			<div class="form-group col-md-3 mb-0">
-				<input class="form-control {% if form.quantity.errors %}is-invalid{% endif %}"
-						type="text" name="quantity" placeholder="Cantidad" autocomplete="off">
-				<div class="invalid-feedback">
-					{% for error in form.quantity.errors %}{{ error }}{% endfor %}
-				</div>
+			<!-- Quantity article-->
+			<div class="form-group col-md-3">
+				<input type="number" autocomplete="off" class="form-control {% if form.quantity.errors %}is-invalid{% endif %}"
+				 id="quantity" name="quantity" placeholder="Cantidad">
 			</div>
-			<div class="form-group col-md-3 mb-0">
+			<!-- Brand article-->
+			<div class="form-group col-md-4 ">
 				{{ form.fk_brand|as_crispy_field }}
 			</div>
-			<div class="form-group col-md-3 mb-0">
+				<!-- Model article-->
+			<div class="form-group col-md-3">
+				<input type="text" autocomplete="off" class="form-control {% if form.model.errors %}is-invalid{% endif %}"
+				id="model" name="model" placeholder="Modelo">
+			</div>
+			<!-- Category article-->
+			<div class="form-group col-md-3 ">
 				{{ form.fk_category|as_crispy_field }}
 			</div>
-		</div>
-		<div class="form-group col-md-4 mb-0">
-			<input class="form-control {% if form.model.errors %}is-invalid{% endif %}"
-					type="text" name="model" placeholder="Modelo" autocomplete="off">
-			<div class="invalid-feedback">
-				{% for error in form.model.errors %}{{ error }}{% endfor %}
+			<!-- Coust buy article-->
+			<div class="form-group col-md-3">
+				<input type="number" autocomplete="off" 
+				class="form-control {% if form.coust_buy.errors %}is-invalid{% endif %}" 
+				id="coust_buy" name="coust_buy" placeholder="$">
+			</div>
+			<!-- Supplier article-->
+			<div class="form-group col-md-3 ">
+				{{ form.fk_supplier|as_crispy_field }}
+			</div>
+			<!-- useful life article-->
+			<div class="form-group col-md-6">
+				<input type="date" class="form-control {% if form.userful_life.errors %}is-invalid{% endif %}" 
+				id="userful_life" name="userful_life">
+			</div>
+			<!-- actual state article-->
+			<div class="form-group col-md-6">
+				{{ form.actual_state|as_crispy_field }}
+			</div>
+			<!-- date check date check-->
+			<div class="form-group col-md-4">
+				<input type="date" class="form-control {% if form.date_check.errors %}is-invalid{% endif %}" 
+				id="date_check" name="date_check">
+			</div>
+			<!-- user to User-->
+			<div class="form-group col-md-4">
+				{{ form.fk_user|as_crispy_field }}
+			</div>
+			<!-- user to microbusiness-->
+			<div class="form-group col-md-4">
+				{{ form.fk_microbusiness|as_crispy_field }}
+			</div>
+			<!-- Locatin location-->
+			<div class="form-group col-md-12">
+				<input type="text" autocomplete="off" class="form-control {% if form.location.errors %}is-invalid{% endif %}" 
+				id="location" name="location" placeholder="Ubicación">
+			</div>
+			<!-- img to image
+			<input class="form-group {% if form.img.errors %}is-invalid{% endif %}"
+				type="file" name="img" id='img'>
+				-->
+			<!-- description description-->
+			<div class="form-row">
+				<div class="form-group col-md-12 mb-0">
+					<textarea class="form-control {% if form.description.errors %}is-invalid{% endif %}"
+						name="description" cols="10" rows="5"></textarea>
+				</div>
 			</div>
 		</div>
-		<div class="form-group col-md-4 mb-0">
-			<input class="form-control {% if form.coust_buy.errors %}is-invalid{% endif %}"
-					type="text" name="coust_buy" placeholder="Costo" autocomplete="off">
-			<div class="invalid-feedback">
-				{% for error in form.coust_buy.errors %}{{ error }}{% endfor %}
-			</div>
-		</div>
-
-		<div class="form-group col-md-3 mb-0">
-			{{ form.fk_supplier|as_crispy_field }}
-		</div>
-
-		<div class="form-group col-md-6 mb-0">
-			<textarea class="form-control {% if form.coust_buy.errors %}is-invalid{% endif %}"
-					 placeholder="Costo" name="description" cols="30" rows="10">
-			</textarea>
-			<div class="invalid-feedback">
-				{% for error in form.description.errors %}{{ error }}{% endfor %}
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6 mb-0">
-			  {{ form.fk_category|as_crispy_field }}
-			</div>
-			<div class="form-group col-md-4 mb-0">
-			  {{ form.coust_buy|as_crispy_field }}
-			</div>
-			<div class="form-group col-md-2 mb-0">
-			  {{ form.fk_supplier|as_crispy_field }}
-			</div>
-		</div>
-	</div> 
-	
+	</div>
+	<br>
 	<div class="modal-footer">
 		<input type="button" value="Cancelar" class="btn btn-secundary" data-dismiss="modal">
 		<input type="submit" value="Agregar"  class="btn btn-primary">

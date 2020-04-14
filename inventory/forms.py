@@ -15,19 +15,23 @@ class SupplierForm(forms.Form):
     emial = forms.EmailField(min_length=4,max_length=254, required=False)
     comments = forms.CharField(max_length=250, required=False)
 
-class MicroBussinesForm(forms.Form):
+class MicroBussinesForm(forms.ModelForm):
     #Microbusiness Form
-    name_mb = forms.CharField(min_length=4, max_length=50, required=True)
+     class Meta():
+        model = MicroBusiness
+        fields = ('name',)
 
 class TypeArticlesForm(forms.Form):
     #Type Article Form
     name_ta = forms.CharField(min_length=4, max_length=50, required=True)
 
-class CategoryForm(forms.Form):
+class CategoryForm(forms.ModelForm):
     #Category Form
-    name_c = forms.CharField(min_length=4, max_length=50, required=True)
+    class Meta():
+        model = Category
+        fields = ('name',)
 
-class BrandForm(forms.Form):
+class BrandForm(forms.ModelForm):
     #Brand Form
     name_b = forms.CharField(min_length=4, max_length=50, required=True)
 
@@ -35,17 +39,16 @@ class ArticlesForm(forms.ModelForm):
     #Article Form
     class Meta():
         model = Articles
-
-        fields = ('name','quantity',
+        fields = (
+                'name','quantity',
                 'fk_brand','model','fk_category', 
-                'coust_buy', 'fk_supplier', 'description',
-                'userful_life','actual_state',
-                'date_check','fk_user','fk_microbusiness','location')
+                'coust_buy','fk_supplier','userful_life','actual_state',
+                'date_check','fk_user','fk_microbusiness','location',
+                'description')
         labels = {
-                'name':'', 'quantity':'',
+                'name':'','quantity':'',
                 'fk_brand':'','model':'','fk_category':'', 
-                'coust_buy':'','fk_supplier':'', 'description':'',
-                'userful_life':'','actual_state':'',
-                'date_check':'','fk_user':'','fk_microbusiness':'','location':'',
-        }
+                'coust_buy':'','fk_supplier':'','userful_life':'','actual_state':'',
+                'date_check':'','fk_user':'','fk_microbusiness':'','location':'','img':'',
+                'description':'',}
 

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block body_block %}
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="pull-left page-title"> Inventario </h4>
+    </div>
+</div>
 <a type="button" class="btn btn-primary show-form" data-url="{% url 'add' %}">
     <span class="glyphicon glyphicon-plus"></span>
     Agregar
@@ -9,9 +14,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
-                <h3 class="panel-title">Articulos</h3>
-            </div>
             <hr>
             <div class="modal fade" id="modal-action">
                 <div class="modal-dialog">

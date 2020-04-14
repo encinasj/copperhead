@@ -27,11 +27,10 @@ class Supplier(models.Model):
 class MicroBusiness(models.Model):
     #models micro businerss
     name =  models.CharField(max_length=50)
-    img =   models.ImageField(upload_to='inventory/mb')
+   # img =   models.ImageField(upload_to='inventory/mb')
     #actions
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
-    delete = models.DateField(auto_now=True)
 
     class Meta:
         verbose_name = 'MicroBusiness'
@@ -46,7 +45,6 @@ class TypeArticle(models.Model):
     #actions
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
-    delete = models.DateField(auto_now=True)
 
     class Meta:
         verbose_name = 'TypeArticle'
@@ -61,7 +59,6 @@ class Category(models.Model):
     #actions
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
-    delete = models.DateField(auto_now=True)
 
     class Meta:
         verbose_name = 'Category'
@@ -76,7 +73,6 @@ class Brand(models.Model):
     #actions
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
-    delete = models.DateField(auto_now=True)
 
     class Meta:
         verbose_name = 'Brand'
@@ -104,13 +100,14 @@ class Articles(models.Model):
     fk_category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
     coust_buy = models.DecimalField(max_digits=10, decimal_places=2)
     fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.CASCADE)
-    description = models.TextField(blank=True)
     userful_life = models.DateField()
     actual_state = models.CharField(max_length=12, choices=STATE_ACTUAL)
     date_check = models.DateField()
     fk_user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     fk_microbusiness = models.ForeignKey(MicroBusiness, null=True, on_delete=models.CASCADE)
     location = models.CharField(max_length=50)
+#    img = models.ImageField(upload_to='inventory/articles')
+    description = models.TextField(blank=True)
     #actions
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
