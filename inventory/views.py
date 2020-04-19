@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
+
 #models
 from .models import Articles, Category, MicroBusiness,Brand
 #forms
@@ -23,7 +24,7 @@ def save_all(request,form,template_name):
     #function save articles
     data = dict()
     if request.method == 'POST':
-        form = ArticlesForm(request.POST, request.FILES)
+        form = ArticlesForm(request.POST)
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
@@ -41,20 +42,20 @@ def save_all(request,form,template_name):
 def create_article(request):
     #function add articles
     if request.method == 'POST':
-        form = ArticlesForm(request.POST, request.FILES)
+        form = ArticlesForm(request.POST)
     else:
         form = ArticlesForm()
     return save_all(request,form,'inventory/create_article.html')
 
 @login_required
-def update_article(request, id):
+def update_article(request, pk):
     #fucntion update article
-	articles = get_object_or_404(Articles,id=id)
-	if request.method == 'POST':
-		form = ArticlesForm(request.POST,instance=articles)
+	article = get_object_or_404(Articles, pk=pk)
+	if request.method == 'post':
+		form = ArticlesForm(request.POST, instance=article)
 	else:
-		form = ArticlesForm(instance=articles)
-	return save_all(request,form,'inventory/update_article.html')
+		form = ArticlesForm(instance=article)
+	return save_all(request,form, 'inventory/update_article.html')
 
 @login_required
 def delete_article(request, id):

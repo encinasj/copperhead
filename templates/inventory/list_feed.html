@@ -1,11 +1,11 @@
 {% for article in  article %}
     <div style="margin-right: 5px;" class="metric col-md-3">
         <div class="pull-right btn-group-sm">
-            <button type="submit" class="show-form-delete" data-url="{% url 'delete' article.id %}">
+            <button class="show-form-delete" data-url="{% url 'delete' article.id %}">
                 <span class="lnr lnr-trash"></span>
             </button>
             |
-            <button class="show-form-update" data-url="{% url 'update' article.id %}">
+            <button class="show-form-update" data-url="{% url 'update' article.pk %}">
                 <span class="lnr lnr-pencil"></span>
             </button>
         </div>
@@ -16,7 +16,7 @@
         <hr>
         <ul class="list-inline">
             <li>
-                <a class="text-muted">Ubicación: {{article.location}}</a>
+                <a class="text-muted">Ubicación: {{article.location}}</a> 
             </li>
             <li>
                 <a class="text-muted">Cantidad: {{article.quantity}}</a>

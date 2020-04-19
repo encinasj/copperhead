@@ -2,6 +2,8 @@
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.csrf import csrf_exempt
+
 from django.shortcuts import render,redirect
 from django.views.generic import DeleteView
 from django.shortcuts import render
@@ -13,6 +15,7 @@ from inventory.models import Articles
 #Forms
 from users.forms import RegisterForm,ProfileForm
 
+@csrf_exempt
 def login_views(request, *args, **kwargs):
     #Login views
     if request.method == 'POST':

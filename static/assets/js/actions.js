@@ -1,3 +1,4 @@
+//++======================================Feed articles
 $(document).ready(function(){
 	var ShowForm = function(){
 		var btn = $(this);
@@ -31,22 +32,22 @@ $(document).ready(function(){
 		})
 		return false;
 	}
-//create 
+//create
 $(".show-form").click(ShowForm);
 $("#modal-action").on("submit",".create-form",SaveForm);
 //update
 $('#all-table').on("click",".show-form-update",ShowForm);
-$('#modal-action').on("submit",".update-form",SaveForm)
+$('#modal-action').on("submit",".article-update-form",SaveForm)
 //delete
 $('#all-table').on("click",".show-form-delete",ShowForm);
-$('#modal-action').on("submit",".delete-form",SaveForm) 
+$('#modal-action').on("submit",".delete-form",SaveForm)
 });
 //++======================================Category
 $(document).ready(function(){
 	var ShowFormu = function(){
 		var btn = $(this);
 		$.ajax({
-			url: btn.attr("data-url"),
+			url: btn.attr("data-url-cat"),
 			type: 'get',
 			dataType:'json',
 			beforeSend: function(){
@@ -60,7 +61,7 @@ $(document).ready(function(){
 	var Savecat = function(){
 		var form = $(this);
 		$.ajax({
-			url: form.attr('data-url'),
+			url: form.attr('data-url-cat'),
 			data: form.serialize(),
 			type: form.attr('method'),
 			dataType: 'json',
@@ -75,12 +76,12 @@ $(document).ready(function(){
 		})
 		return false;
 	}
-//create 
+//create
 $(".category-form").click(ShowFormu);
 $("#modal-cat").on("submit",".create-category",Savecat);
 //delete
 $('#tablec').on("click",".create-category-delete",ShowFormu);
-$('#modal-cat').on("submit",".delete-formc",Savecat) 
+$('#modal-cat').on("submit",".delete-formc",Savecat)
 });
 //++======================================Microbusiness
 $(document).ready(function(){
@@ -116,53 +117,12 @@ $(document).ready(function(){
 		})
 		return false;
 	}
-//create 
+//create
 $(".Microb-form").click(ShowFormmb);
 $("#modal-mb").on("submit",".create-mb",Savemb);
 //delete
 $('#tableM').on("click",".mb-delete",ShowFormmb);
-$('#modal-mb').on("submit",".delete-formmb",Savemb) 
-});
-//++======================================Category
-$(document).ready(function(){
-	var ShowFormu = function(){
-		var btn = $(this);
-		$.ajax({
-			url: btn.attr("data-url"),
-			type: 'get',
-			dataType:'json',
-			beforeSend: function(){
-				$('#modal-cat').modal('show');
-			},
-			success: function(data){
-				$('#modal-cat .modal-content').html(data.html_form);
-			}
-		});
-	};
-	var Savecat = function(){
-		var form = $(this);
-		$.ajax({
-			url: form.attr('data-url'),
-			data: form.serialize(),
-			type: form.attr('method'),
-			dataType: 'json',
-			success: function(data){
-				if(data.form_is_valid){
-					$('#tablec ul').html(data.feedc);
-					$('#modal-cat').modal('hide');
-				} else {
-					$('#modal-cat .modal-content').html(data.html_form)
-				}
-			}
-		})
-		return false;
-	}
-//create 
-$(".category-form").click(ShowFormu);
-$("#modal-cat").on("submit",".create-category",Savecat);
-//delete
-$('#tablec').on("click",".create-category-delete",ShowFormu);
-$('#modal-cat').on("submit",".delete-formc",Savecat) 
+$('#modal-mb').on("submit",".delete-formmb",Savemb)
 });
 //++======================================Brand
 $(document).ready(function(){
@@ -198,11 +158,11 @@ $(document).ready(function(){
 		})
 		return false;
 	}
-//create 
+//create
 $(".Brand-form").click(ShowFormb);
 $("#modal-b").on("submit",".create-b",Saveb);
 //delete
 $('#tableB').on("click",".b-delete",ShowFormb);
-$('#modal-b').on("submit",".delete-formb",Saveb) 
+$('#modal-b').on("submit",".delete-formb",Saveb)
 });
 //++======================================Brand

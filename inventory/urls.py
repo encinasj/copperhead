@@ -6,9 +6,9 @@ urlpatterns = [
     #CRUD urls Articles
     path('',login_required(views.FeedView), name='feed'),
     path('add',login_required(views.create_article), name='add'),
-    path('update/<int:id>', login_required(views.update_article), name='update'),
-    path('delete/<int:id>', login_required(views.delete_article), name='delete'),
-    #End urls articles
+    path('update/<int:pk>',login_required(views.update_article), name='update'),
+    path('delete/<int:id>',login_required(views.delete_article), name='delete'),
+    #End urls Articles
     
     #CRD urls Category
     path('Utilities/',login_required(views.CategoryView), name='feedc'),
