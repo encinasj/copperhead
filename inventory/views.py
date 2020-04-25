@@ -24,7 +24,6 @@ def save_all(request,form,template_name):
     #function save articles
     data = dict()
     if request.method == 'POST':
-        form = ArticlesForm(request.POST)
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
@@ -48,14 +47,14 @@ def create_article(request):
     return save_all(request,form,'inventory/create_article.html')
 
 @login_required
-def update_article(request, pk):
+def update_article(request,pk):
     #fucntion update article
-	article = get_object_or_404(Articles, pk=pk)
-	if request.method == 'post':
-		form = ArticlesForm(request.POST, instance=article)
-	else:
-		form = ArticlesForm(instance=article)
-	return save_all(request,form, 'inventory/update_article.html')
+    article = get_object_or_404(Articles,pk=pk)
+    if request.method == 'POST':
+	    form = ArticlesForm(request.POST, instance=article)
+    else:
+	    form = ArticlesForm(instance=article)
+    return save_all(request, form, 'inventory/update_article.html')
 
 @login_required
 def delete_article(request, id):

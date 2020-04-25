@@ -14,7 +14,7 @@ $(document).ready(function(){
 			}
 		});
 	};
-	var SaveForm =  function(){
+	var SaveForm = function(){
 		var form = $(this);
 		$.ajax({
 			url: form.attr('data-url'),
