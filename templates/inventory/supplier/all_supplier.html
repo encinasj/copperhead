@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <ol class="breadcrumb pull-right">
+            <li><a href="#">Provedores</a></li>
+            <li class="active"><a href="{% url 'feed' %}">Inventario</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+            <!-- TABLE category -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title lnr lnr-list"> Lista de provedores </h3>
+                        <a type="button" class="btn btn-primary category-form" data-url-cat="#">
+                            <span class="glyphicon glyphicon-plus"></span> 
+                            Agregar 
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="modal fade" id="modal-cat">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="tablec">
+                        <ul>
+                            {% include 'inventory/supplier/supplier_list.html'%}
+                        </ul>
+                    </div>
+                </div>
+            <!-- END category -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body_block %}

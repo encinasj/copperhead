@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
 #models
-from .models import Articles, Category, MicroBusiness,Brand
+from .models import Articles, Category, MicroBusiness,Brand, Supplier
 #forms
 from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm
 
@@ -213,6 +213,18 @@ def deletebrand(request, id):
 		data['html_form'] = render_to_string('inventory/delete_brand.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================   
+@login_required
+def supplier(request):
+    #this function show all supplier 
+    supplier = Supplier.objects.all()
+    context = {
+        'supplier':supplier
+    }
+    template_name='inventory/supplier/all_supplier.html'
+    return render(request,template_name, context)
+
+#====================================================================================================
+
 @login_required
 def Report(request):
     template_name = 'base.html'

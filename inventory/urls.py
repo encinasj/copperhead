@@ -25,4 +25,8 @@ urlpatterns = [
     path('add_b',login_required(views.createbrand), name='add_b'),
     path('delete_b/<int:id>',login_required(views.deletebrand), name='delete_b'),
     #End urls brand
+
+    #CRUD supplier
+    path('supplier/',login_required(views.supplier), name='feed_s'),
+    #path('add_s',login_required()),
 ]
