@@ -165,4 +165,48 @@ $("#modal-b").on("submit",".create-b",Saveb);
 $('#tableB').on("click",".b-delete",ShowFormb);
 $('#modal-b').on("submit",".delete-formb",Saveb)
 });
-//++======================================Brand
+//++======================================Supplier
+$(document).ready(function(){
+	var ShowFormsp = function(){
+		var btn = $(this);
+		$.ajax({
+			url: btn.attr("data-url-s"),
+			type: 'get',
+			dataType:'json',
+			beforeSend: function(){
+				$('#modal-s').modal('show');
+			},
+			success: function(data){
+				$('#modal-s .modal-content').html(data.html_form);
+			}
+		});
+	};
+	var Savesp = function(){
+		var form = $(this);
+		$.ajax({
+			url: form.attr('data-url-s'),
+			data: form.serialize(),
+			type: form.attr('method'),
+			dataType: 'json',
+			success: function(data){
+				if(data.form_is_valid){
+					$('#table-s ul').html(data.feed_s);
+					$('#modal-s').modal('hide');
+				} else {
+					$('#modal-s .modal-content').html(data.html_form)
+				}
+			}
+		})
+		return false;
+	}
+//create
+$(".supplier-form").click(ShowFormsp);
+$("#modal-s").on("submit",".create-s",Savesp);
+//update
+$('#table-s').on("click",".show-update-s",ShowFormsp);
+$('#modal-s').on("submit",".update-form-s",Savesp)
+//delete
+$('#table-s').on("click",".delete-s",ShowFormsp);
+$('#modal-s').on("submit",".delete-form-s",Savesp)
+});
+//++======================================Supplier

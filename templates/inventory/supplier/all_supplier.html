@@ -18,14 +18,14 @@
                 <div class="panel">
                     <div class="panel-heading">
                         <h3 class="panel-title lnr lnr-list"> Lista de provedores </h3>
-                        <a type="button" class="btn btn-primary category-form" data-url-cat="#">
+                        <a type="button" class="btn btn-primary supplier-form" data-url-s="{% url 'add-s' %}">
                             <span class="glyphicon glyphicon-plus"></span> 
                             Agregar 
                         </a>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="modal fade" id="modal-cat">
+                        <div class="col-md-6">
+                            <div class="modal fade" id="modal-s">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                     </div>
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="tablec">
+                    <div class="row" id="table-s">
                         <ul>
                             {% include 'inventory/supplier/supplier_list.html'%}
                         </ul>

@@ -4,17 +4,16 @@ from django import forms
 #models
 from inventory.models import Supplier,MicroBusiness,TypeArticle,Category,Brand,Articles
 
-class SupplierForm(forms.Form):
+class SupplierForm(forms.ModelForm):
     #supplier forms
-    name_company = forms.CharField(min_length=4, max_length=20, required=True)
-    name_contact = forms.CharField(min_length=4,max_length=20, required=True)
-    phone_number = forms.CharField(min_length=4, max_length=12, required=True)
-    adress = forms.CharField(min_length=4,max_length=60, required=False)
-    cel_phone = forms.CharField(min_length=4,max_length=12, required=False)
-    web = forms.URLField(min_length=4,max_length=200, required=False)
-    emial = forms.EmailField(min_length=4,max_length=254, required=False)
-    comments = forms.CharField(max_length=250, required=False)
-
+    class Meta():
+        model = Supplier
+        fields = ('name_company','name_contact','phone_number',
+                'cel_phone','address','web','email','comments',)
+        labels = {
+                'name_company':'','name_contact':'','phone_number':'',
+                'cel_phone':'','adress':'','web':'','email':'','comments':'',
+        }
 class MicroBussinesForm(forms.ModelForm):
     #Microbusiness Form
      class Meta():

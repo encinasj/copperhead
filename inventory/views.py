@@ -6,9 +6,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
 #models
-from .models import Articles, Category, MicroBusiness,Brand, Supplier
+from .models import Articles,Category,MicroBusiness,Brand,Supplier
 #forms
-from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm
+from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,SupplierForm
 
 @login_required
 def FeedView(request):
@@ -89,7 +89,6 @@ def save_utilities(request,form,template_name):
     #function save category
     data = dict()
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
@@ -132,7 +131,6 @@ def save_mb(request,form,template_name):
     #function save category
     data = dict()
     if request.method == 'POST':
-        form = MicroBussinesForm(request.POST)
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
@@ -175,7 +173,6 @@ def save_brand(request,form,template_name):
     #function save category
     data = dict()
     if request.method == 'POST':
-        form = BrandForm(request.POST)
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
@@ -220,8 +217,36 @@ def supplier(request):
     context = {
         'supplier':supplier
     }
-    template_name='inventory/supplier/all_supplier.html'
-    return render(request,template_name, context)
+    return render(request,'inventory/supplier/all_supplier.html', context)
+
+@login_required
+def save_supplier(request,form,template_name):
+    #function save supplier
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            supplier = Supplier.objects.all()
+            data['feed_s'] = render_to_string('inventory/supplier/supplier_list.html',{'supplier':supplier})
+        else:
+            data['form_is_valid'] = False
+    context = {
+    'form':form
+    }
+    data['html_form'] = render_to_string(template_name,context,request=request)
+    return JsonResponse(data)
+
+@login_required
+def createsupplier(request):
+    #this function add a new supplier
+    if request.method == 'POST':
+        form = SupplierForm(request.POST)
+    else:
+        form = SupplierForm()
+    return save_supplier(request,form,'inventory/supplier/createsupplier.html')
+
+
 
 #====================================================================================================
 

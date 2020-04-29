@@ -27,6 +27,6 @@ urlpatterns = [
     #End urls brand
 
     #CRUD supplier
-    path('supplier/',login_required(views.supplier), name='feed_s'),
-    #path('add_s',login_required()),
+    path('supplier',login_required(views.supplier), name='feed_s'),
+    path('add_s',login_required(views.createsupplier), name='add-s'),
 ]

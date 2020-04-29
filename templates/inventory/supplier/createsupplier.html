@@ -1,0 +1,59 @@
+
+<form method="POST" data-url-s="{% url 'add-s' %}" class="create-s">
+	{% csrf_token %}
+	<div class="modal-header"> 
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+		<h4 class="modal-title">Nuevo provedor</h4> 
+	</div> 
+	<div class="modal-body"> 
+		<div class="form-row">
+			<!-- Name company-->
+			<div class="form-group col-md-5">
+				<input type="text" autocomplete="off" class="form-control {% if form.name_company.errors %}is-invalid{% endif %}" 
+					id="name_company" name="name_company" placeholder="Nombre de la compañia ">
+			</div>
+			<!-- Name contact-->
+			<div class="form-group col-md-7">
+			 	<input type="text" autocomplete="off" class="form-control {% if form.name_contact.errors %}is-invalid{% endif %}" 
+			 		id="name_contact" name="name_contact" placeholder="Nombre del contacto ">
+			</div>
+			<!-- Phone number-->
+			<div class="form-group col-md-6">
+				<input type="tel" autocomplete="off" class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}" 
+					id="phone_number" name="phone_number" placeholder="Número telefonico de la empresa ">
+		   	</div>
+		   	<!-- Phone celphone-->
+			<div class="form-group col-md-6">
+				<input type="tel" autocomplete="off" class="form-control {% if form.cel_phone.errors %}is-invalid{% endif %}" 
+					id="cel_phone" name="cel_phone" placeholder="Número celular ">
+		   	</div>
+		 	<!-- address-->
+		 	<div class="form-group col-md-12">
+				<input type="text" autocomplete="off" class="form-control {% if form.address.errors %}is-invalid{% endif %}" 
+					id="address" name="address" placeholder="Dirección ">
+			</div>
+			<!-- web-->
+			<div class="form-group col-md-12">
+				<input type="url" autocomplete="off" class="form-control {% if form.web.errors %}is-invalid{% endif %}" 
+					id="web" name="web" placeholder="Pagina web ">
+			</div>
+			<!-- address-->
+			<div class="form-group col-md-12">
+				<input type="email" autocomplete="off" class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
+					id="email" name="email" placeholder="Correo electrónico ">
+			</div>
+			<!-- Comments-->
+			<div class="form-row">
+				<div class="form-group col-md-12 mb-0">
+					<textarea class="form-control {% if form.comments.errors %}is-invalid{% endif %}"
+						name="comments" cols="10" rows="5"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+    <br>
+	<div class="modal-footer">
+		<input type="button" value="Cancelar" class="btn btn-secundary" data-dismiss="modal">
+		<input type="submit" value="Agregar"  class="btn btn-primary">
+	</div>
+</form>
