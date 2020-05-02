@@ -247,6 +247,16 @@ def createsupplier(request):
     return save_supplier(request,form,'inventory/supplier/createsupplier.html')
 
 @login_required
+def updatesupplier(request,pk):
+    #fucntion update supplier
+    supplier = get_object_or_404(Supplier,pk=pk)
+    if request.method == 'POST':
+	    form = SupplierForm(request.POST, instance=supplier)
+    else:
+	    form = SupplierForm(instance=supplier)
+    return save_supplier(request, form, 'inventory/supplier/updatesupplier.html')
+
+@login_required
 def deletesupplier(request, id):
     #function delete supplier
 	supplier = get_object_or_404(Supplier,id=id)
