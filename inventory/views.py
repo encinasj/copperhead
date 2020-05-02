@@ -246,10 +246,21 @@ def createsupplier(request):
         form = SupplierForm()
     return save_supplier(request,form,'inventory/supplier/createsupplier.html')
 
-
-
+@login_required
+def deletesupplier(request, id):
+    #function delete supplier
+	supplier = get_object_or_404(Supplier,id=id)
+	data = dict()
+	if request.method == 'POST':
+		supplier.delete()
+		data['form_is_valid'] = True  #This is just to play along with the existing code
+		supplier = Supplier.objects.all()
+		data['feed_s'] = render_to_string('inventory/supplier/supplier_list.html',{'supplier':supplier})
+	else:
+		context = {'supplier':supplier}
+		data['html_form'] = render_to_string('inventory/supplier/deletesupplier.html',context,request=request)
+	return JsonResponse(data)
 #====================================================================================================
-
 @login_required
 def Report(request):
     template_name = 'base.html'

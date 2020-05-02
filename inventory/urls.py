@@ -29,4 +29,5 @@ urlpatterns = [
     #CRUD supplier
     path('supplier',login_required(views.supplier), name='feed_s'),
     path('add_s',login_required(views.createsupplier), name='add-s'),
+    path('delete_s/<int:id>',login_required(views.deletesupplier), name='delete_s'),
 ]
