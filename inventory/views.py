@@ -1,10 +1,10 @@
 #Django
 from django.contrib.auth.decorators import login_required 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-
 #models
 from .models import Articles,Category,MicroBusiness,Brand,Supplier
 #forms
@@ -13,9 +13,20 @@ from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,Supplie
 @login_required
 def FeedView(request):
     #list all articles on dashboard
-    article = Articles.objects.all()
+    article_list = Articles.objects.all()
+    
+    #pagination
+    page = request.GET.get('page', 1)
+    paginator = Paginator(article_list, 9)
+    try:
+        article = paginator.page(page)
+    except PageNotAnInteger:
+        article = paginator.page(1)
+    except EmptyPage:
+        article = paginator.page(paginator.num_pages)
+
     context = {
-    'article': article
+    'article': article,
     }
     return render (request, 'inventory/feed.html',context)
 
@@ -275,8 +286,17 @@ def deletesupplier(request, id):
 def Report(request):
     template_name = 'base.html'
     return render (request, template_name)
-
 @login_required
 def Configuration(request):
     template_name = 'base.html'
     return render (request, template_name)
+#====================================================================================================
+def Searchbar(request):
+    ctx = {}
+    url_parameter = request.GET.get("q")
+    if url_parameter:
+        articles = Articles.objects.filter(name__icontains=url_parameter)
+    else:
+        articles = Articles.objects.all()
+    ctx["articles"] = articles
+    return render(request, "artists.html", context=ctx)

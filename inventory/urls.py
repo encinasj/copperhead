@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from inventory import views
 
 urlpatterns = [
-    #CRUD urls Articles
+    #CRUD urls Articles and search bar
     path('',login_required(views.FeedView), name='feed'),
     path('add',login_required(views.create_article), name='add'),
     path('update/<int:pk>',login_required(views.update_article), name='update'),
