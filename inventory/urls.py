@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from inventory import views
 
 urlpatterns = [
-    #CRUD urls Articles and search bar
+    #CRUD urls Articles and searchbar 
     path('',login_required(views.FeedView), name='feed'),
     path('add',login_required(views.create_article), name='add'),
     path('update/<int:pk>',login_required(views.update_article), name='update'),
@@ -31,4 +31,5 @@ urlpatterns = [
     path('add_s',login_required(views.createsupplier), name='add-s'),
     path('update_s/<int:pk>', login_required(views.updatesupplier), name='update_s'),
     path('delete_s/<int:id>',login_required(views.deletesupplier), name='delete_s'),
+
 ]

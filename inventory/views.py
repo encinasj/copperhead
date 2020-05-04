@@ -1,5 +1,6 @@
 #Django
 from django.contrib.auth.decorators import login_required 
+from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import render_to_string
 from django.http import JsonResponse
@@ -13,11 +14,17 @@ from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,Supplie
 @login_required
 def FeedView(request):
     #list all articles on dashboard
-    article_list = Articles.objects.all()
-    
+
+    #search bar
+    search_query = request.GET.get('search','') 
+    if search_query:
+        article = Articles.objects.filter(Q(name__icontains=search_query) | Q(quantity__icontains=search_query))
+    else:
+        article = Articles.objects.all()
+
     #pagination
     page = request.GET.get('page', 1)
-    paginator = Paginator(article_list, 9)
+    paginator = Paginator(article, 9)
     try:
         article = paginator.page(page)
     except PageNotAnInteger:
@@ -291,12 +298,3 @@ def Configuration(request):
     template_name = 'base.html'
     return render (request, template_name)
 #====================================================================================================
-def Searchbar(request):
-    ctx = {}
-    url_parameter = request.GET.get("q")
-    if url_parameter:
-        articles = Articles.objects.filter(name__icontains=url_parameter)
-    else:
-        articles = Articles.objects.all()
-    ctx["articles"] = articles
-    return render(request, "artists.html", context=ctx)
