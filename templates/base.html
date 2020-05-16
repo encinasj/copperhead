@@ -17,7 +17,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 </head>
 <body>
-	<div id="wrapper">
+	<div id="wrapper">    
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
 				<a href="#"><img src="{% static 'assets/img/logo-darks.png' %}" class="img-responsive logo"></a>
@@ -54,7 +54,7 @@
 						<li><a href="{% url 'feed_s' %}" class=""><i class="lnr lnr-apartment"></i> <span>Provedor</span></a></li>
 					</ul>
 					<ul class="nav">
-						<li><a href="#" class=""><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
+						<li><a href="{% url 'reports' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
 					</ul>
 					<ul class="nav">
 						<li><a href="#" class=""><i class="lnr lnr-users"></i> <span>Usuarios</span></a></li>

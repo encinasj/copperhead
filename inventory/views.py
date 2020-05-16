@@ -1,5 +1,6 @@
 #Django
 from django.contrib.auth.decorators import login_required 
+from django.views.generic import View,TemplateView
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import render_to_string
@@ -18,7 +19,9 @@ def FeedView(request):
     #search bar
     search_query = request.GET.get('search','') 
     if search_query:
-        article = Articles.objects.filter(Q(name__icontains=search_query) | Q(quantity__icontains=search_query))
+        article = Articles.objects.filter(Q(name__icontains=search_query) | Q(coust_buy__icontains=search_query) | 
+        Q(location__icontains=search_query)
+        )
     else:
         article = Articles.objects.all()
 
@@ -289,12 +292,12 @@ def deletesupplier(request, id):
 		data['html_form'] = render_to_string('inventory/supplier/deletesupplier.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================
-@login_required
-def Report(request):
-    template_name = 'base.html'
-    return render (request, template_name)
-@login_required
-def Configuration(request):
-    template_name = 'base.html'
-    return render (request, template_name)
+
+class ChartReports(TemplateView):
+    template_name='inventory/chartsandreports/reports.html'
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context["qs"] = Articles.objects.all()
+        return context
 #====================================================================================================

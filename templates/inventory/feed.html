@@ -9,13 +9,12 @@
         <form action="{% url 'feed' %}" >
             {% csrf_token %}
             <div class="input-group col-sm-6 ">
-                <input name='search' autocomplete="off" placeholder="Search..." class="form-control align-items-center" type="search">
-                <span class="input-group-btn"><a class="btn btn-primary" type="submit">Buscar !</a></span>
+                <input name='search' autocomplete="off" placeholder="Buscar..." class="form-control align-items-center" type="search">
+                <span class="input-group-btn"><a class="btn btn-primary" type="button">Buscar!</a></span>
             </div>
         </form>
     </div>
 </div>
-
 <a type="button" class="btn btn-primary show-form" data-url="{% url 'add' %}">
     <span class="glyphicon glyphicon-plus"></span>
     Agregar

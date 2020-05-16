@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     #ours apps
     'users',
     'inventory',
+    #others apps
     'crispy_forms',
 ]
 

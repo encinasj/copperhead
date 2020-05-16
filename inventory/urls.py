@@ -32,4 +32,7 @@ urlpatterns = [
     path('update_s/<int:pk>', login_required(views.updatesupplier), name='update_s'),
     path('delete_s/<int:id>',login_required(views.deletesupplier), name='delete_s'),
 
+    #charts and reports
+    path('reports/',login_required(views.ChartReports.as_view()), name='reports'),
+
 ]

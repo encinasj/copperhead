@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<div class="row">
+    <div class="col-sm-12">
+        <ol class="breadcrumb pull-right">
+            <li><a href="#">Reportes</a></li>
+            <li class="active"><a href="{% url 'feed' %}">Inventario</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+            <!-- charts and reports -->
+            <div id="container" style="width: 75%;">
+                <canvas id="pie-chart"></canvas>
+              </div>
+              <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+              <script>
+            
+                var config = {
+                    type: 'pie',
+                    data: {
+                        datasets: [{
+                        data: {{ data|safe }},
+                        backgroundColor: ['#696969', '#808080', '#A9A9A9', '#C0C0C0', '#D3D3D3'],
+                        label: 'name'
+                    }],
+                    labels: {{ labels|safe }}
+                    },
+                    options: {
+                        responsive: true
+                    }
+                    };
+            
+                window.onload = function() {
+                    var ctx = document.getElementById('pie-chart').getContext('2d');
+                    window.myPie = new Chart(ctx, config);
+                };
+            
+              </script>
+            <!-- charts and reports -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body_block %}
