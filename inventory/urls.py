@@ -33,6 +33,5 @@ urlpatterns = [
     path('delete_s/<int:id>',login_required(views.deletesupplier), name='delete_s'),
 
     #charts and reports
-    path('reports/',login_required(views.ChartReports.as_view()), name='reports'),
-
+    path('reports/',login_required(views.chart_reports), name='reports'),
 ]
