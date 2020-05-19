@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
+import json
 #models
 from .models import Articles,Category,MicroBusiness,Brand,Supplier
 #forms
@@ -292,12 +293,14 @@ def deletesupplier(request, id):
 		data['html_form'] = render_to_string('inventory/supplier/deletesupplier.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================
+def chart_reports(request):
+    queryset = Articles.objects.all()
+    name = [obj.name for obj in queryset]
+    quantity = [int(obj.quantity) for obj in queryset]
 
-class ChartReports(TemplateView):
-    template_name='inventory/chartsandreports/reports.html'
-
-    def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-        context["qs"] = Articles.objects.all()
-        return context
+    context = {
+            'name': json.dumps(name),
+            'quantity': json.dumps(quantity),
+    }
+    return render (request,'inventory/chartsandreports/reports.html', context)
 #====================================================================================================
