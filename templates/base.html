@@ -51,7 +51,7 @@
 						<li><a href="{% url 'feedc' %}" class=""><i class="lnr lnr-inbox"></i> <span>Utilities</span></a></li>
 					</ul>
 					<ul class="nav">
-						<li><a href="{% url 'feed_s' %}" class=""><i class="lnr lnr-apartment"></i> <span>Provedor</span></a></li>
+						<li><a href="{% url 'feed_s' %}" id="btnload" class=""><i class="lnr lnr-apartment"></i> <span>Provedor</span></a></li>
 					</ul>
 					<ul class="nav">
 						<li><a href="{% url 'reports' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
@@ -78,7 +78,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"></script>
 	<script src="{% static 'assets/js/jquery-3.1.1.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
