@@ -57,7 +57,7 @@
 						<li><a href="{% url 'reports' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
 					</ul>
 					<ul class="nav">
-						<li><a href="#" class=""><i class="lnr lnr-users"></i> <span>Usuarios</span></a></li>
+						<li><a href="{% url 'users:l_register' %}" class=""><i class="lnr lnr-users"></i> <span>Usuarios</span></a></li>
 					</ul>
 					<ul class="nav">
 						<li><a href="#" class=""><i class="lnr lnr-cog"></i> <span>Configuraciones</span></a></li>
@@ -70,15 +70,16 @@
 				<div class="auto">
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							{% block body_block %}
-							{% endblock body_block %}
+							{% block title %}
+							{% endblock title %}
 						</div>
 					</div>
+					{% block body_block %}
+					{% endblock body_block %}
 				</div>
 			</div>
 		</div>
 	</div>
-	
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"></script>
 	<script src="{% static 'assets/js/jquery-3.1.1.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>

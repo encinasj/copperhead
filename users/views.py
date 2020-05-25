@@ -35,6 +35,15 @@ def logout_views(request):
     logout(request)
     return redirect('users:login')
 
+
+def users_register(request):
+    users = User.objects.all()
+    context = {
+        'users' : users,
+    }
+    template_name = 'users/register.html'
+    return render (request, template_name, context)
+
 @login_required
 def register(request):
     #Sign up view

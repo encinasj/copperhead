@@ -13,5 +13,9 @@ urlpatterns = [
         route='logout/',
         view=views.logout_views,
         name='logout',
-    )
+    ),
+    path(
+        route='register/',
+        view=views.users_register,
+        name='l_register'),
 ]

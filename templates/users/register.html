@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="pull-left page-title lnr lnr-user"> Usuarios registrados </h3>
+        <ol class="pull-right">
+            <a type="button" class="btn btn-primary category-form" data-url-cat="#">
+                <span class="glyphicon glyphicon-plus"></span> 
+                Agregar</a>
+        </ol>
+    </div>
+</div>
+{% endblock title %}
+{% block body_block %}
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="modal fade" id="modal-cat">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="tablec">
+                        <ul>
+                            <div class="panel-body col-md-6">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>¥</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for users in users %}
+                                            <tr>
+                                                <td><a class="desactivate lnr lnr-user" ></a></td>
+                                                <td>{{users.username}}</td>
+                                                <td></td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="7" class="text-center bg-warning">No hay usuarios!</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body_block %}
