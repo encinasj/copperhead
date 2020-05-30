@@ -104,7 +104,7 @@ def CategoryView(request):
     'microbusiness': microbusiness,
     'brand':brand
     }
-    return render (request, 'inventory/category.html',context)
+    return render (request, 'inventory/category/category.html',context)
 
 @login_required
 def save_utilities(request,form,template_name):
@@ -115,7 +115,7 @@ def save_utilities(request,form,template_name):
             form.save()
             data['form_is_valid'] = True
             category = Category.objects.all()
-            data['feedc'] = render_to_string('inventory/category_list.html',{'category':category})
+            data['feedc'] = render_to_string('inventory/category/category_list.html',{'category':category})
         else:
             data['form_is_valid'] = False
     context = {
@@ -131,7 +131,7 @@ def create_category(request):
         form = CategoryForm(request.POST)
     else:
         form = CategoryForm()
-    return save_utilities(request,form,'inventory/category_create.html')
+    return save_utilities(request,form,'inventory/category/category_create.html')
 
 @login_required
 def delete_category(request, id):
@@ -142,10 +142,10 @@ def delete_category(request, id):
 		category.delete()
 		data['form_is_valid'] = True  #This is just to play along with the existing code
 		category = Category.objects.all()
-		data['feedc'] = render_to_string('inventory/category_list.html',{'category':category})
+		data['feedc'] = render_to_string('inventory/category/category_list.html',{'category':category})
 	else:
 		context = {'category':category}
-		data['html_form'] = render_to_string('inventory/category_delete.html',context,request=request)
+		data['html_form'] = render_to_string('inventory/category/category_delete.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================
 @login_required
@@ -157,7 +157,7 @@ def save_mb(request,form,template_name):
             form.save()
             data['form_is_valid'] = True
             microbusiness = MicroBusiness.objects.all()
-            data['feedc'] = render_to_string('inventory/microbusiness_list.html',{'microbusiness':microbusiness})
+            data['feedc'] = render_to_string('inventory/category/microbusiness_list.html',{'microbusiness':microbusiness})
         else:
             data['form_is_valid'] = False
     context = {
@@ -173,7 +173,7 @@ def create_microbusiness(request):
         form = MicroBussinesForm(request.POST)
     else:
         form = MicroBussinesForm()
-    return save_mb(request,form,'inventory/create_microbusiness.html')
+    return save_mb(request,form,'inventory/category/create_microbusiness.html')
 
 @login_required
 def delete_microbusiness(request, id):
@@ -184,10 +184,10 @@ def delete_microbusiness(request, id):
 		microbusiness.delete()
 		data['form_is_valid'] = True  #This is just to play along with the existing code
 		microbusiness = MicroBusiness.objects.all()
-		data['feedc'] = render_to_string('inventory/microbusiness_list.html',{'microbusiness':microbusiness})
+		data['feedc'] = render_to_string('inventory/category/microbusiness_list.html',{'microbusiness':microbusiness})
 	else:
 		context = {'microbusiness':microbusiness}
-		data['html_form'] = render_to_string('inventory/delete_microbusiness.html',context,request=request)
+		data['html_form'] = render_to_string('inventory/category/delete_microbusiness.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================    
 @login_required
@@ -199,7 +199,7 @@ def save_brand(request,form,template_name):
             form.save()
             data['form_is_valid'] = True
             brand = Brand.objects.all()
-            data['feedc'] = render_to_string('inventory/brand_list.html',{'brand':brand})
+            data['feedc'] = render_to_string('inventory/category/brand_list.html',{'brand':brand})
         else:
             data['form_is_valid'] = False
     context = {
@@ -215,7 +215,7 @@ def createbrand(request):
        form = BrandForm(request.POST)
     else:
         form = BrandForm()
-    return save_brand(request,form,'inventory/createbrand.html')
+    return save_brand(request,form,'inventory/category/createbrand.html')
 
 @login_required
 def deletebrand(request, id):
@@ -226,10 +226,10 @@ def deletebrand(request, id):
 		brand.delete()
 		data['form_is_valid'] = True  #This is just to play along with the existing code
 		brand = Brand.objects.all()
-		data['feedc'] = render_to_string('inventory/brand_list.html',{'brand':brand})
+		data['feedc'] = render_to_string('inventory/category/brand_list.html',{'brand':brand})
 	else:
 		context = {'brand':brand}
-		data['html_form'] = render_to_string('inventory/delete_brand.html',context,request=request)
+		data['html_form'] = render_to_string('inventory/category/delete_brand.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================   
 @login_required
