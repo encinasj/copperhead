@@ -35,7 +35,6 @@ def logout_views(request):
     logout(request)
     return redirect('users:login')
 
-
 def users_register(request):
     users = User.objects.all()
     context = {
