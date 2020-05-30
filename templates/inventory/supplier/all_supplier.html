@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 
-{% block body_block %}
-
+{% block title %}
 <div class="row">
     <div class="col-sm-12">
+        <h3 class="pull-left page-title"> Provedores </h3>
         <ol class="breadcrumb pull-right">
             <li><a href="#">Provedores</a></li>
             <li class="active"><a href="{% url 'feed' %}">Inventario</a></li>
         </ol>
     </div>
 </div>
+{% endblock title %}
+
+{% block body_block %}
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
