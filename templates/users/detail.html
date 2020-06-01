@@ -12,8 +12,8 @@
                     <div class="profile-header">
                         <div class="overlay"></div>
                         <div class="profile-main">
-                            <img src="{% static 'assets/img/favicon.png' %}" class="img-circle" alt="Avatar">
-                            <h3 class="name">Name</h3>
+                            <img src="{{ user.profile.picture.url }}" class="img-circle" alt="Avatar" width="90px">
+                            <h3 class="name">@{{ user.username}}</h3>
                             <span class="online-status status-available">Available</span>
                         </div>
                         <div class="profile-stat">
@@ -31,15 +31,15 @@
                         <div class="profile-info">
                             <h4 class="heading">Información</h4>
                             <ul class="list-unstyled list-justify">
-                                <li>Celular <span>(124) 823409234</span></li>
-                                <li>Correo <span>correo</span></li>
-                                <li>Website <span><a>Pagina web</a></span></li>
+                                <li>Website <span><a>{{ user.profile.website }}</a></span></li>
+                                <li>Celular <span>{{ user.profile.phone_number }}</span></li>
+                                <li>Acerda de:<span>{{ user.profile.biography }}</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="profile-right">
-                    <a href="#" class="pull-right">Editar perfil</a>
+                    <a href="{% url 'users:update_profile' %}" class="pull-right">Editar perfil</a>
                     <h4 class="heading">Micronegocio</h4>
                     <div class="awards">
                         <div class="row">
@@ -57,7 +57,6 @@
                 </div>
             </div>
             <br>
-
         </div>
     </div>
 </div>

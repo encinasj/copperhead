@@ -14,14 +14,14 @@
                 <td></td>
                 <td></td>
                 <td align="center">
-                    <button class="delete-s" data-url-s="{% url 'delete_s' supplier.id %}">
+                    <a class="delete-s" data-url-s="{% url 'delete_s' supplier.id %}">
                         <span class="lnr lnr-trash"></span>
-                    </button>
+                    </a>
                 </td>
                 <td>
-                    <button class="show-update-s" data-url-s="{% url 'update_s' supplier.pk %}">
+                    <a class="show-update-s" data-url-s="{% url 'update_s' supplier.pk %}">
                         <span class="lnr lnr-pencil"></span>
-                    </button>
+                    </a>
                 </td>
             </tr>
         {% empty %}

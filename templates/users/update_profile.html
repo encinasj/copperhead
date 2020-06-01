@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block body_block %}
+<div class="main-content">
+    <div class="container-fluid">
+        <form action="{% url 'users:update_profile' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="panel panel-profile" style="height:40em;">
+                <div class="clearfix">
+                    <!-- LEFT COLUMN -->
+                    <div class="profile-left">
+                        <!-- PROFILE HEADER -->
+                        <div class="profile-header">
+                            <div class="overlay"></div>
+                            <div class="profile-main">
+                                {% if profile.picture %}
+                                    <img src="{{ profile.picture.url }} " class="img-circle" alt="Avatar"  width="90px">
+                                {% else%}
+                                    <img src="{% static 'assets/img/favicon.png' %}" class="rounded-circle" height="50" />
+                                {% endif %}
+                                <h3 class="name">@{{ user.username }}</h3>
+                                <a><input type="file"  accept=".png, .jpeg, .jpg" name="picture"></a>          
+                                <span class="online-status status-available">Available</span>
+                            </div>
+                            <div class="profile-stat">
+                                <div class="row">
+                                    <div class="col-md-6 stat-item">
+                                        45 <span>Articulos</span>
+                                    </div>
+                                    <div class="col-md-6 stat-item">
+                                        15 <span>Reemplazo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-detail">
+                            <div class="profile-info">
+                                <h4 class="heading">Información del usuario</h4>
+                                <ul class="list-unstyled list-justify">
+                                    <li>Website 
+                                        <span>
+                                            <input
+                                                class="form-control {% if form.website.errors %}is-invalid{% endif %}"
+                                                type="text" name="website" placeholder="Website"
+                                                value="{% if form.errors %}{{ form.website.value }}{% else %}{{ profile.website }}{% endif %}"
+                                            />
+                                            <div class="invalid-feedback">
+                                                {% for error in form.website.errors %}
+                                                    {{ error }}
+                                                {% endfor%}
+                                            </div>
+                                        </span>
+                                    </li>
+                                    <br>
+                                    <li>Celular 
+                                        <span>
+                                            <input
+                                                class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}"
+                                                type="text"
+                                                name="phone_number" placeholder="Phone number"
+                                                value="{% if form.errors %}{{ form.phone_number.value }}{% else %}{{ profile.phone_number }}{% endif %}"
+                                            />
+                                            <div class="invalid-feedback">
+                                                {% for error in form.phone_number.errors %}
+                                                    {{ error }}
+                                                {% endfor%}
+                                            </div>
+                                        </span>
+                                    </li>
+                                    <br>
+                                    <li>acerca de: 
+                                        <span>
+                                            <textarea class="form-control {% if form.biography.errors %}is-invalid{% endif %}" name="biography" placeholder="Biography"
+                                            >{% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}</textarea>
+                                            <div class="invalid-feedback">
+                                                {% for error in form.biography.errors %}
+                                                    {{error}}
+                                                {% endfor %}
+                                            </div>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="footer">
+                                <button type="submit" class="btn btn-primary mt-5">
+                                    Guardar
+                                </button>
+                                <a type="button" class="btn btn-danger" href="{% url 'users:detail' request.user.username%}">
+                                    Cancelar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-right">
+                        <h4 class="heading">Micronegocio</h4>
+                        <div class="awards">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="award-item">
+                                        <div class="hexagon">
+                                            <span class="lnr lnr-sun award-icon"></span>
+                                        </div>
+                                        <span>Logo del Micronegocio</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body_block %}
