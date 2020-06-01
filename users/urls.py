@@ -22,4 +22,12 @@ urlpatterns = [
         route='register/',
         view=views.register,
         name='register'),
+    path(
+        route='me/profile/',
+        view=views.update_profile,
+        name='update_profile'),
+    path(
+        route='<str:username>/',
+        view=views.UserDetailView.as_view(),
+        name='detail'),
 ]

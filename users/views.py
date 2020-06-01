@@ -8,6 +8,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import DeleteView
 from django.shortcuts import render
 from django.urls import reverse
+
 #Models
 from django.contrib.auth.models import User
 from users.models import Profile
@@ -103,6 +104,6 @@ class UserDetailView(LoginRequiredMixin,DeleteView):
     def get_context_data(self, **kwargs):
         #add user to context
         context = super().get_context_data(**kwargs)
-        user = self.get_object()
-        context['inventory'] = Articles.objects.filter(user=user).order_by('-created')
+        name = self.get_object()
+        context['articles'] = Articles.objects.filter(name=name).order_by('-created')
         return context

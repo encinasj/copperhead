@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block body_block %}
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="panel panel-profile" style="height:31em;">
+            <div class="clearfix">
+                <!-- LEFT COLUMN -->
+                <div class="profile-left">
+                    <!-- PROFILE HEADER -->
+                    <div class="profile-header">
+                        <div class="overlay"></div>
+                        <div class="profile-main">
+                            <img src="{% static 'assets/img/favicon.png' %}" class="img-circle" alt="Avatar">
+                            <h3 class="name">Name</h3>
+                            <span class="online-status status-available">Available</span>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="row">
+                                <div class="col-md-6 stat-item">
+                                    45 <span>Articulos</span>
+                                </div>
+                                <div class="col-md-6 stat-item">
+                                    15 <span>Reemplazo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-detail">
+                        <div class="profile-info">
+                            <h4 class="heading">Información</h4>
+                            <ul class="list-unstyled list-justify">
+                                <li>Celular <span>(124) 823409234</span></li>
+                                <li>Correo <span>correo</span></li>
+                                <li>Website <span><a>Pagina web</a></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-right">
+                    <a href="#" class="pull-right">Editar perfil</a>
+                    <h4 class="heading">Micronegocio</h4>
+                    <div class="awards">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="award-item">
+                                    <div class="hexagon">
+                                        <span class="lnr lnr-sun award-icon"></span>
+                                    </div>
+                                    <span>Logo del Micronegocio</span>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+        </div>
+    </div>
+</div>
+{% endblock body_block %}
