@@ -35,29 +35,31 @@ def logout_views(request):
     logout(request)
     return redirect('users:login')
 
+@login_required
 def users_register(request):
     users = User.objects.all()
     context = {
         'users' : users,
     }
-    template_name = 'users/register.html'
+    template_name = 'users/all_users.html'
     return render (request, template_name, context)
 
 @login_required
 def register(request):
-    #Sign up view
+    #Register view
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('users:login')
+            return redirect('users:l_register')
     else:
-        form.RegisterForm()
+        form = RegisterForm()
+
     return render(
         request=request,
-        template_name='users/signup.html',
-        context={'form':form}
-    )
+        template_name='users/register.html',
+        context={'form': form}
+        )
 
 @login_required
 def update_profile(request):

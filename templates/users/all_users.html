@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="pull-left page-title"> Usuarios </h3>
+        <ol class="breadcrumb pull-right">
+            <li><a href="#">Usuarios</a></li>
+            <li class="active"><a href="{% url 'feed' %}">Inventario</a></li>
+        </ol>
+    </div>
+</div>
+{% endblock title %}
+{% block body_block %}
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel">
+                    <a  class="btn btn-primary pull-right" href="{% url 'users:register' %}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Agregar
+                    </a>
+                    <div class="row" >
+                        <ul>
+                            <div class="panel-body col-md-6">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>¥</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for users in users %}
+                                            <tr>
+                                                <td><a class="desactivate lnr lnr-user" ></a></td>
+                                                <td>{{users.username}}</td>
+                                                <td></td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="7" class="text-center bg-warning">No hay usuarios!</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body_block %}

@@ -43,13 +43,15 @@ class RegisterForm(forms.Form):
                                 'placeholder': 'Correo',
                                 'autocomplete': 'off',
                                 }))
+                                
     def clean_username(self):
         #Username must be unique.
-        username = self.clean_data['username']
+        username = self.cleaned_data['username']
         username_taken = User.objects.filter(username=username).exists()
         if username_taken:
             raise forms.ValidationError('Nombre de usuario en uso.')
         return username
+
     def clean(self):
         #verify password conformation match.
         data = super().clean()
@@ -58,6 +60,7 @@ class RegisterForm(forms.Form):
         if password != password_confirmation:
             raise forms.ValidationError('La contraseña no coincide.')
         return data
+
     def save(self):
         #Create user and profile.
         data = self.cleaned_data
@@ -72,3 +75,4 @@ class ProfileForm(forms.Form):
     phone_number = forms.CharField(max_length=20, required=False)
     biography = forms.CharField(max_length=500, required=False)
     picture = forms.ImageField()
+

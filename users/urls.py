@@ -15,7 +15,11 @@ urlpatterns = [
         name='logout',
     ),
     path(
-        route='register/',
+        route='',
         view=views.users_register,
         name='l_register'),
+    path(
+        route='register/',
+        view=views.register,
+        name='register'),
 ]
