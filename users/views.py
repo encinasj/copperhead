@@ -101,7 +101,7 @@ class UserDetailView(LoginRequiredMixin,DeleteView):
     context_object_name = 'user'
 
     def get_context_data(self, **kwargs):
-        #add user to context
+        #adddd user to context
         context = super().get_context_data(**kwargs)
         name = self.get_object()
         context['articles'] = Articles.objects.filter(name=name).order_by('-created')
