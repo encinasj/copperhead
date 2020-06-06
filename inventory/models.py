@@ -93,7 +93,7 @@ class Articles(models.Model):
         (Otros,'Otros')
     )
     name = models.CharField(max_length=50)
-    quantity = models.DecimalField(max_digits=10, decimal_places=4)
+    quantity = models.PositiveSmallIntegerField(null=True)
     fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE) #listo
     model = models.CharField(max_length=50)
     fk_category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE) #listo

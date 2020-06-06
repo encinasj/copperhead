@@ -4,11 +4,12 @@ from django.views.generic import View,TemplateView
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import render_to_string
-from django.http import JsonResponse
+from django.http import JsonResponse,Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 import json
 
+from django.db.models import Sum
 #models
 from .models import Articles,Category,MicroBusiness,Brand,Supplier
 #forms
@@ -78,6 +79,15 @@ def update_article(request,pk):
     else:
 	    form = ArticlesForm(instance=article)
     return save_all(request, form, 'inventory/update_article.html')
+
+@login_required
+def details_article(request, id):
+    article = get_object_or_404(Articles,id=id)
+    if request.method == 'GET':
+        form = Articles(request.GET, instance=article)
+    else:
+        form = Articles(instance=article)
+    return save_all(request, 'inventory/details.html', form)
 
 @login_required
 def delete_article(request, id):
@@ -296,12 +306,16 @@ def deletesupplier(request, id):
 #====================================================================================================
 def chart_reports(request):
     queryset = Articles.objects.all()
+    
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
 
+    #Suma de los precios 
+    countarticles = Articles.objects.aggregate(countarticles=Sum('coust_buy'))['countarticles']
     context = {
             'name': json.dumps(name),
             'quantity': json.dumps(quantity),
+            'countarticles' : countarticles,
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
 #====================================================================================================

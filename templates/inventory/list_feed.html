@@ -1,14 +1,21 @@
 {% for article in  article %}
     <div style="margin-right: 5px;" class=" panel metric col-md-3" >
-        <div class="pull-right btn-group-sm">
-            <a class="show-form-delete" data-url="{% url 'delete' article.id %}">
-                <span class="lnr lnr-trash"></span>
-            </a>
-            |
-            <a type="submit" class="show-form-update" data-url="{% url 'update' article.pk %}">
-                <span class="lnr lnr-pencil"></span>
-            </a>
-        </div>
+        {% if user.is_staff %}
+            <div class="pull-right btn-group-sm">
+                <a class="show-form-details" data-url="{% url 'detail' article.id  %}">
+                    <span class="lnr lnr-eye"></span>
+                </a>
+                |
+                <a class="show-form-delete" data-url="{% url 'delete' article.id %}">
+                    <span class="lnr lnr-trash"></span>
+                </a>
+                |
+                <a type="submit" class="show-form-update" data-url="{% url 'update' article.pk %}">
+                    <span class="lnr lnr-pencil"></span>
+                </a>
+            </div>
+        {% else %}
+        {%endif%}
         <a class="pull-left" href="#">
             <img class="thumb-lg img-circle" src="/users/avatar-2.jpg" alt="">
             <span class="title panel-subtitle">{{article.name}}

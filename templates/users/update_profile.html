@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <form action="{% url 'users:update_profile' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="panel panel-profile" style="height:40em;">
+            <div class="panel panel-profile" style="height:42em;">
                 <div class="clearfix">
                     <!-- LEFT COLUMN -->
                     <div class="profile-left">
@@ -21,7 +21,6 @@
                                 {% endif %}
                                 <h3 class="name">@{{ user.username }}</h3>
                                 <a><input type="file"  accept=".png, .jpeg, .jpg" name="picture"></a>          
-                                <span class="online-status status-available">Available</span>
                             </div>
                             <div class="profile-stat">
                                 <div class="row">
