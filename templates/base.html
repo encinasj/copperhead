@@ -27,7 +27,7 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'assets/img/favicon.png' %}" class="img-circle"> <span>{{user.username}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static user.profile.picture.url %}" class="img-circle"> <span>{{user.username}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="{% url 'users:detail' request.user.username %}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Configuraciones</span></a></li>
@@ -44,21 +44,21 @@
 					<ul class="nav">
 						<li><a href="{% url 'feed' %}" class=""><i class="lnr lnr-database"></i> <span>Inventario</span></a></li>
 					</ul>
-					<ul class="nav">
-						<li><a href="{% url 'feedc' %}" class=""><i class="lnr lnr-inbox"></i> <span>Utilities</span></a></li>
-					</ul>
-					<ul class="nav">
-						<li><a href="{% url 'feed_s' %}" id="btnload" class=""><i class="lnr lnr-apartment"></i> <span>Provedor</span></a></li>
-					</ul>
-					<ul class="nav">
-						<li><a href="{% url 'reports' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
-					</ul>
-					<ul class="nav">
-						<li><a href="{% url 'users:l_register' %}" class=""><i class="lnr lnr-users"></i> <span>Usuarios</span></a></li>
-					</ul>
-					<ul class="nav">
-						<li><a href="#" class=""><i class="lnr lnr-cog"></i> <span>Configuraciones</span></a></li>
-					</ul>
+					{% if user.is_staff %}
+						<ul class="nav">
+							<li><a href="{% url 'feedc' %}" class=""><i class="lnr lnr-inbox"></i> <span>Utilities</span></a></li>
+						</ul>
+						<ul class="nav">
+							<li><a href="{% url 'feed_s' %}" id="btnload" class=""><i class="lnr lnr-apartment"></i> <span>Provedor</span></a></li>
+						</ul>
+						<ul class="nav">
+							<li><a href="{% url 'reports' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
+						</ul>
+						<ul class="nav">
+							<li><a href="{% url 'users:l_register' %}" class=""><i class="lnr lnr-users"></i> <span>Usuarios</span></a></li>
+						</ul>
+					{% else %}
+					{% endif %}
 				</nav>
 			</div>
 		</div>

@@ -35,7 +35,14 @@
                                     <tbody>
                                         {% for users in users %}
                                             <tr>
-                                                <td><a class="desactivate lnr lnr-user" ></a></td>
+                                                <td>
+                                                    {% if users.is_active %}                                                     
+                                                        <span class="label label-success">on</span>
+                                                    {% else %}
+                                                        <span class="label label-danger">out</span>
+                                                    {% endif %}
+                                                     <a class="lnr lnr-user"></a>
+                                                </td>
                                                 <td>{{users.username}}</td>
                                                 <td></td>
                                             </tr>

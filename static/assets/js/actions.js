@@ -41,6 +41,9 @@ $('#modal-action').on("submit",".article-update-form",SaveForm)
 //delete
 $('#all-table').on("click",".show-form-delete",ShowForm);
 $('#modal-action').on("submit",".delete-form",SaveForm)
+//details
+$('#all-table').on("click",".show-form-details",ShowForm);
+$('#modal-action').on("submit",".article-detail-form")
 });
 //++======================================Category
 $(document).ready(function(){
