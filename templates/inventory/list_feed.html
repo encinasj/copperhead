@@ -1,24 +1,20 @@
 {% for article in  article %}
     <div style="margin-right: 5px;" class=" panel metric col-md-3" >
-        {% if user.is_staff %}
-            <div class="pull-right btn-group-sm">
-                <a class="show-form-details" data-url="{% url 'detail' article.id  %}">
-                    <span class="lnr lnr-eye"></span>
-                </a>
-                |
-                <a class="show-form-delete" data-url="{% url 'delete' article.id %}">
-                    <span class="lnr lnr-trash"></span>
-                </a>
-                |
-                <a type="submit" class="show-form-update" data-url="{% url 'update' article.pk %}">
-                    <span class="lnr lnr-pencil"></span>
-                </a>
-            </div>
-        {% else %}
-        {%endif%}
-        <a class="pull-left" href="#">
-            <img class="thumb-lg img-circle" src="/users/avatar-2.jpg" alt="">
-            <span class="title panel-subtitle">{{article.name}}
+        <div id="navbar-menu">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle lnr lnr-chevron-down-circle" data-toggle="dropdown"></a>
+                    <ul class="dropdown-menu">
+                        <li> <a class="show-details" data-url="{% url 'details' article.id  %}"><span class="lnr lnr-eye"></span> Detalle</a></li>
+                        <li> <a class="show-form-update" data-url="{% url 'update' article.pk %}"><span class="lnr lnr-pencil"> Actualizar</span></a></li>
+                        <li> <a class="show-form-delete" data-url="{% url 'delete' article.id %}"><span class="lnr lnr-trash"> Eliminar</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div> 
+        <a class="pull-left">
+            <img class="img-circle" src="{{ article.img.url }}" width="60px">
+            <span class="title panel-subtitle">{{article.name}}</span>
         </a>
         <hr>
         <ul class="list-inline">
@@ -32,6 +28,8 @@
     </div>
 {% empty %}
     <tr>
-        <td colspan="7" class="text-center bg-warning">No hay Articulos!</td>
+        <div class="alert alert-warning" role="alert">
+            <td>No hay Articulos!</td>
+        </div>
     </tr>
 {% endfor %}

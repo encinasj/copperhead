@@ -1,24 +1,68 @@
-
-<form method="GET" data-url="{% url 'detail' artilce.id  %}" class="article-detail-form">
-	<div class="modal-header"> 
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button> 
-		<h4 class="modal-title">{{article.name}} </h4> 
-	</div> 
-    <div class="modal-body"> 
+<form method="GET" data-url="{% url 'details' article.id %}"  class="article-details" enctype="multipart/form-data">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-title">Información detallada</h4> 
+	</div>
+    <div class="modal-body">
 		<div class="form-row">
+			<div class="pull-left">
+				<!-- img to image-->
+				<img class="img-circle" src="{{ article.img.url }}" width="100px">
+			</div>
+			<!-- Name article-->
+			<div class="form-group col-md-5">
+				<h5 class="modal-title">Nombre:</h5> {{article.name}}
+			</div>
 			<!-- Quantity article-->
 			<div class="form-group col-md-3">
-				{{ article.quantity}}
+				<h5 class="modal-title">Cantidad:</h5>{{article.quantity}}
 			</div>
+			<!-- Brand article-->
+			<div class="form-group col-md-4 ">
+				<h5 class="modal-title">Marca:</h5>{{ article.fk_brand }}
+			</div>
+				<!-- Model article-->
+			<div class="form-group col-md-4">
+				<h5 class="modal-title">Modelo:</h5>{{article.model}}
+			</div>
+			<!-- Category article-->
+			<div class="form-group col-md-3 ">
+				<h5 class="modal-title">Categoria:</h5>{{ article.fk_category }}
+			</div>
+			<!-- Coust buy article-->
+			<div class="form-group col-md-3">
+				$:{{article.coust_buy}}
+			</div>
+			<!-- Supplier article-->
+			<div class="form-group col-md-3 ">
+				{{ article.fk_supplier }}
+			</div>
+			<!-- useful life article-->
+			<div class="form-group col-md-6">
+				{{article.userful_life}}
+			</div>
+			<!-- actual state article-->
+			<div class="form-group col-md-6">
+				{{ article.actual_state }}
+			</div>
+			<!-- date check date check-->
+			<div class="form-group col-md-4">
+				{{article.date_check}}
+			</div>
+			<!-- Locatin location-->
+			<div class="form-group col-md-12">
+				{{article.location}}
+			</div>
+			<!-- description description-->
 			<div class="form-row">
 				<div class="form-group col-md-12 mb-0">
-					{{ article.description}}
+					{{article.description}}
 				</div>
 			</div>
 		</div>
 	</div>
-	<br>
-	<br>
 	<div class="modal-footer">
 	</div>
 </form>

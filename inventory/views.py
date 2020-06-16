@@ -1,6 +1,7 @@
 #Django
 from django.contrib.auth.decorators import login_required 
 from django.views.generic import View,TemplateView
+from django.views.generic.detail import DetailView
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import render_to_string
@@ -18,7 +19,6 @@ from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,Supplie
 @login_required
 def FeedView(request):
     #list all articles on dashboard
-
     #search bar
     search_query = request.GET.get('search','') 
     if search_query:
@@ -48,6 +48,7 @@ def save_all(request,form,template_name):
     #function save articles
     data = dict()
     if request.method == 'POST':
+        form = ArticlesForm(request.POST, request.FILES) 
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
@@ -82,12 +83,17 @@ def update_article(request,pk):
 
 @login_required
 def details_article(request, id):
+    #function detail article
     article = get_object_or_404(Articles,id=id)
-    if request.method == 'GET':
-        form = Articles(request.GET, instance=article)
+    data = dict() 
+    if request.method == 'POST':
+        data['form_is_valid'] = True
+        article = Articles.objects.all()
+        data['feed'] = render_to_string('inventory/list_feed.html',{'article':article})
     else:
-        form = Articles(instance=article)
-    return save_all(request, 'inventory/details.html', form)
+	    context = {'article':article}
+	    data['html_form'] = render_to_string('inventory/details.html',context,request=request)
+    return JsonResponse(data)
 
 @login_required
 def delete_article(request, id):

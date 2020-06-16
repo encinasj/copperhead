@@ -10,7 +10,7 @@
             {% csrf_token %}
             <div class="input-group col-sm-6 ">
                 <input name='search' autocomplete="off" placeholder="Buscar..." class="form-control align-items-center" type="search">
-                <span class="input-group-btn"><a class="btn btn-primary" type="button">Buscar!</a></span>
+                <span class="input-group-btn"><a class="btn btn-primary lnr lnr-magnifier" type="button"></a></span>
             </div>
         </form>
     </div>
@@ -24,9 +24,7 @@
 {% endif %}
 <br>
 {% endblock title %}
-
 {% block body_block %}
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">

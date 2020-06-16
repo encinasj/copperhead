@@ -14,13 +14,17 @@ $(document).ready(function(){
 			}
 		});
 	};
+
 	var SaveForm = function(){
+        var parameters = new FormData(this); 
 		var form = $(this);
 		$.ajax({
 			url: form.attr('data-url'),
-			data: form.serialize(),
+			data: parameters,
 			type: form.attr('method'),
 			dataType: 'json',
+			processData: false,
+            contentType: false,
 			success: function(data){
 				if(data.form_is_valid){
 					$('#all-table ul').html(data.feed);
@@ -42,8 +46,8 @@ $('#modal-action').on("submit",".article-update-form",SaveForm)
 $('#all-table').on("click",".show-form-delete",ShowForm);
 $('#modal-action').on("submit",".delete-form",SaveForm)
 //details
-$('#all-table').on("click",".show-form-details",ShowForm);
-$('#modal-action').on("submit",".article-detail-form")
+$('#all-table').on("click",".show-details",ShowForm);
+$('#modal-action').on("submit",".article-details")
 });
 //++======================================Category
 $(document).ready(function(){

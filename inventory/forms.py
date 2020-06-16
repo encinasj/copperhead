@@ -44,12 +44,10 @@ class ArticlesForm(forms.ModelForm):
                 'name','quantity',
                 'fk_brand','model','fk_category', 
                 'coust_buy','fk_supplier','userful_life','actual_state',
-                'date_check','fk_user','fk_microbusiness','location',
-                'description')
+                'date_check','location', 'description','img')
         labels = {
                 'name':'','quantity':'',
                 'fk_brand':'','model':'','fk_category':'', 
                 'coust_buy':'','fk_supplier':'','userful_life':'','actual_state':'',
-                'date_check':'','fk_user':'','fk_microbusiness':'','location':'',
-                'description':'',}
+                'date_check':'','location':'', 'description':'','img':''}
 

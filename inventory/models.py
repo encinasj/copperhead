@@ -82,10 +82,10 @@ class Brand(models.Model):
 
 class Articles(models.Model):
     #models article
-    Nuevo = 'Nuevo_1'
-    Semi_nuevo = 'Semi_nuevo_2'
-    Usado = 'Usado_3'
-    Otros = 'Otros_4'
+    Nuevo = 'Nuevo'
+    Semi_nuevo = 'Semi_nuevo'
+    Usado = 'Usado'
+    Otros = 'Otros'
     STATE_ACTUAL = (
         (Nuevo, 'Nuevo'),
         (Semi_nuevo,'Semi_nuevo'),
@@ -94,18 +94,16 @@ class Articles(models.Model):
     )
     name = models.CharField(max_length=50)
     quantity = models.PositiveSmallIntegerField(null=True)
-    fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE) #listo
+    fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE)
     model = models.CharField(max_length=50)
-    fk_category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE) #listo
+    fk_category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE) 
     coust_buy = models.DecimalField(max_digits=10, decimal_places=2)
-    fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.CASCADE) #listo
+    fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.CASCADE)
     userful_life = models.DateField()
     actual_state = models.CharField(max_length=12, choices=STATE_ACTUAL)
     date_check = models.DateField()
-    fk_user = models.ForeignKey(User, null=True, on_delete=models.CASCADE) #listo
-    fk_microbusiness = models.ForeignKey(MicroBusiness, null=True, on_delete=models.CASCADE) #listo
     location = models.CharField(max_length=50)
-#    img = models.ImageField(upload_to='inventory/articles')
+    img = models.ImageField(upload_to='articles', null=True)
     description = models.TextField(blank=True)
     #actions
     created = models.DateTimeField(auto_now_add=True)
