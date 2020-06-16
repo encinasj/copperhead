@@ -55,23 +55,14 @@
 				<input type="date" class="form-control {% if form.date_check.errors %}is-invalid{% endif %}" 
 				id="date_check" name="date_check">
 			</div>
-			<!-- user to User-->
-			<div class="form-group col-md-4">
-				{{ form.fk_user|as_crispy_field }}
-			</div>
-			<!-- user to microbusiness-->
-			<div class="form-group col-md-4">
-				{{ form.fk_microbusiness|as_crispy_field }}
-			</div>
 			<!-- Locatin location-->
 			<div class="form-group col-md-12">
 				<input type="text" autocomplete="off" class="form-control {% if form.location.errors %}is-invalid{% endif %}" 
 				id="location" name="location" placeholder="Ubicación">
 			</div>
-			<!-- img to image
+			<!-- img to image-->
 			<input class="form-group {% if form.img.errors %}is-invalid{% endif %}"
 				type="file" name="img" id='img'>
-				-->
 			<!-- description description-->
 			<div class="form-row">
 				<div class="form-group col-md-12 mb-0">

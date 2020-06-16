@@ -48,22 +48,14 @@
 			<div class="form-group col-md-4">
 				{{ form.date_check|as_crispy_field }}
 			</div>
-			<!-- user to User-->
-			<div class="form-group col-md-4">
-				{{ form.fk_user|as_crispy_field }}
-			</div>
-			<!-- user to microbusiness-->
-			<div class="form-group col-md-4">
-				{{ form.fk_microbusiness|as_crispy_field }}
-			</div>
 			<!-- Locatin location-->
 			<div class="form-group col-md-12">
 				{{ form.location|as_crispy_field }}
 			</div>
-			<!-- img to image
+			<!-- img to image-->
 			<input class="form-group {% if form.img.errors %}is-invalid{% endif %}"
 				type="file" name="img" id='img'>
-				-->
+				
 			<!-- description description-->
 			<div class="form-row">
 				<div class="form-group col-md-12 mb-0">
