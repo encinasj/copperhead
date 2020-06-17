@@ -7,10 +7,9 @@
     </div>
     <div class="col-sm-10">
         <form action="{% url 'feed' %}" >
-            {% csrf_token %}
+            {% csrf_token %} 
             <div class="input-group col-sm-6 ">
                 <input name='search' autocomplete="off" placeholder="Buscar..." class="form-control align-items-center" type="search">
-                <span class="input-group-btn"><a class="btn btn-primary lnr lnr-magnifier" type="button"></a></span>
             </div>
         </form>
     </div>

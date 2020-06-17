@@ -103,7 +103,7 @@ class Articles(models.Model):
     actual_state = models.CharField(max_length=12, choices=STATE_ACTUAL)
     date_check = models.DateField()
     location = models.CharField(max_length=50)
-    img = models.ImageField(upload_to='articles', null=True)
+    img = models.ImageField(upload_to='articles', null=True, blank=True)
     description = models.TextField(blank=True)
     #actions
     created = models.DateTimeField(auto_now_add=True)

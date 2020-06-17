@@ -27,7 +27,6 @@ def FeedView(request):
         )
     else:
         article = Articles.objects.all()
-
     #pagination
     page = request.GET.get('page', 1)
     paginator = Paginator(article, 9)
@@ -76,7 +75,7 @@ def update_article(request,pk):
     #fucntion update article
     article = get_object_or_404(Articles,pk=pk)
     if request.method == 'POST':
-	    form = ArticlesForm(request.POST, instance=article)
+        form = ArticlesForm(request.POST or None, instance=article)
     else:
 	    form = ArticlesForm(instance=article)
     return save_all(request, form, 'inventory/update_article.html')

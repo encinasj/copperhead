@@ -68,7 +68,7 @@ def update_profile(request):
     profile = request.user.profile
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST or None, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
             profile.website = data['website']
@@ -77,7 +77,7 @@ def update_profile(request):
             profile.picture = data['picture']
             profile.save()
 
-            url = reverse('users:detail', kwargs={'username':request.user.username})
+            url = reverse('users:detail',kwargs={'username':request.user.username})
             return redirect(url)
     else:
         form = ProfileForm()

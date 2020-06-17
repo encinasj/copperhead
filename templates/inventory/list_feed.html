@@ -5,7 +5,6 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle lnr lnr-chevron-down-circle" data-toggle="dropdown"></a>
                     <ul class="dropdown-menu">
-                        <li> <a class="show-details" data-url="{% url 'details' article.id  %}"><span class="lnr lnr-eye"></span> Detalle</a></li>
                         <li> <a class="show-form-update" data-url="{% url 'update' article.pk %}"><span class="lnr lnr-pencil"> Actualizar</span></a></li>
                         <li> <a class="show-form-delete" data-url="{% url 'delete' article.id %}"><span class="lnr lnr-trash"> Eliminar</span></a></li>
                     </ul>
@@ -13,8 +12,10 @@
             </ul>
         </div> 
         <a class="pull-left">
-            <img class="img-circle" src="{{ article.img.url }}" width="60px">
-            <span class="title panel-subtitle">{{article.name}}</span>
+            <a class="show-details" data-url="{% url 'details' article.id  %}">
+                <img class="img-circle" src="{{ article.img.url }}" alt="Articulo" width="60px">
+            </a>
+            <span class="title panel-subtitle pull-right">{{article.name}}</span>
         </a>
         <hr>
         <ul class="list-inline">
