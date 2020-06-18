@@ -1,7 +1,8 @@
 #Django
 from django.contrib.auth import authenticate,login, logout
-from django.contrib.auth.decorators import login_required 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required,permission_required 
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
+
 from django.views.decorators.csrf import csrf_exempt
 
 from django.shortcuts import render,redirect
@@ -36,6 +37,7 @@ def logout_views(request):
     logout(request)
     return redirect('users:login')
 
+@permission_required('is_staff')
 @login_required
 def users_register(request):
     users = User.objects.all()
@@ -45,6 +47,7 @@ def users_register(request):
     template_name = 'users/all_users.html'
     return render (request, template_name, context)
 
+@permission_required('is_staff')
 @login_required
 def register(request):
     #Register view
@@ -92,17 +95,11 @@ def update_profile(request):
         }
     )
 
-class UserDetailView(LoginRequiredMixin,DeleteView):
+class UserDetailView(LoginRequiredMixin,DeleteView,PermissionRequiredMixin):
     #User detail view
+    permission_required = 'is_superuser_status'
     template_name = 'users/detail.html'
     slug_field = 'username'
     slug_url_kwarg = 'username'
     queryset = User.objects.all()
     context_object_name = 'user'
-
-    def get_context_data(self, **kwargs):
-        #adddd user to context
-        context = super().get_context_data(**kwargs)
-        name = self.get_object()
-        context['articles'] = Articles.objects.filter(name=name).order_by('-created')
-        return context

@@ -17,35 +17,96 @@
 
 <div class="main-content">
     <div class="container-fluid">
+        <!-- OVERVIEW -->
+        <div class="panel panel-headline">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-download"></i></span>
+                            <p>
+                                <span class="number">Descargar</span>
+                                <span class="title">Excel</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-shopping-bag"></i></span>
+                            <p>
+                                <span class="number">203</span>
+                                <span class="title">Sales</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-eye"></i></span>
+                            <p>
+                                <span class="number">274,678</span>
+                                <span class="title">Visits</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-bar-chart"></i></span>
+                            <p>
+                                <span class="number">35%</span>
+                                <span class="title">Conversions</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <canvas id="productsChart" width="390" height="300"></canvas>
+                            {% block javascript %}
+                                <script>
+                                    var ctx = document.getElementById("productsChart").getContext('2d');
+                                    var name = JSON.parse('{{ name|safe }}');
+                                    var quantity = JSON.parse('{{ quantity|safe }}');
+                                    window.productsChart = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: ['name1','name2','name3','name4','name5','name6','name7'],
+                                            datasets: [{
+                                                label: name,
+                                                data: quantity,
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)',
+                                                    'rgba(54, 162, 235, 0.2)',
+                                                    'rgba(255, 206, 86, 0.2)',
+                                                    'rgba(75, 192, 192, 0.2)',
+                                                    'rgba(153, 102, 255, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)'
+                                                ],
+                                            }]
+                                        },
+                                    });
+                                </script>
+                            {% endblock javascript %}
+                    </div>
+                    <div class="col-md-3 pull-right">
+                        <div class="weekly-summary text-right">
+                            <span class="number">$ {{countarticles}}</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> </span>
+                            <span class="info-label">Total de efectivo en stock</span>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body_block %}
+<div class="main-content">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 panel">
+            <div class="col-md-6 panel">//////
             <!-- charts and reports -->
                 <canvas id="productsChart" width="390" height="300"></canvas>
-            {% block javascript %}
-                <script>
-                    var ctx = document.getElementById("productsChart").getContext('2d');
-                    var name = JSON.parse('{{ name|safe }}');
-                    var quantity = JSON.parse('{{ quantity|safe }}');
-                    window.productsChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['name1','name2','name3','name4','name5','name6','name7'],
-                            datasets: [{
-                                label: name,
-                                data: quantity,
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)'
-                                ],
-                            }]
-                        },
-                    });
-                </script>
-            {% endblock javascript %}
+            
             <!-- charts and reports -->
         </div>
          <!-- reults of plus totals-->
@@ -60,4 +121,3 @@
     </div>
     </div>
 </div>
-{% endblock body_block %}
