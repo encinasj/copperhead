@@ -14,7 +14,7 @@
         </form>
     </div>
 </div>
-{% if user.is_staff %}
+{% if user.is_superuser %}
 <a type="button" class="btn btn-primary show-form" data-url="{% url 'add' %}">
     <span class="glyphicon glyphicon-plus"></span>
     Agregar

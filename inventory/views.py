@@ -42,7 +42,7 @@ def FeedView(request):
     }
     return render (request, 'inventory/feed.html',context)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def save_all(request,form,template_name):
     #function save articles
@@ -62,7 +62,7 @@ def save_all(request,form,template_name):
     data['html_form'] = render_to_string(template_name,context,request=request)
     return JsonResponse(data)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def create_article(request):
     #function add articles
@@ -72,7 +72,7 @@ def create_article(request):
         form = ArticlesForm()
     return save_all(request,form,'inventory/create_article.html')
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def update_article(request,pk):
     #fucntion update article
@@ -97,7 +97,7 @@ def details_article(request, id):
 	    data['html_form'] = render_to_string('inventory/details.html',context,request=request)
     return JsonResponse(data)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def delete_article(request, id):
     #function delete article
@@ -113,7 +113,7 @@ def delete_article(request, id):
 		data['html_form'] = render_to_string('inventory/delete_article.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def CategoryView(request):
     #list all category
@@ -127,7 +127,7 @@ def CategoryView(request):
     }
     return render (request, 'inventory/category/category.html',context)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def save_utilities(request,form,template_name):
     #function save category
@@ -146,7 +146,7 @@ def save_utilities(request,form,template_name):
     data['html_form'] = render_to_string(template_name,context,request=request)
     return JsonResponse(data)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def create_category(request):
     #function add category
@@ -156,7 +156,7 @@ def create_category(request):
         form = CategoryForm()
     return save_utilities(request,form,'inventory/category/category_create.html')
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def delete_category(request, id):
     #function delete category
@@ -172,7 +172,7 @@ def delete_category(request, id):
 		data['html_form'] = render_to_string('inventory/category/category_delete.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def save_mb(request,form,template_name):
     #function save category
@@ -191,7 +191,7 @@ def save_mb(request,form,template_name):
     data['html_form'] = render_to_string(template_name,context,request=request)
     return JsonResponse(data)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def create_microbusiness(request):
     #function create microbusiness
@@ -201,7 +201,7 @@ def create_microbusiness(request):
         form = MicroBussinesForm()
     return save_mb(request,form,'inventory/category/create_microbusiness.html')
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def delete_microbusiness(request, id):
     #function delete category
@@ -217,7 +217,7 @@ def delete_microbusiness(request, id):
 		data['html_form'] = render_to_string('inventory/category/delete_microbusiness.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================
-@permission_required('is_staff')    
+@permission_required('is_superuser')    
 @login_required
 def save_brand(request,form,template_name):
     #function save category
@@ -236,7 +236,7 @@ def save_brand(request,form,template_name):
     data['html_form'] = render_to_string(template_name,context,request=request)
     return JsonResponse(data)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def createbrand(request):
     #this function add brands
@@ -246,7 +246,7 @@ def createbrand(request):
         form = BrandForm()
     return save_brand(request,form,'inventory/category/createbrand.html')
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def deletebrand(request, id):
     #function delete category
@@ -262,7 +262,7 @@ def deletebrand(request, id):
 		data['html_form'] = render_to_string('inventory/category/delete_brand.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================   
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def supplier(request):
     #this function show all supplier 
@@ -272,7 +272,7 @@ def supplier(request):
     }
     return render(request,'inventory/supplier/all_supplier.html', context)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def save_supplier(request,form,template_name):
     #function save supplier
@@ -291,7 +291,7 @@ def save_supplier(request,form,template_name):
     data['html_form'] = render_to_string(template_name,context,request=request)
     return JsonResponse(data)
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def createsupplier(request):
     #this function add a new supplier
@@ -301,7 +301,7 @@ def createsupplier(request):
         form = SupplierForm()
     return save_supplier(request,form,'inventory/supplier/createsupplier.html')
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def updatesupplier(request,pk):
     #fucntion update supplier
@@ -312,7 +312,7 @@ def updatesupplier(request,pk):
 	    form = SupplierForm(instance=supplier)
     return save_supplier(request, form, 'inventory/supplier/updatesupplier.html')
 
-@permission_required('is_staff')
+@permission_required('is_superuser')
 @login_required
 def deletesupplier(request, id):
     #function delete supplier
@@ -328,7 +328,7 @@ def deletesupplier(request, id):
 		data['html_form'] = render_to_string('inventory/supplier/deletesupplier.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================
-@permission_required('is_staff')
+@permission_required('is_superuser')
 def chart_reports(request):
     queryset = Articles.objects.all()
     

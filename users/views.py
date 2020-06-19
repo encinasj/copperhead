@@ -1,7 +1,7 @@
 #Django
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required,permission_required 
-from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -95,11 +95,11 @@ def update_profile(request):
         }
     )
 
-class UserDetailView(LoginRequiredMixin,DeleteView,PermissionRequiredMixin):
+class UserDetailView(LoginRequiredMixin,DeleteView):
     #User detail view
-    permission_required = 'is_superuser_status'
     template_name = 'users/detail.html'
     slug_field = 'username'
     slug_url_kwarg = 'username'
     queryset = User.objects.all()
     context_object_name = 'user'
+

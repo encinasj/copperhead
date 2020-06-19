@@ -1,7 +1,14 @@
-<table class="table table-hover">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>¥</th>
+            <th>Empresa</th>
+            <th>Contacto</th>
+            <th>Telefono</th>
+            <th>Celular</th>
+            <th>Direcci&oacute;n</th>
+            <th>Web</th>
+            <th>Correo</th>
+            <th>Comentarios</th>
             <th></th>
             <th></th>
         </tr>
@@ -9,10 +16,14 @@
     <tbody>
         {% for supplier in supplier %}
             <tr>
-                <td><a class="deactivate lnr lnr-users"></a></td>
                 <td>{{supplier.name_company}}</td>
-                <td></td>
-                <td></td>
+                <td>{{supplier.name_contact}}</td>
+                <td>{{supplier.phone_number}}</td>
+                <td>{{supplier.cel_phone}}</td>
+                <td>{{supplier.address}}</td>
+                <td>{{supplier.web}}</td>
+                <td>{{supplier.email}}</td>
+                <td>{{supplier.comments}}</td>
                 <td align="center">
                     <a class="delete-s" data-url-s="{% url 'delete_s' supplier.id %}">
                         <span class="lnr lnr-trash"></span>

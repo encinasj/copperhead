@@ -43,7 +43,7 @@
 					<ul class="nav">
 						<li><a href="{% url 'feed' %}" class=""><i class="lnr lnr-database"></i> <span>Inventario</span></a></li>
 					</ul>
-					{% if user.is_staff %}
+					{% if user.is_superuser %}
 						<ul class="nav">
 							<li><a href="{% url 'feedc' %}" class=""><i class="lnr lnr-inbox"></i> <span>Utilities</span></a></li>
 						</ul>
@@ -59,7 +59,6 @@
 						<ul class="nav">
 							<li><a href="{% url 'users:l_register' %}" class=""><i class="lnr lnr-users"></i> <span>Usuarios</span></a></li>
 						</ul>
-					{% else %}
 					{% endif %}
 				</nav>
 			</div>
