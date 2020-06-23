@@ -14,7 +14,6 @@
 {% endblock title %}
 
 {% block body_block %}
-
 <div class="main-content">
     <div class="container-fluid">
         <!-- OVERVIEW -->
@@ -59,40 +58,56 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <canvas id="productsChart" width="390" height="300"></canvas>
-                            {% block javascript %}
-                                <script>
-                                    var ctx = document.getElementById("productsChart").getContext('2d');
-                                    var name = JSON.parse('{{ name|safe }}');
-                                    var quantity = JSON.parse('{{ quantity|safe }}');
-                                    window.productsChart = new Chart(ctx, {
-                                        type: 'bar',
-                                        data: {
-                                            labels: ['name1','name2','name3','name4','name5','name6','name7'],
-                                            datasets: [{
-                                                label: name,
-                                                data: quantity,
-                                                backgroundColor: [
-                                                    'rgba(255, 99, 132, 0.2)',
-                                                    'rgba(54, 162, 235, 0.2)',
-                                                    'rgba(255, 206, 86, 0.2)',
-                                                    'rgba(75, 192, 192, 0.2)',
-                                                    'rgba(153, 102, 255, 0.2)',
-                                                    'rgba(255, 159, 64, 0.2)'
-                                                ],
-                                            }]
-                                        },
-                                    });
-                                </script>
-                            {% endblock javascript %}
+                    <div class="col-md-9">
+                        <div id="container"></div>
+                        {% block javascript %}
+                            <script type="application/javascript">
+                                Highcharts.chart('container', {
+                                    chart: {
+                                      type: 'column'
+                                    },
+                                    title: {
+                                      text: 'Inventario ISEI'
+                                    },
+                                    xAxis: {
+                                      categories: {{ name|safe }},
+                                      crosshair: true
+                                    },
+                                    yAxis: {
+                                      min: 0,
+                                      title: {
+                                        text: 'Equipos en inventario'
+                                      }
+                                    },
+                                    tooltip: {
+                                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td><b>{point.y:.1f}</b></td></tr>',
+                                      footerFormat: '</table>',
+                                      shared: true,
+                                      useHTML: true
+                                    },
+                                    plotOptions: {
+                                      column: {
+                                        pointPadding: 0.2,
+                                        borderWidth: 0
+                                      }
+                                    },
+                                    series: [{
+                                      name: 'Cantidad de equipos',
+                                      showInLegend: false,
+                                      colorByPoint: true,
+                                      data: {{ quantity|safe }}                                
+                                    }]
+                                  });
+                            </script>    
+                        {% endblock javascript %}
                     </div>
                     <div class="col-md-3 pull-right">
                         <div class="weekly-summary text-right">
                             <span class="number">$ {{countarticles}}</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> </span>
                             <span class="info-label">Total de efectivo en stock</span>
-                        </div>
-            
+                        </div>  
                     </div>
                 </div>
             </div>

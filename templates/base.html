@@ -27,7 +27,12 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ user.profile.picture.url }}" class="img-circle"> <span>{{user.username}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							{% if  user.profile.picture %}
+								<img  src="{{ user.profile.picture.url }}"  class="img-circle"> <span>{{user.username}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							{% else%}
+								<img src="{% static 'assets/img/favicon.png' %}" class="rounded-circle" height="30" />
+							{% endif %}
 							<ul class="dropdown-menu">
 								<li><a href="{% url 'users:detail' request.user.username %}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="{% url 'users:logout' %}"><i class="lnr lnr-exit"></i> <span>Salir</span></a></li>
@@ -78,7 +83,10 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"></script>
+	<script src="{% static 'assets/js/accessibility.js' %}"></script>
+	<script src="{% static 'assets/js/export-data.js' %}"></script>
+	<script src="{% static 'assets/js/exporting.js' %}"></script>
+	<script src="{% static 'assets/js/highcharts.js' %}"></script>
 	<script src="{% static 'assets/js/jquery-3.1.1.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>

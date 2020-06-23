@@ -48,7 +48,6 @@ def save_all(request,form,template_name):
     #function save articles
     data = dict()
     if request.method == 'POST':
-        form = ArticlesForm(request.POST, request.FILES) 
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
@@ -67,7 +66,7 @@ def save_all(request,form,template_name):
 def create_article(request):
     #function add articles
     if request.method == 'POST':
-        form = ArticlesForm(request.POST)
+        form = ArticlesForm(request.POST, request.FILES) 
     else:
         form = ArticlesForm()
     return save_all(request,form,'inventory/create_article.html')
@@ -78,7 +77,7 @@ def update_article(request,pk):
     #fucntion update article
     article = get_object_or_404(Articles,pk=pk)
     if request.method == 'POST':
-        form = ArticlesForm(request.POST or None, instance=article)
+        form = ArticlesForm(request.POST, request.FILES, instance=article)
     else:
 	    form = ArticlesForm(instance=article)
     return save_all(request, form, 'inventory/update_article.html')
@@ -335,7 +334,7 @@ def chart_reports(request):
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
 
-    #Suma de los precios 
+    #Suma de todos los precios 
     countarticles = Articles.objects.aggregate(countarticles=Sum('coust_buy'))['countarticles']
     context = {
             'name': json.dumps(name),

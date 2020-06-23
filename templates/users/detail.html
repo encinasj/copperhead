@@ -12,7 +12,11 @@
                     <div class="profile-header">
                         <div class="overlay"></div>
                         <div class="profile-main">
-                            <img src="{{ user.profile.picture.url }}" class="img-circle" alt="Avatar" width="90px">
+                            {% if  user.profile.picture %}
+                                <img  src="{{ user.profile.picture.url }}"  class="img-circle" alt="Avatar" width="90px">
+                            {% else%}
+                                <img src="{% static 'assets/img/favicon.png' %}" class="rounded-circle" height="50" />
+                            {% endif %}
                             <h3 class="name">@{{ user.username}}</h3>
                         </div>
                         <div class="profile-stat">
