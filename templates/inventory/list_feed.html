@@ -4,10 +4,10 @@
             <div id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle lnr lnr-chevron-down-circle" data-toggle="dropdown"></a>
+                        <a class=" fa fa-ellipsis-v" data-toggle="dropdown"></a>
                         <ul class="dropdown-menu">
-                            <li> <a class="show-form-update" data-url="{% url 'update' article.pk %}"><span class="lnr lnr-pencil"> Actualizar</span></a></li>
-                            <li> <a class="show-form-delete" data-url="{% url 'delete' article.id %}"><span class="lnr lnr-trash"> Eliminar</span></a></li>
+                            <li><a class="show-form-update lnr lnr-pencil" data-url="{% url 'update' article.pk %}"></a></li>
+                            <li><a class="show-form-delete lnr lnr-trash" data-url="{% url 'delete' article.id %}"></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -22,7 +22,7 @@
         <hr>
         <ul class="list-inline">
             <li>
-                <a class="text-muted">Ubicacin: {{article.location}}</a> 
+                <a class="text-muted">Ubicacion: {{article.location}}</a> 
             </li>
             <li>
                 <a class="text-muted">Cantidad: {{article.quantity}}</a>
