@@ -1,11 +1,10 @@
 {% for article in  article %}
     <div style="margin-right: 5px;" class=" panel metric col-md-3" >
-        <div id="navbar-menu">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    {% if user.is_superuser %}
+        {% if user.is_superuser %}
+            <div id="navbar-menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
                         <a class="dropdown-toggle lnr lnr-chevron-down-circle" data-toggle="dropdown"></a>
-                    {% endif %}
                         <ul class="dropdown-menu">
                             <li> <a class="show-form-update" data-url="{% url 'update' article.pk %}"><span class="lnr lnr-pencil"> Actualizar</span></a></li>
                             <li> <a class="show-form-delete" data-url="{% url 'delete' article.id %}"><span class="lnr lnr-trash"> Eliminar</span></a></li>
@@ -13,6 +12,7 @@
                     </li>
                 </ul>
             </div> 
+        {% endif %}
         <a class="pull-left">
             <a class="show-details" data-url="{% url 'details' article.id  %}">
                 <img class="img-circle" {% if  article.img %} src="{{ article.img.url }}" {% endif %} alt="Articulo" width="60px">
