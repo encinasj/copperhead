@@ -40,11 +40,14 @@
                                                         <span class="label label-success">on</span>
                                                     {% else %}
                                                         <span class="label label-danger">out</span>
-                                                    {% endif %}
-                                                     <a class="lnr lnr-user"></a>
+                                                    {% endif %}                                                   
+                                                </td>
+                                                <td> 
+                                                    <a href="{% url 'users:detail' users.username %}">
+                                                        <img class="img-circle" height="30" src="{{ user.profile.picture.url }}"> 
+                                                    </a>
                                                 </td>
                                                 <td>{{users.username}}</td>
-                                                <td></td>
                                             </tr>
                                         {% empty %}
                                             <tr>
