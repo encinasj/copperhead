@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from inventory.models import Articles
+
 class Profile(models.Model):
     #Profile model.
     #Proxy models that extends the base data with other information
@@ -18,3 +19,15 @@ class Profile(models.Model):
     def __str__(self):
         #return username
         return self.user.username
+
+class Remplacement(models.Model):
+    #this model add count remplacement in profile
+    remplacement = models.CharField(max_length=12, default=0) 
+
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __srt__(self):
+        #return remplacement
+        return self.remplacement
+    

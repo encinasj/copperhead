@@ -33,6 +33,8 @@ urlpatterns = [
     path('update_s/<int:pk>', login_required(views.updatesupplier), name='update_s'),
     path('delete_s/<int:id>',login_required(views.deletesupplier), name='delete_s'),
 
+    path('organizations',login_required(views.organization), name='corp'),
+
     #charts and reports
     path('reports/',login_required(views.chart_reports), name='reports'),
 ]

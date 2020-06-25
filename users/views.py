@@ -2,6 +2,8 @@
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required,permission_required 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.template.loader import render_to_string
+from django.http import JsonResponse,Http404
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -12,7 +14,7 @@ from django.urls import reverse
 
 #Models
 from django.contrib.auth.models import User
-from users.models import Profile
+from users.models import Profile, Remplacement
 from inventory.models import Articles
 #Forms
 from users.forms import RegisterForm,ProfileForm
@@ -102,4 +104,12 @@ class UserDetailView(LoginRequiredMixin,DeleteView):
     slug_url_kwarg = 'username'
     queryset = User.objects.all()
     context_object_name = 'user'
+
+
+def remplacement(request):
+    remplacement = Remplacement.objects.all()
+    context = {
+        'remplacement':remplacement
+    }
+    return render (request, 'users/remplacement.html', context)
 

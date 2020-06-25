@@ -2,7 +2,7 @@
 from django import forms
 #ours models
 from django.contrib.auth.models import User
-from users.models import Profile
+from users.models import Profile, Remplacement
 
 class RegisterForm(forms.Form):
     #Signup Forms, this classs is for register user with profile 
@@ -76,3 +76,14 @@ class ProfileForm(forms.Form):
     biography = forms.CharField(max_length=500, required=False)
     picture = forms.ImageField()
 
+class RemplacementForm(forms.ModelForm):
+    #remplacement article
+    model = Remplacement
+
+    fields = (
+        "remplacement"
+    )
+
+    labels = {
+        "remplacement":""
+    }
