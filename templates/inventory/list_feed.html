@@ -1,5 +1,5 @@
 {% for article in  article %}
-    <div style="margin-right: 5px;" class=" panel metric col-md-3" >
+    <div class="card card-2">
         {% if user.is_superuser %}
             <div id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right">
@@ -13,21 +13,35 @@
                 </ul>
             </div> 
         {% endif %}
-        <a class="pull-left">
-            <a class="show-details" data-url="{% url 'details' article.id  %}">
-                <img class="img-circle" {% if  article.img %} src="{{ article.img.url }}" {% endif %} alt="Articulo" width="60px">
-            </a>
-            <span class="title panel-subtitle pull-right">{{article.name}}</span>
-        </a>
-        <hr>
-        <ul class="list-inline">
-            <li>
-                <a class="text-muted">Ubicacion: {{article.location}}</a> 
-            </li>
-            <li>
-                <a class="text-muted">Cantidad: {{article.quantity}}</a>
-            </li>
-        </ul>
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row"> 
+                    <div class="col-xs-4">
+                        <a>
+                            <a class="show-details" data-url="{% url 'details' article.id  %}">
+                                <img class="img-circle" {% if  article.img %} src="{{ article.img.url }}" {% endif %} alt="Articulo" width="70px">
+                            </a>
+                        </a>
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <div class="col-xs-12">   
+                    <span class="title panel-subtitle pull-center">{{article.name}}</span>
+                </div>
+                <div class="col-xs-12">
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a class="text-muted">Ubicacion: {{article.location}}</a> 
+                        </li>
+                        <li>
+                            <a class="text-muted">Cantidad: {{article.quantity}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 {% empty %}
     <tr>

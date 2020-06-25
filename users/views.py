@@ -113,19 +113,3 @@ def remplacement(request):
     }
     return render (request, 'users/remplacement.html', context)
 
-def save_remplacement(request,form,template_name):
-    #function save remplacement
-    data = dict()
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            data['form_is_valid'] = True
-            remplacement = Remplacement.objects.all()
-            data['feedc'] = render_to_string('inventory/category/category_list.html',{'remplacement':remplacement})
-        else:
-            data['form_is_valid'] = False
-    context = {
-    'form':form
-    }
-    data['html_form'] = render_to_string(template_name,context,request=request)
-    return JsonResponse(data)
