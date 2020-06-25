@@ -10,7 +10,6 @@
 	<link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/vendor/linearicons/style.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/vendor/chartist/css/chartist-custom.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
 	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.css'%}">
 	<link rel="stylesheet" href="{% static 'assets/css/demo.css'%}">
@@ -56,7 +55,7 @@
 							<li><a href="{% url 'feed_s' %}" id="btnload" class=""><i class="lnr lnr-store"></i> <span>Provedor</span></a></li>
 						</ul>
 						<ul class="nav">
-							<li><a href="#" class=""><i class="lnr lnr-apartment"></i> <span>Empresas</span></a></li>
+							<li><a href="{% url 'corp' %}" class=""><i class="lnr lnr-apartment"></i> <span>Empresas</span></a></li>
 						</ul>
 						<ul class="nav">
 							<li><a href="{% url 'reports' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
@@ -91,8 +90,6 @@
 	<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
-	<script src="{% static 'assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
-	<script src="{% static 'assets/vendor/chartist/js/chartist.min.js' %}"></script>
 	<script src="{% static 'assets/js/klorofil-common.js' %}"></script>
 	<script src="{% static 'assets/js/actions.js' %}"></script>
 	<script src="{% static 'assets/js/searchbar.js' %}"></script>
@@ -100,3 +97,5 @@
 	{% endblock javascript %}
 </body>
 </html>
+
+

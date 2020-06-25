@@ -1,5 +1,5 @@
 {% for article in  article %}
-    <div class="card card-2">
+    <div class="cards card-1">
         {% if user.is_superuser %}
             <div id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right">
@@ -19,7 +19,7 @@
                     <div class="col-xs-4">
                         <a>
                             <a class="show-details" data-url="{% url 'details' article.id  %}">
-                                <img class="img-circle" {% if  article.img %} src="{{ article.img.url }}" {% endif %} alt="Articulo" width="70px">
+                                <img  class="img-circle" {% if  article.img %} src="{{ article.img.url }}" {% endif %} alt="Articulo" width="70px">
                             </a>
                         </a>
                     </div>

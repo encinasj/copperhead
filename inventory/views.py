@@ -343,3 +343,6 @@ def chart_reports(request):
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
 #====================================================================================================
+def organization(request):
+    template_name="inventory/organization/organization.html" 
+    return render (request, template_name)
