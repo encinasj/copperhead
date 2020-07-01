@@ -105,7 +105,7 @@
                     </div>
                     <div class="col-md-3 pull-right">
                         <div class="weekly-summary text-right">
-                            <span class="number">$ {{countarticles}}</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> </span>
+                            <span class="number">$ </span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> </span>
                             <span class="info-label">Total de efectivo en stock</span>
                         </div>  
                     </div>
@@ -115,23 +115,3 @@
     </div>
 </div>
 {% endblock body_block %}
-<div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 panel">//////
-            <!-- charts and reports -->
-                <canvas id="productsChart" width="390" height="300"></canvas>
-            <!-- charts and reports -->
-        </div>
-         <!-- reults of plus totals-->
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card panel ">
-                    <h4>Total efectivo en stock:</h4>
-                        <h3 class="align-center">${{countarticles}}</h3> 
-                </div>
-            </div> 
-        </div>
-    </div>
-    </div>
-</div>

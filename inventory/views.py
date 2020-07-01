@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 import json
 
-from django.db.models import Sum
+from django.db.models import Sum,F,FloatField
 #models
 from .models import Articles,Category,MicroBusiness,Brand,Supplier
 #forms
@@ -29,7 +29,7 @@ def FeedView(request):
         article = Articles.objects.all()
     #pagination
     page = request.GET.get('page', 1)
-    paginator = Paginator(article, 9)
+    paginator = Paginator(article, 6)
     try:
         article = paginator.page(page)
     except PageNotAnInteger:
@@ -329,20 +329,21 @@ def deletesupplier(request, id):
 #====================================================================================================
 @permission_required('is_superuser')
 def chart_reports(request):
+    article = Articles.objects.all()
     queryset = Articles.objects.all()
     
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
-
-    #Suma de todos los precios 
-    countarticles = Articles.objects.aggregate(countarticles=Sum('coust_buy'))['countarticles']
     context = {
             'name': json.dumps(name),
             'quantity': json.dumps(quantity),
-            'countarticles' : countarticles,
+            'article': article
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
 #====================================================================================================
 def organization(request):
     template_name="inventory/organization/organization.html" 
     return render (request, template_name)
+
+
+
