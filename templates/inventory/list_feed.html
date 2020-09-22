@@ -1,6 +1,6 @@
 {% for article in  article %}
     <div class="cards card-1">
-        {% if user.is_superuser %}
+        {% if request.user.is_superuser %}
             <div id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -12,6 +12,8 @@
                     </li>
                 </ul>
             </div> 
+        {% else %}
+        ...
         {% endif %}
         <div class="panel">
             <div class="panel-body">

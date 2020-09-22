@@ -10,7 +10,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 import json
 
-from django.db.models import Sum,F,FloatField
+from django.db.models import Sum,FloatField,F,Avg
+
 #models
 from .models import Articles,Category,MicroBusiness,Brand,Supplier
 #forms
@@ -120,9 +121,9 @@ def CategoryView(request):
     microbusiness = MicroBusiness.objects.all()
     brand = Brand.objects.all()
     context = {
-    'category': category,
-    'microbusiness': microbusiness,
-    'brand':brand
+        'category': category,
+        'microbusiness': microbusiness,
+        'brand':brand
     }
     return render (request, 'inventory/category/category.html',context)
 
@@ -329,21 +330,20 @@ def deletesupplier(request, id):
 #====================================================================================================
 @permission_required('is_superuser')
 def chart_reports(request):
-    article = Articles.objects.all()
     queryset = Articles.objects.all()
-    
+
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
+
+    countarticles = Articles.objects.aggregate(countarticles=Sum('coust_buy'))
     context = {
             'name': json.dumps(name),
             'quantity': json.dumps(quantity),
-            'article': article
+            'countarticles': countarticles
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
+    
 #====================================================================================================
 def organization(request):
     template_name="inventory/organization/organization.html" 
     return render (request, template_name)
-
-
-

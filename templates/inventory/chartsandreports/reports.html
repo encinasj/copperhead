@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block title %}
 <div class="row">
     <div class="col-sm-12">
@@ -26,33 +25,6 @@
                             <p>
                                 <span class="number">Descargar</span>
                                 <span class="title">Excel</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="metric">
-                            <span class="icon"><i class="fa fa-shopping-bag"></i></span>
-                            <p>
-                                <span class="number">203</span>
-                                <span class="title">Sales</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="metric">
-                            <span class="icon"><i class="fa fa-eye"></i></span>
-                            <p>
-                                <span class="number">274,678</span>
-                                <span class="title">Visits</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="metric">
-                            <span class="icon"><i class="fa fa-bar-chart"></i></span>
-                            <p>
-                                <span class="number">35%</span>
-                                <span class="title">Conversions</span>
                             </p>
                         </div>
                     </div>
@@ -105,8 +77,8 @@
                     </div>
                     <div class="col-md-3 pull-right">
                         <div class="weekly-summary text-right">
-                            <span class="number">$ </span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> </span>
-                            <span class="info-label">Total de efectivo en stock</span>
+                            <span class="number">$  {{countarticles}} </span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> </span>
+                            <span class="info-label">Total de efectivo en stock</span> 
                         </div>  
                     </div>
                 </div>

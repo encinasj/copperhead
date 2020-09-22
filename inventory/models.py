@@ -93,12 +93,12 @@ class Articles(models.Model):
         (Otros,'Otros')
     )
     name = models.CharField(max_length=50)
-    quantity = models.PositiveSmallIntegerField(null=True)
-    fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE)
+    quantity = models.SmallIntegerField(null=True)
+    fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.SET_NULL)
     model = models.CharField(max_length=50)
-    fk_category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE) 
+    fk_category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL) 
     coust_buy = models.DecimalField(max_digits=10, decimal_places=2)
-    fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.CASCADE)
+    fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.SET_NULL)
     userful_life = models.DateField()
     actual_state = models.CharField(max_length=12, choices=STATE_ACTUAL)
     date_check = models.DateField()
@@ -115,3 +115,6 @@ class Articles(models.Model):
 
     def __str__(self):
         return self.name
+
+class Exit(models.Model):
+    pass

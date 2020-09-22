@@ -50,4 +50,3 @@ class ArticlesForm(forms.ModelForm):
                 'fk_brand':'','model':'','fk_category':'', 
                 'coust_buy':'','fk_supplier':'','userful_life':'','actual_state':'',
                 'date_check':'','location':'', 'description':'','img':''}
-
