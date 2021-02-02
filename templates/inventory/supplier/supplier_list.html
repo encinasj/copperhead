@@ -1,4 +1,6 @@
-<table class="table table-striped">
+{% load static %}
+
+<table  id="data" class="table table-striped" >
     <thead>
         <tr>
             <th>Empresa</th>
@@ -42,3 +44,20 @@
         {% endfor %}
     </tbody>
 </table>
+<script type="application/javascript">
+    $(function() {
+        $('#data').DataTable( {
+            responsive: true,
+            autoWidth: false,
+            "language" : {
+                "sUrl" : '{% static "assets/spanish.txt" %}'
+            },
+            columnDefs: [
+                {
+                    targets: ['_all'],
+                    className: 'mdc-data-table__cell'
+                }
+            ]
+        } );
+    } );
+</script> 

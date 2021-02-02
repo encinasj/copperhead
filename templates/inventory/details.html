@@ -12,7 +12,7 @@
 				<img class="img-circle" src="{{ article.img.url }}" width="100px">
 			</div>
 			<!-- Name article-->
-			<div class="form-group col-md-5">
+			<div class="form-group col-md-6">
 				<h5 class="modal-title">Nombre:</h5> {{article.name}}
 			</div>
 			<!-- Quantity article-->
@@ -33,34 +33,35 @@
 			</div>
 			<!-- Coust buy article-->
 			<div class="form-group col-md-3">
-				$:{{article.coust_buy}}
+				Costo: ${{article.cost_buy}}
 			</div>
 			<!-- Supplier article-->
 			<div class="form-group col-md-3 ">
-				{{ article.fk_supplier }}
+				proveedor: {{ article.fk_supplier }}
 			</div>
 			<!-- useful life article-->
 			<div class="form-group col-md-6">
-				{{article.userful_life}}
+				Fecha de ingreso: {{article.userful_life}}
 			</div>
 			<!-- actual state article-->
 			<div class="form-group col-md-6">
-				{{ article.actual_state }}
+				Estado actual: {{ article.actual_state }}
 			</div>
 			<!-- date check date check-->
 			<div class="form-group col-md-4">
-				{{article.date_check}}
+				Fecha de salida: {{article.date_check}}
 			</div>
 			<!-- Locatin location-->
 			<div class="form-group col-md-12">
-				{{article.location}}
+				Ubicación: {{article.location}}
 			</div>
 			<!-- description description-->
 			<div class="form-row">
 				<div class="form-group col-md-12 mb-0">
-					{{article.description}}
+				Descripción: {{article.description}}
 				</div>
 			</div>
+			qr: <img src={{article.qr_code.url}}>
 		</div>
 	</div>
 	<div class="modal-footer">

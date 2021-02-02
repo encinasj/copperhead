@@ -1,5 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+import qrcode
+from io import BytesIO
+from django.core.files import File
+from PIL import Image, ImageDraw
+
 
 #models inventory
 class Supplier(models.Model):
@@ -93,17 +98,18 @@ class Articles(models.Model):
         (Otros,'Otros')
     )
     name = models.CharField(max_length=50)
-    quantity = models.SmallIntegerField(null=True)
+    quantity = models.PositiveIntegerField()
     fk_brand = models.ForeignKey(Brand, null=True, on_delete=models.SET_NULL)
     model = models.CharField(max_length=50)
     fk_category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL) 
-    coust_buy = models.DecimalField(max_digits=10, decimal_places=2)
+    cost_buy = models.DecimalField(max_digits=10, decimal_places=2)
     fk_supplier = models.ForeignKey(Supplier, null=True, on_delete=models.SET_NULL)
     userful_life = models.DateField()
     actual_state = models.CharField(max_length=12, choices=STATE_ACTUAL)
     date_check = models.DateField()
     location = models.CharField(max_length=50)
-    img = models.ImageField(upload_to='articles', null=True, blank=True)
+    img = models.ImageField(upload_to='articles/', null=True, blank=True)
+    qr_code = models.ImageField(upload_to='qr_codes/', blank=True)
     description = models.TextField(blank=True)
     #actions
     created = models.DateTimeField(auto_now_add=True)
@@ -116,5 +122,14 @@ class Articles(models.Model):
     def __str__(self):
         return self.name
 
-class Exit(models.Model):
-    pass
+    def saveqrcode(self, *args, **kwargs):
+        qrcode_img = qrcode.make(self.name)
+        canvas = Image.new('RGB', (290, 290), 'white')
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_img)
+        fname = f'qr_code-{self.name}.png'
+        buffer = BytesIO()
+        canvas.save(buffer,'PNG')
+        self.qr_code.save(fname,File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)

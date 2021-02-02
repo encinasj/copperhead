@@ -43,10 +43,10 @@ class ArticlesForm(forms.ModelForm):
         fields = (
                 'name','quantity',
                 'fk_brand','model','fk_category', 
-                'coust_buy','fk_supplier','userful_life','actual_state',
+                'cost_buy','fk_supplier','userful_life','actual_state',
                 'date_check','location', 'description','img')
         labels = {
                 'name':'','quantity':'',
                 'fk_brand':'','model':'','fk_category':'', 
-                'coust_buy':'','fk_supplier':'','userful_life':'','actual_state':'',
+                'cost_buy':'','fk_supplier':'','userful_life':'','actual_state':'',
                 'date_check':'','location':'', 'description':'','img':''}

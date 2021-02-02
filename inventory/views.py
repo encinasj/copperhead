@@ -9,8 +9,7 @@ from django.http import JsonResponse,Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 import json
-
-from django.db.models import Sum,FloatField,F,Avg
+from django.db.models import Sum,FloatField,F,Avg, Count,DecimalField
 
 #models
 from .models import Articles,Category,MicroBusiness,Brand,Supplier
@@ -21,9 +20,10 @@ from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,Supplie
 def FeedView(request):
     #list all articles on dashboard
     #search bar
+    qr = Articles.objects.all()
     search_query = request.GET.get('search','') 
     if search_query:
-        article = Articles.objects.filter(Q(name__icontains=search_query) | Q(coust_buy__icontains=search_query) | 
+        article = Articles.objects.filter(Q(name__icontains=search_query) | Q(cost_buy__icontains=search_query) | 
         Q(location__icontains=search_query)
         )
     else:
@@ -40,6 +40,7 @@ def FeedView(request):
 
     context = {
     'article': article,
+    'qr': qr
     }
     return render (request, 'inventory/feed.html',context)
 
@@ -335,14 +336,11 @@ def chart_reports(request):
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
 
-    countarticles = Articles.objects.aggregate(countarticles=Sum('coust_buy'))
     context = {
             'name': json.dumps(name),
             'quantity': json.dumps(quantity),
-            'countarticles': countarticles
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
-    
 #====================================================================================================
 def organization(request):
     template_name="inventory/organization/organization.html" 

@@ -6,14 +6,18 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/iconcop.png' %}" />
-	<link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/vendor/linearicons/style.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
-	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.css'%}">
-	<link rel="stylesheet" href="{% static 'assets/css/demo.css'%}">
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	{% block head %}
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/iconcop.png' %}" />
+		<link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/vendor/linearicons/style.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+		<link rel="stylesheet" href="{% static 'assets/css/bootstrap.css'%}">
+		<link rel="stylesheet" href="{% static 'assets/css/demo.css'%}">	
+		<link rel="stylesheet" href="{% static 'assets/css/jquery.dataTables.min.css' %}">
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	{% endblock head %}
+
 </head>
 <body>
 	<div id="wrapper">    
@@ -22,6 +26,9 @@
 				<a><img src="{% static 'assets/img/logo-darks.png' %}" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
 				<!-- Menu for user and profile-->
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
@@ -42,26 +49,26 @@
 			</div>
 		</nav>
 		<div id="sidebar-nav" class="sidebar">
-			<div class="pull-left">
+			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="{% url 'feed' %}" class=""><i class="lnr lnr-database"></i> <span>Inventario</span></a></li>
+						<li><a href="{% url 'feed' %}"><i class="lnr lnr-database"></i> <span>Activos Fijos</span></a></li>
 					</ul>
 					{% if user.is_superuser %}
 						<ul class="nav">
-							<li><a href="{% url 'feedc' %}" class=""><i class="lnr lnr-inbox"></i> <span>Utilities</span></a></li>
+							<li><a href="{% url 'feedc' %}"><i class="lnr lnr-inbox"></i> <span>Utilities</span></a></li>
 						</ul>
 						<ul class="nav">
-							<li><a href="{% url 'feed_s' %}" id="btnload" class=""><i class="lnr lnr-store"></i> <span>Provedor</span></a></li>
+							<li><a href="{% url 'feed_s' %}"><i class="lnr lnr-store"></i> <span>Provedor</span></a></li>
 						</ul>
 						<ul class="nav">
-							<li><a href="{% url 'corp' %}" class=""><i class="lnr lnr-apartment"></i> <span>Empresas</span></a></li>
+							<li><a href="{% url 'corp' %}"><i class="lnr lnr-apartment"></i> <span>Areas</span></a></li>
 						</ul>
 						<ul class="nav">
-							<li><a href="{% url 'reports' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
+							<li><a href="{% url 'reports' %}"><i class="lnr lnr-chart-bars"></i> <span>Reportes</span></a></li>
 						</ul>
 						<ul class="nav">
-							<li><a href="{% url 'users:l_register' %}" class=""><i class="lnr lnr-users"></i> <span>Usuarios</span></a></li>
+							<li><a href="{% url 'users:l_register' %}"><i class="lnr lnr-users"></i> <span>Usuarios</span></a></li>
 						</ul>
 					{% endif %}
 				</nav>
@@ -82,17 +89,35 @@
 			</div>
 		</div>
 	</div>
+	<!--js -->
+	<script src="{% static 'assets/js/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/actions.js' %}"></script>
 	<script src="{% static 'assets/js/accessibility.js' %}"></script>
 	<script src="{% static 'assets/js/export-data.js' %}"></script>
 	<script src="{% static 'assets/js/exporting.js' %}"></script>
 	<script src="{% static 'assets/js/highcharts.js' %}"></script>
-	<script src="{% static 'assets/js/jquery-3.1.1.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/jquery.dataTables.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
 	<script src="{% static 'assets/js/klorofil-common.js' %}"></script>
-	<script src="{% static 'assets/js/actions.js' %}"></script>
-	<script src="{% static 'assets/js/searchbar.js' %}"></script>
+	<script type="application/javascript">
+		$(function() {
+			$('#data').DataTable( {
+				responsive: true,
+				autoWidth: false,
+				"language" : {
+					"sUrl" : '{% static "assets/spanish.txt" %}'
+				},
+				columnDefs: [
+					{
+						targets: ['_all'],
+						className: 'mdc-data-table__cell'
+					}
+				]
+			} );
+		} );
+	</script> 
 	{% block javascript %}
 	{% endblock javascript %}
 </body>
