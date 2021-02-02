@@ -20,7 +20,6 @@ from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,Supplie
 def FeedView(request):
     #list all articles on dashboard
     #search bar
-    qr = Articles.objects.all()
     search_query = request.GET.get('search','') 
     if search_query:
         article = Articles.objects.filter(Q(name__icontains=search_query) | Q(cost_buy__icontains=search_query) | 
@@ -40,7 +39,6 @@ def FeedView(request):
 
     context = {
     'article': article,
-    'qr': qr
     }
     return render (request, 'inventory/feed.html',context)
 

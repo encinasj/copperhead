@@ -108,8 +108,8 @@ class Articles(models.Model):
     actual_state = models.CharField(max_length=12, choices=STATE_ACTUAL)
     date_check = models.DateField()
     location = models.CharField(max_length=50)
-    img = models.ImageField(upload_to='articles/', null=True, blank=True)
-    qr_code = models.ImageField(upload_to='qr_codes/', blank=True)
+    img = models.ImageField(upload_to='articles', null=True, blank=True)
+    qr = models.ImageField(upload_to='qrcodes', null=True, blank=True)
     description = models.TextField(blank=True)
     #actions
     created = models.DateTimeField(auto_now_add=True)
@@ -120,16 +120,16 @@ class Articles(models.Model):
         verbose_name_plural = 'Articles'
 
     def __str__(self):
-        return self.name
-
-    def saveqrcode(self, *args, **kwargs):
+        return str(self.name)
+        
+    def save(self, *args, **kwargs):
         qrcode_img = qrcode.make(self.name)
-        canvas = Image.new('RGB', (290, 290), 'white')
+        canvas = Image.new('RGB', (290,290), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)
-        fname = f'qr_code-{self.name}.png'
+        fname = f'qr_code_{self.name}.png'
         buffer = BytesIO()
         canvas.save(buffer,'PNG')
-        self.qr_code.save(fname,File(buffer), save=False)
+        self.qr.save(fname, File(buffer), save=False)
         canvas.close()
         super().save(*args, **kwargs)
