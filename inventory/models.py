@@ -109,8 +109,8 @@ class Articles(models.Model):
     date_check = models.DateField()
     location = models.CharField(max_length=50)
     img = models.ImageField(upload_to='articles', null=True, blank=True)
-    qr = models.ImageField(upload_to='qrcodes', null=True, blank=True)
-    description = models.TextField(blank=True)
+    qr = models.ImageField(upload_to='qrcodes', null=True, blank=True, max_length=255)
+    description = models.TextField(max_length=500, blank=True)
     #actions
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
@@ -119,15 +119,16 @@ class Articles(models.Model):
         verbose_name = 'Article'
         verbose_name_plural = 'Articles'
 
-    def __str__(self):
-        return str(self.name)
-        
+    def __str__(self, *args, **kwargs):
+        return str(self.name,self.model,self.quantity,self.description)
+
     def save(self, *args, **kwargs):
-        qrcode_img = qrcode.make(self.name)
-        canvas = Image.new('RGB', (290,290), 'white')
+        #Create a qr code and save it, generate a png image. 
+        qrcode_img = qrcode.make(['Nombre: ',self.name,'Modelo: ',self.model, 'Cantidad: ',self.quantity, 'descripción: ',self.description])
+        canvas = Image.new('RGB', (890,890), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)
-        fname = f'qr_code_{self.name}.png'
+        fname = f'qr_code_{self.name,self.model,self.quantity,self.description}.png'
         buffer = BytesIO()
         canvas.save(buffer,'PNG')
         self.qr.save(fname, File(buffer), save=False)

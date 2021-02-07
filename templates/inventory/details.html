@@ -1,3 +1,5 @@
+{% load qr_code %}
+{% load static %}
 <form method="GET" data-url="{% url 'details' article.id %}"  class="article-details" enctype="multipart/form-data">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -13,57 +15,54 @@
 			</div>
 			<!-- Name article-->
 			<div class="form-group col-md-6">
-				<h5 class="modal-title">Nombre:</h5> {{article.name}}
+				<b>Nombre:</b> {{article.name}}
 			</div>
 			<!-- Quantity article-->
 			<div class="form-group col-md-3">
-				<h5 class="modal-title">Cantidad:</h5>{{article.quantity}}
+				<b>Cantidad:</b>{{article.quantity}}
 			</div>
 			<!-- Brand article-->
 			<div class="form-group col-md-4 ">
-				<h5 class="modal-title">Marca:</h5>{{ article.fk_brand }}
+				<b>Marca:</b>{{ article.fk_brand }}
 			</div>
 				<!-- Model article-->
 			<div class="form-group col-md-4">
-				<h5 class="modal-title">Modelo:</h5>{{article.model}}
+				<b>Modelo:</b>{{article.model}}
 			</div>
 			<!-- Category article-->
 			<div class="form-group col-md-3 ">
-				<h5 class="modal-title">Categoria:</h5>{{ article.fk_category }}
+				<b>Categoria:</b>{{ article.fk_category }}
+				<br>
 			</div>
 			<!-- Coust buy article-->
 			<div class="form-group col-md-3">
-				Costo: ${{article.cost_buy}}
+				<br>
+				<b>Costo:</b> ${{article.cost_buy}}
 			</div>
 			<!-- Supplier article-->
 			<div class="form-group col-md-3 ">
-				proveedor: {{ article.fk_supplier }}
+				<b>proveedor:</b> {{ article.fk_supplier }}
 			</div>
 			<!-- useful life article-->
 			<div class="form-group col-md-6">
-				Fecha de ingreso: {{article.userful_life}}
+				<b>Fecha de ingreso:</b> {{article.userful_life}} <br>
+				<b>Fecha de salida:</b> {{article.date_check}}
 			</div>
 			<!-- actual state article-->
 			<div class="form-group col-md-6">
-				Estado actual: {{ article.actual_state }}
-			</div>
-			<!-- date check date check-->
-			<div class="form-group col-md-4">
-				Fecha de salida: {{article.date_check}}
+				<b>Estado actual:</b> {{ article.actual_state }}
 			</div>
 			<!-- Locatin location-->
 			<div class="form-group col-md-12">
-				Ubicación: {{article.location}}
+				<b>Ubicación:</b> {{article.location}}
 			</div>
 			<!-- description description-->
-			<div class="form-row">
-				<div class="form-group col-md-12 mb-0">
-				Descripción: {{article.description}}
-				</div>
-			</div>
-			<!--qrcode-->
+			<div class="form-group col-md-12 mb-0">
+			<b>Descripción:</b> {{article.description}}
+			</div>		
 		</div>
-		 <img src="{{ article.qr.url }}" alt="Event QR code" />
+		<!--qrcode-->
+		<b>Descripción:</b><img src="{{ article.qr.url }}" alt="Event QR code" width="150" height="150"/>
 	</div>
 	<div class="modal-footer">
 	</div>

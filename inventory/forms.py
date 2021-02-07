@@ -1,6 +1,7 @@
 #Django
 from django.contrib.auth.models import User
 from django import forms
+from django.forms import ModelForm, Textarea
 #models
 from inventory.models import Supplier,MicroBusiness,TypeArticle,Category,Brand,Articles
 
@@ -45,8 +46,12 @@ class ArticlesForm(forms.ModelForm):
                 'fk_brand','model','fk_category', 
                 'cost_buy','fk_supplier','userful_life','actual_state',
                 'date_check','location', 'description','img')
+        widgets = {
+            'description': Textarea(attrs={'cols': 80, 'rows': 20}),
+            }
         labels = {
                 'name':'','quantity':'',
                 'fk_brand':'','model':'','fk_category':'', 
                 'cost_buy':'','fk_supplier':'','userful_life':'','actual_state':'',
                 'date_check':'','location':'', 'description':'','img':''}
+ 

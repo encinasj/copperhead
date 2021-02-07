@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'inventory',
     #others apps
     'crispy_forms',
+    'qr_code',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 import json
 from django.db.models import Sum,FloatField,F,Avg, Count,DecimalField
-
+from qr_code.qrcode.utils import ContactDetail
 #models
 from .models import Articles,Category,MicroBusiness,Brand,Supplier
 #forms
@@ -100,17 +100,17 @@ def details_article(request, id):
 @login_required
 def delete_article(request, id):
     #function delete article
-	article = get_object_or_404(Articles,id=id)
-	data = dict()
-	if request.method == 'POST':
-		article.delete()
-		data['form_is_valid'] = True  #This is just to play along with the existing code
-		article = Articles.objects.all()
-		data['feed'] = render_to_string('inventory/list_feed.html',{'article':article})
-	else:
-		context = {'article':article}
-		data['html_form'] = render_to_string('inventory/delete_article.html',context,request=request)
-	return JsonResponse(data)
+    article = get_object_or_404(Articles,id=id)
+    data = dict()
+    if request.method == 'POST':
+	    article.delete()
+	    data['form_is_valid'] = True  #This is just to play along with the existing code
+	    article = Articles.objects.all()
+	    data['feed'] = render_to_string('inventory/list_feed.html',{'article':article})
+    else:
+        context = {'article':article}
+        data['html_form'] = render_to_string('inventory/delete_article.html',context,request=request)
+    return JsonResponse(data)
 #====================================================================================================
 @permission_required('is_superuser')
 @login_required
