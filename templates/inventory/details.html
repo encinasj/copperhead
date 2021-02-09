@@ -1,4 +1,3 @@
-{% load qr_code %}
 {% load static %}
 <form method="GET" data-url="{% url 'details' article.id %}"  class="article-details" enctype="multipart/form-data">
 	<div class="modal-header">
@@ -8,61 +7,82 @@
 		<h4 class="modal-title">Información detallada</h4> 
 	</div>
     <div class="modal-body">
-		<div class="form-row">
+		<div class="container">
 			<div class="pull-left">
 				<!-- img to image-->
-				<img class="img-circle" src="{{ article.img.url }}" width="100px">
+				{% if  article.img %}
+					<img class="img-circle" src="{{ article.img.url }}" width="100px">
+				{% else %}
+					<img class="img-circle" src="{% static 'assets/img/box.jpg' %}" alt="{{article.name}}" height="60" />
+				{% endif %}
 			</div>
-			<!-- Name article-->
-			<div class="form-group col-md-6">
-				<b>Nombre:</b> {{article.name}}
+			<div class="row">
+				<div class="col">
+					<!-- Name article-->
+					<div class="col col-sm-2">
+						<b>Nombre:</b> {{article.name}}
+					</div>
+					<div class="">
+						<!-- Quantity article-->
+						<b>Cantidad:</b> {{article.quantity}}
+					</div>
+					<div class="col col-sm-2">
+						<!-- Brand article-->
+						<b>Marca:</b> {{ article.fk_brand }}
+					</div>
+					<div class="col col-sm-2"> 
+						<!-- Model article-->
+						<b>Modelo:</b> {{article.model}}
+					</div>
+				</div>
 			</div>
-			<!-- Quantity article-->
-			<div class="form-group col-md-3">
-				<b>Cantidad:</b>{{article.quantity}}
+			<br>
+			<div class="row">
+				<div class="col col-sm-2">
+					<!-- Category article-->
+					<b>Categoria:</b> {{ article.fk_category }}
+				</div>
+				<div class="col col-sm-2">
+					<!-- Coust buy article-->
+					<b>Costo:</b> ${{article.cost_buy}}
+				</div>
+				<div class="col col-sm-2">
+					<!-- Supplier article-->
+					<b>proveedor:</b> {{ article.fk_supplier }}
+				</div>
 			</div>
-			<!-- Brand article-->
-			<div class="form-group col-md-4 ">
-				<b>Marca:</b>{{ article.fk_brand }}
+
+			<div class="row">
+				<!-- useful life article-->
+				<div class="col col-sm-3">
+					<br>
+					<b>Fecha de ingreso:</b> {{article.userful_life}}
+				</div>
+				<div class="col col-sm-3">
+					<br>
+					<b>Fecha de salida:</b> {{article.date_check}}
+				</div>
 			</div>
-				<!-- Model article-->
-			<div class="form-group col-md-4">
-				<b>Modelo:</b>{{article.model}}
-			</div>
-			<!-- Category article-->
-			<div class="form-group col-md-3 ">
-				<b>Categoria:</b>{{ article.fk_category }}
+			<div class="row">
+				<!-- actual state article-->
 				<br>
-			</div>
-			<!-- Coust buy article-->
-			<div class="form-group col-md-3">
+				<div class="col col-sm-3">
+					<b>Estado actual:</b> {{ article.actual_state }}
+				</div>
+				<!-- Locatin location-->
+				<div class="">
+					<b>Ubicación:</b> {{article.location}}
+				</div>
 				<br>
-				<b>Costo:</b> ${{article.cost_buy}}
-			</div>
-			<!-- Supplier article-->
-			<div class="form-group col-md-3 ">
-				<b>proveedor:</b> {{ article.fk_supplier }}
-			</div>
-			<!-- useful life article-->
-			<div class="form-group col-md-6">
-				<b>Fecha de ingreso:</b> {{article.userful_life}} <br>
-				<b>Fecha de salida:</b> {{article.date_check}}
-			</div>
-			<!-- actual state article-->
-			<div class="form-group col-md-6">
-				<b>Estado actual:</b> {{ article.actual_state }}
-			</div>
-			<!-- Locatin location-->
-			<div class="form-group col-md-12">
-				<b>Ubicación:</b> {{article.location}}
-			</div>
-			<!-- description description-->
-			<div class="form-group col-md-12 mb-0">
-			<b>Descripción:</b> {{article.description}}
+				<!-- description description-->
+				<div class="col col-sm-3">
+					<b>Descripción:</b> {{article.description}}
+				</div>
 			</div>		
 		</div>
+		<br>
 		<!--qrcode-->
-		<b>Descripción:</b><img src="{{ article.qr.url }}" alt="Event QR code" width="150" height="150"/>
+		<img src="{{ article.qr.url }}" alt="Event QR code" width="180" height="180"/>
 	</div>
 	<div class="modal-footer">
 	</div>

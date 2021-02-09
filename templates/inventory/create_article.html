@@ -43,15 +43,19 @@
 			</div>
 			<!-- useful life article-->
 			<div class="form-group col-md-6">
+				fecha de entrada
 				<input type="date" class="form-control {% if form.userful_life.errors %}is-invalid{% endif %}" 
 				id="userful_life" name="userful_life">
 			</div>
 			<!-- actual state article-->
 			<div class="form-group col-md-6">
+				<br>
+				estado del activo
 				{{ form.actual_state|as_crispy_field }}
 			</div>
 			<!-- date check date check-->
 			<div class="form-group col-md-4">
+				fecha de verificación
 				<input type="date" class="form-control {% if form.date_check.errors %}is-invalid{% endif %}" 
 				id="date_check" name="date_check">
 			</div>

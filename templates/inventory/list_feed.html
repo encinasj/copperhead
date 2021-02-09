@@ -1,3 +1,5 @@
+{% load static %}
+
 {% for article in  article %}
     <div class="cards card-1">
         {% if request.user.is_superuser %}
@@ -21,9 +23,13 @@
                     <div class="col-xs-10">
                         <a>
                             <a class="show-details" data-url="{% url 'details' article.id  %}">
-                                <img  class="img-circle" {% if  article.img %} src="{{ article.img.url }}" {% endif %} alt="Articulo" width="70px">
-                            </a>
-                        </a>
+                                {% if  article.img %}
+                                    <img class="img-circle" src="{{ article.img.url }}"  alt="Articulo" width="70px"/>
+                                {% else %}
+								    <img class="img-circle" src="{% static 'assets/img/box.jpg' %}" alt="{{article.name}}" height="60" />
+                                {% endif %}
+                            </a> 
+                        </a>	
                     </div>
                     <br>
                 </div>
@@ -47,7 +53,7 @@
     </div>
 {% empty %}
     <tr>
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-warning" role="alert" >
             <td>No hay Articulos!</td>
         </div>
     </tr>

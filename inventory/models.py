@@ -88,12 +88,12 @@ class Brand(models.Model):
 class Articles(models.Model):
     #models article
     Nuevo = 'Nuevo'
-    Semi_nuevo = 'Semi_nuevo'
+    Semi_nuevo = 'Seminuevo'
     Usado = 'Usado'
     Otros = 'Otros'
     STATE_ACTUAL = (
         (Nuevo, 'Nuevo'),
-        (Semi_nuevo,'Semi_nuevo'),
+        (Semi_nuevo,'Seminuevo'),
         (Usado,'Usado'),
         (Otros,'Otros')
     )
@@ -125,7 +125,7 @@ class Articles(models.Model):
     def save(self, *args, **kwargs):
         #Create a qr code and save it, generate a png image. 
         qrcode_img = qrcode.make(['Nombre: ',self.name,'Modelo: ',self.model, 'Cantidad: ',self.quantity, 'descripción: ',self.description])
-        canvas = Image.new('RGB', (890,890), 'white')
+        canvas = Image.new('RGB', (800,800), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)
         fname = f'qr_code_{self.name,self.model,self.quantity,self.description}.png'

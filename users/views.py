@@ -43,8 +43,10 @@ def logout_views(request):
 @login_required
 def users_register(request):
     users = User.objects.all()
+    profiles = Profile.objects.all()
     context = {
         'users' : users,
+        'profiles': profiles,
     }
     template_name = 'users/all_users.html'
     return render (request, template_name, context)

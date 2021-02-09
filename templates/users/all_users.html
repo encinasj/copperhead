@@ -1,66 +1,82 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}
 <div class="row">
     <div class="col-sm-12">
-        <h3 class="pull-left page-title"> Usuarios </h3>
+        <h4 class="pull-left page-title"> Usuarios </h4>
         <ol class="breadcrumb pull-right">
             <li><a href="#">Usuarios</a></li>
-            <li class="active"><a href="{% url 'feed' %}">Inventario</a></li>
+            <li> <a href="{% url 'feed' %}"> Inventario</a></li>
         </ol>
     </div>
-</div>
+    <div class="col-sm-6">
+        <div class="m-b-30">
+          <a type="button" class="btn btn-primary show-form" href="{% url 'users:register' %}">
+            <span class="glyphicon glyphicon-plus"></span>
+            Agregar
+          </a>
+        </div>
+    </div>
+  </div>
 {% endblock title %}
 {% block body_block %}
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
-                <div class="panel">
-                    <a  class="btn btn-primary pull-right" href="{% url 'users:register' %}">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        Agregar
-                    </a>
-                    <div class="row" >
-                        <ul>
-                            <div class="panel-body col-md-6">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>¥</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for users in users %}
-                                            <tr>
-                                                <td>
-                                                    {% if users.is_active %}                                                     
-                                                        <span class="label label-success">on</span>
-                                                    {% else %}
-                                                        <span class="label label-danger">out</span>
-                                                    {% endif %}                                                   
-                                                </td>
-                                                <td> 
-                                                    <a href="{% url 'users:detail' users.username %}">
-                                                        <span class="lnr lnr-users"></span>
-                                                    </a>
-                                                </td>
-                                                <td>{{users.username}}</td>
-                                            </tr>
-                                        {% empty %}
-                                            <tr>
-                                                <td colspan="7" class="text-center bg-warning">No hay usuarios!</td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ul>
+        {% for users in users %}
+        <div class="col">
+          <div class="col col-sm-5">
+              <div class="card">
+                  <div class="additional">
+                    <div class="user-card">
+                        <div class="center">
+                          {% if  users.profile.picture %}
+                            <img width="100px" src="{{ users.profile.picture.url }}"  class="img-circle">
+                          {% else %}
+                            <img class="img-circle" src="{% static 'assets/img/user-default.png' %}" height="60" />
+                          {% endif %}
+                        </div>
                     </div>
-                </div>
+                    <div class="more-info">
+                      <h1>{{users.username}}</h1>
+                      <div class="coords">
+                        <span>Group Name</span>
+                        <span>Joined January 2019</span>
+                      </div>
+                      <div class="coords">
+                        <span>Position/Role</span>
+                        <span>City, Country</span>
+                      </div>
+                      <div class="stats">
+                        <div>
+                          <div class="title">Articulos</div>
+                          <i class="fa fa"></i>
+                          <div class="value">2</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="general">
+                      <td>
+                          {% if users.is_active %}
+                              <b>Usuario activo: </b>                                                     
+                              <span class="label label-success">on</span>
+                          {% else %}
+                              <b>Usuario inactivo</b>
+                              <span class="label label-danger">out</span>
+                          {% endif %}                                                   
+                      </td>
+                      <h5>Usuario:</h5><h4>{{users.username}}</h4>
+                      <h4>{{users.profile.biography}}</h4>
+                  </div>
+              </div>
             </div>
+          </div>
+        {% empty %}
+            <tr>
+                <td colspan="7" class="text-center bg-warning">No hay usuarios!</td>
+            </tr>
+        {% endfor %}
         </div>
     </div>
 </div>
