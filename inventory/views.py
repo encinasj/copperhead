@@ -1,16 +1,22 @@
 #Django
+import os
 from django.contrib.auth.decorators import login_required,permission_required
+from django.contrib.staticfiles import finders
 from django.views.generic import View,TemplateView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.template.loader import render_to_string
-from django.http import JsonResponse,Http404
+from django.template.loader import render_to_string, get_template
+from django.http import JsonResponse,Http404, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 import json
 from django.db.models import Sum,FloatField,F,Avg, Count,DecimalField
 from qr_code.qrcode.utils import ContactDetail
+
+from django.conf import settings
+from xhtml2pdf import pisa
+
 #models
 from .models import Articles,Category,MicroBusiness,Brand,Supplier
 #forms
@@ -171,51 +177,6 @@ def delete_category(request, id):
 		data['html_form'] = render_to_string('inventory/category/category_delete.html',context,request=request)
 	return JsonResponse(data)
 #====================================================================================================
-@permission_required('is_superuser')
-@login_required
-def save_mb(request,form,template_name):
-    #function save category
-    data = dict()
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            data['form_is_valid'] = True
-            microbusiness = MicroBusiness.objects.all()
-            data['feedc'] = render_to_string('inventory/category/microbusiness_list.html',{'microbusiness':microbusiness})
-        else:
-            data['form_is_valid'] = False
-    context = {
-    'form':form
-    }
-    data['html_form'] = render_to_string(template_name,context,request=request)
-    return JsonResponse(data)
-
-@permission_required('is_superuser')
-@login_required
-def create_microbusiness(request):
-    #function create microbusiness
-    if request.method == 'POST':
-        form = MicroBussinesForm(request.POST)
-    else:
-        form = MicroBussinesForm()
-    return save_mb(request,form,'inventory/category/create_microbusiness.html')
-
-@permission_required('is_superuser')
-@login_required
-def delete_microbusiness(request, id):
-    #function delete category
-	microbusiness = get_object_or_404(MicroBusiness,id=id)
-	data = dict()
-	if request.method == 'POST':
-		microbusiness.delete()
-		data['form_is_valid'] = True  #This is just to play along with the existing code
-		microbusiness = MicroBusiness.objects.all()
-		data['feedc'] = render_to_string('inventory/category/microbusiness_list.html',{'microbusiness':microbusiness})
-	else:
-		context = {'microbusiness':microbusiness}
-		data['html_form'] = render_to_string('inventory/category/delete_microbusiness.html',context,request=request)
-	return JsonResponse(data)
-#====================================================================================================
 @permission_required('is_superuser')    
 @login_required
 def save_brand(request,form,template_name):
@@ -339,7 +300,77 @@ def chart_reports(request):
             'quantity': json.dumps(quantity),
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
+
 #====================================================================================================
+def write_pdf_view(request, *args, **kwargs):
+    data = Articles.objects.all()
+    template = get_template('inventory/chartsandreports/PdfsReports.html')
+    context = {
+        'data': data,
+    }
+    html = template.render(context)
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+#====================================================================================================
+@permission_required('is_superuser')
+@login_required
 def organization(request):
-    template_name="inventory/organization/organization.html" 
-    return render (request, template_name)
+    #function save organization or area
+    microbusiness = MicroBusiness.objects.all()
+    context = {
+        'microbusiness': microbusiness,
+    }
+
+    return render (request, 'inventory/organization/organization.html', context)
+
+@permission_required('is_superuser')
+@login_required
+def save_mb(request,form,template_name):
+    #function save organization or area
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            microbusiness = MicroBusiness.objects.all()
+            data['feedc'] = render_to_string('inventory/category/microbusiness_list.html',{'microbusiness':microbusiness})
+        else:
+            data['form_is_valid'] = False
+    context = {
+    'form':form
+    }
+    data['html_form'] = render_to_string(template_name,context,request=request)
+    return JsonResponse(data)
+
+@permission_required('is_superuser')
+@login_required
+def create_microbusiness(request):
+    #function create organization or area
+    if request.method == 'POST':
+        form = MicroBussinesForm(request.POST)
+    else:
+        form = MicroBussinesForm()
+    return save_mb(request,form,'inventory/category/create_microbusiness.html')
+
+@permission_required('is_superuser')
+@login_required
+def delete_microbusiness(request, id):
+    #function delete organization or area
+	microbusiness = get_object_or_404(MicroBusiness,id=id)
+	data = dict()
+	if request.method == 'POST':
+		microbusiness.delete()
+		data['form_is_valid'] = True  #This is just to play along with the existing code
+		microbusiness = MicroBusiness.objects.all()
+		data['feedc'] = render_to_string('inventory/category/microbusiness_list.html',{'microbusiness':microbusiness})
+	else:
+		context = {'microbusiness':microbusiness}
+		data['html_form'] = render_to_string('inventory/category/delete_microbusiness.html',context,request=request)
+	return JsonResponse(data)

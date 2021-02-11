@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-
-
 {% block title %}
 <div class="row">
     <div class="col-sm-12">
@@ -12,7 +10,6 @@
     </div>
 </div>
 {% endblock title %}
-
 {% block body_block %}
 <div class="main-content">
     <div class="container-fluid">
@@ -21,12 +18,11 @@
             <!-- TABLE category -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title lnr lnr-list"> Categorias 
-                            <a type="button" class="btn btn-primary category-form pull-right" data-url-cat="{% url 'add_c' %}">
-                                <span class="glyphicon glyphicon-plus"></span> 
-                                Agregar 
-                            </a>
-                        </h3>                        
+                        <h3 class="panel-title lnr lnr-list"> Categorias </h3>
+                        <a type="button" class="btn btn-primary category-form pull-right" data-url-cat="{% url 'add_c' %}">
+                            <span class="glyphicon glyphicon-plus"></span> 
+                            Agregar 
+                        </a>                   
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -47,45 +43,13 @@
             <!-- END category -->
             </div>
             <div class="col-md-6 panel">
-            <!-- TABLE Microbusiness -->
-                <div class="panel-heading">
-                    <h3 class="panel-title lnr lnr-apartment"> Micronegocio
-                        <a type="button" class="btn btn-primary Microb-form pull-right" data-url-m="{% url 'add_m' %}">
+                <!-- TABLE Microbusiness -->
+                    <div class="panel-heading">
+                        <h3 class="panel-title lnr lnr-tag"> <b> Marcas </b> </h3>
+                        <a type="button" class="btn btn-primary Brand-form pull-right" data-url-b="{% url 'add_b' %}">
                             <span class="glyphicon glyphicon-plus"></span> 
                             Agregar 
                         </a>
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="modal fade" id="modal-mb">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" id="tableM">
-                        <ul>
-                            {% include 'inventory/category/microbusiness_list.html'%}
-                        </ul>
-                    </div>
-                </div>
-            <!-- END Microbusiness -->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 panel">
-                <!-- TABLE Microbusiness -->
-                    <div class="panel-heading">
-                        <h3 class="panel-title lnr lnr-tag"> Marcas
-                            <a type="button" class="btn btn-primary Brand-form pull-right" data-url-b="{% url 'add_b' %}">
-                                <span class="glyphicon glyphicon-plus"></span> 
-                                Agregar 
-                            </a>
-                        </h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">

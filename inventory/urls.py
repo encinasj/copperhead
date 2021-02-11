@@ -37,4 +37,5 @@ urlpatterns = [
 
     #charts and reports
     path('reports/',login_required(views.chart_reports), name='reports'),
+    path('pdf/',views.write_pdf_view, name='pdf'),
 ]
