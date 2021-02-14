@@ -1,5 +1,6 @@
 #Django
 import os
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.staticfiles import finders
 from django.views.generic import View,TemplateView
@@ -374,3 +375,24 @@ def delete_microbusiness(request, id):
 		context = {'microbusiness':microbusiness}
 		data['html_form'] = render_to_string('inventory/category/delete_microbusiness.html',context,request=request)
 	return JsonResponse(data)
+
+def AreasViews(request, id):
+    try:
+        data = MicroBusiness.objects.get(id = id)
+    except MicroBusiness.DoesNotExist:
+        raise Http404('Data does not exist')
+    return render(request,'inventory/organization/Areas.html',{'data':data})
+
+def update_mb(request, id):
+    post = get_object_or_404(MicroBusiness, id=id)
+    if request.method == "POST":
+        form = MicroBussinesForm(request.POST or None, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('areas_mb', id=post.id)
+    else:
+        form = MicroBussinesForm(instance=post)
+    return render(request,'inventory/organization/update_area.html', {'form':form})

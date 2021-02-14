@@ -20,6 +20,9 @@ urlpatterns = [
     #CRD urls microbusiness
     path('add_m',login_required(views.create_microbusiness), name='add_m'),
     path('delete_m/<int:id>',login_required(views.delete_microbusiness), name='delete_m'),
+    path('organizations/areas/<int:id>',views.AreasViews, name='areas_mb'),
+    path('organizations/areas/update/<int:id>',views.update_mb, name='update_mb'),
+    path('organizations',login_required(views.organization), name='corp'),
     #End urls microbusiness
 
     #CRD urls brand
@@ -33,7 +36,6 @@ urlpatterns = [
     path('update_s/<int:pk>', login_required(views.updatesupplier), name='update_s'),
     path('delete_s/<int:id>',login_required(views.deletesupplier), name='delete_s'),
 
-    path('organizations',login_required(views.organization), name='corp'),
 
     #charts and reports
     path('reports/',login_required(views.chart_reports), name='reports'),

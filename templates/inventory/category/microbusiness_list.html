@@ -3,17 +3,20 @@
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="https://bit.ly/2NiziEZ" style="width:119%; max-width:500px; height: 200px"  alt="Imagen">
+                <a href="{% url 'areas_mb' microbusiness.id %}">
+                    <img src="https://bit.ly/2NiziEZ" style="width:119%; max-width:500px; height: 200px"  alt="Imagen">
+                </a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title"> <b> {{microbusiness.name}} </b></h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">{{ microbusiness.comments}}</p>
+                    <a class="show-form-delete  mb-delete lnr lnr-trash" data-url-m="{% url 'delete_m' microbusiness.id %}"> </a>&nbsp; 
+                    &nbsp; <a class="show-form-delete lnr lnr-pencil" href="{% url 'update_mb' microbusiness.id %}"> </a>
                 </div>
             </div>
         </div>
     </div>
-    <a class="btn btn-danger mb-delete" data-url-m="{% url 'delete_m' microbusiness.id %}">Eliminar</a>
 </div>
 {% empty %}
     <tr>

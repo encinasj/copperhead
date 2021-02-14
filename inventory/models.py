@@ -5,7 +5,6 @@ from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
 
-
 #models inventory
 class Supplier(models.Model):
     #supplier model.
@@ -27,21 +26,6 @@ class Supplier(models.Model):
 
     def __str__(self):
         return self.name_company
-
-class MicroBusiness(models.Model):
-    #models micro businerss
-    name =  models.CharField(max_length=50)
-   # img =   models.ImageField(upload_to='inventory/mb')
-    #actions
-    created = models.DateTimeField(auto_now_add=True)
-    update = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name = 'MicroBusiness'
-        verbose_name_plural = 'MicroBusinesses'
-
-    def __str__(self):
-        return self.name
 
 class TypeArticle(models.Model):
     #models type article
@@ -134,3 +118,21 @@ class Articles(models.Model):
         self.qr.save(fname, File(buffer), save=False)
         canvas.close()
         super().save(*args, **kwargs)
+
+class MicroBusiness(models.Model):
+    #models micro business
+    name =  models.CharField(max_length=50)
+    img = models.ImageField(upload_to='Areas', null=True, blank=True)
+    comments = models.TextField(blank=True, null=True)
+    #actions
+    created = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'MicroBusiness'
+        verbose_name_plural = 'MicroBusinesses'
+
+    def __str__(self):
+        return self.name
+
+

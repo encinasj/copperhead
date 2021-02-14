@@ -19,7 +19,7 @@ class MicroBussinesForm(forms.ModelForm):
     #Microbusiness Form
      class Meta():
         model = MicroBusiness
-        fields = ('name',)
+        fields = ('name','img','comments')
 
 class TypeArticlesForm(forms.Form):
     #Type Article Form
