@@ -7,6 +7,7 @@
         <ol class="breadcrumb pull-right">
             <a class="show-form-delete lnr lnr-pencil" href="{% url 'update_mb' data.id %}"></a>
         </ol>
+        <a type="button" class="lnr lnr-chevron-left" onclick="goBack()"></a>
     </div>
 </div>
 {% endblock title %}
@@ -40,6 +41,10 @@
                 <!-- Pdf list -->
                 <div class="panel">
                     <div class="panel-heading">
+                        <a type="button" class=" pull-right Microb-form" data-url-m="{% url 'add_m' %}">
+                          <span class="lnr lnr-plus-circle"></span>
+                          
+                        </a>
                         <h3 class="panel-title">Documentos</h3>
                     </div>
                     <div class="panel-body">
@@ -63,4 +68,5 @@
         </div>
     </div>
 </div>
+
 {% endblock body_block %}
