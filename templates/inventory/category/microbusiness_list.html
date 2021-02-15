@@ -1,18 +1,22 @@
+{% load static %}
 {% for microbusiness in microbusiness %}
 <div class="col col-lg-5">
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
                 <a href="{% url 'areas_mb' microbusiness.id %}">
-                    <img src="https://bit.ly/2NiziEZ" style="width:119%; max-width:500px; height: 200px"  alt="Imagen">
+                    {% if microbusiness.img %}
+                        <img src="{{ microbusiness.img.url }}" style="width:119%; max-width:500px; height: 200px"  alt="Imagen">
+                    {% else %}
+                        <img src="{% static 'assets/img/Empresa.png' %}" style="width:119%; max-width:500px; height: 200px"  alt="Imagen">
+                    {% endif %}
                 </a>
             </div>
             <div class="col-md-8">
+                <a class="show-form-delete  mb-delete  lnr lnr-cross pull-right" data-url-m="{% url 'delete_m' microbusiness.id %}">&nbsp;&nbsp;</a>
                 <div class="card-body">
                     <h5 class="card-title"> <b> {{microbusiness.name}} </b></h5>
-                    <p class="card-text">{{ microbusiness.comments}}</p>
-                    <a class="show-form-delete  mb-delete lnr lnr-trash" data-url-m="{% url 'delete_m' microbusiness.id %}"> </a>&nbsp; 
-                    &nbsp; <a class="show-form-delete lnr lnr-pencil" href="{% url 'update_mb' microbusiness.id %}"> </a>
+                    <p class="card-text">{{microbusiness.comments}}</p>
                 </div>
             </div>
         </div>

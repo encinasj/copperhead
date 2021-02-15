@@ -100,38 +100,36 @@
 </head>
 
 <body>
-    <td class="title">img<img src="" style="width:100%; max-width:300px;"></td>
-    
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
-            <tr class="heading" style="width: 4%;">
-                <td>Payment Method</td>
-                <td>Check #</td>
-            </tr>
-            <tr class="details">
-                <td>Check</td>
-                <td>1000</td>
+            <tr class="information">
+                <td colspan="5">
+                    <table>
+                        <tr>
+                            <td>Apoyos logisticos</td>
+                            <td>cobranza@empresainteligemte.com</td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
             <tr class="heading">
-                <td>Item</td>
-                <td>Price</td>
+                <td>Nombre</td>
+                <td>Cantidad</td>
+                <td>Marca</td>
+                <td>Precio/U</td>
+                <td>Ubicación</td>
             </tr>
-            <tr class="item">
-                <td>Website design</td>
-                <td>$300.00</td>
-            </tr>
-            <tr class="item">
-                <td>Hosting (3 months)</td>
-                <td>$75.00</td>
-            </tr>
-            
-            <tr class="item last">
-                <td>Domain name (1 year)</td>
-                <td>$10.00</td>
-            </tr>
+            {% for data in data  %}  
+                <tr class="item">
+                    <td>{{data.name}}</td>
+                    <td>{{data.quantity}}</td>
+                    <td>{{data.fk_brand}}</td>
+                    <td>{{data.cost_buy}}</td>
+                    <td>{{data.location}}</td>
+                </tr>
+            {% endfor %}            
             <tr class="total">
-                <td></td>
-                <td>Total: $385.00</td>
+                <td colspan="5">Total: ${{suma_total}}</td>
             </tr>
         </table>
     </div>

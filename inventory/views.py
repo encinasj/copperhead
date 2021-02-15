@@ -305,9 +305,12 @@ def chart_reports(request):
 #====================================================================================================
 def write_pdf_view(request, *args, **kwargs):
     data = Articles.objects.all()
+    suma_total = Articles.objects.aggregate(Sum('cost_buy'))
+
     template = get_template('inventory/chartsandreports/PdfsReports.html')
     context = {
         'data': data,
+        'suma_total':suma_total,
     }
     html = template.render(context)
     # Create a Django response object, and specify content_type as pdf
@@ -386,13 +389,14 @@ def AreasViews(request, id):
 def update_mb(request, id):
     post = get_object_or_404(MicroBusiness, id=id)
     if request.method == "POST":
-        form = MicroBussinesForm(request.POST or None, request.FILES, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
+        data = MicroBussinesForm(request.POST or None, request.FILES, instance=post)
+        if data.is_valid():
+            post = data.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
             return redirect('areas_mb', id=post.id)
     else:
-        form = MicroBussinesForm(instance=post)
-    return render(request,'inventory/organization/update_area.html', {'form':form})
+        data = MicroBussinesForm(instance=post)
+    return render(request,'inventory/organization/update_area.html', {'data':data})
+

@@ -19,7 +19,10 @@ class MicroBussinesForm(forms.ModelForm):
     #Microbusiness Form
      class Meta():
         model = MicroBusiness
-        fields = ('name','img','comments')
+        fields = ('name','img','document','comments')
+        widgets = {
+            'comments': Textarea(attrs={'cols': 75, 'rows': 4})
+            }
 
 class TypeArticlesForm(forms.Form):
     #Type Article Form

@@ -99,6 +99,9 @@ class Articles(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
 
+    @property
+    def total(self):
+        return self.cost_buy*self.quantity
     class Meta:
         verbose_name = 'Article'
         verbose_name_plural = 'Articles'
@@ -122,8 +125,10 @@ class Articles(models.Model):
 class MicroBusiness(models.Model):
     #models micro business
     name =  models.CharField(max_length=50)
-    img = models.ImageField(upload_to='Areas', null=True, blank=True)
+    img = models.ImageField(upload_to='areas_logo', null=True, blank=True)
+    document = models.FileField(upload_to='documents', null=True, blank=True)
     comments = models.TextField(blank=True, null=True)
+
     #actions
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)

@@ -1,8 +1,66 @@
 {% extends "base.html" %}
 
+{% block title %}
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="page-title">{{data.name}}</h3>
+        <ol class="breadcrumb pull-right">
+            <a class="show-form-delete lnr lnr-pencil" href="{% url 'update_mb' data.id %}"></a>
+        </ol>
+    </div>
+</div>
+{% endblock title %}
 {% block body_block %}
-    <h1>blablablablabla</h1>
-    {{data.name}}
-    <br>
-    {{data.comments}}
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Comments -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Comentarios</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{data.comments}}
+                    </div>
+                </div>
+                <!-- END Comments -->
+                <!-- Articulos -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Articulos asignados</h3>
+                    </div>
+                    <div class="panel-body">
+                        
+                    </div>
+                </div>
+                <!-- END articulos -->
+            </div>
+            <div class="col-md-6">
+                <!-- Pdf list -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Documentos</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% if data %}
+                            <p>File uploaded at: <a href="{{ data }}">{{ data.document }}</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- END Pdf list -->
+                <!-- Usuarios -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Usuarios</h3>
+                    </div>
+                    <div class="panel-body">
+                        
+                    </div>
+                </div>
+                <!-- END Usuarios -->
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock body_block %}

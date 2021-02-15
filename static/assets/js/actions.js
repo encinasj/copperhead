@@ -217,3 +217,6 @@ $('#table-s').on("click",".delete-s",ShowFormsp);
 $('#modal-s').on("submit",".delete-form-s",Savesp)
 });
 //++======================================
+function goBack() {
+	window.history.back()
+  }
