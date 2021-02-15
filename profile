@@ -1,1 +1,1 @@
-web:uniconrn copperhead.wsgi
+web:uniconrn inventory.wsgi
