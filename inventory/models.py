@@ -65,7 +65,7 @@ class Brand(models.Model):
 
     class Meta:
         verbose_name = 'Brand'
-        verbose_name_plural = 'Brand'
+        verbose_name_plural = 'Brands'
 
     def __str__(self):
         return self.name
@@ -127,7 +127,6 @@ class MicroBusiness(models.Model):
     #models micro business
     name =  models.CharField(max_length=50)
     img = models.ImageField(upload_to='areas_logo', null=True, blank=True)
-    comments = models.TextField(blank=True, null=True)
 
     #actions
     created = models.DateTimeField(auto_now_add=True)
@@ -140,8 +139,8 @@ class MicroBusiness(models.Model):
     def __str__(self):
         return self.name
 
-class DocumentsPdf(models.Model):
-    document = models.FileField(upload_to='documents', null=False)
+class AllComment(models.Model):
+    comment = models.TextField(blank=True, null=True)
     microbusiness = models.ForeignKey(MicroBusiness, on_delete=models.CASCADE)
 
     #actions
@@ -149,8 +148,23 @@ class DocumentsPdf(models.Model):
     deleted = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = 'DocumentPdf'
-        verbose_name_plural = 'DocumentPdfs'
+        verbose_name = 'AllComment'
+        verbose_name_plural = 'AllComments' 
 
     def __str__(self):
-        return self.document
+        return str(self.comment) 
+
+class DocumentsPdf(models.Model):
+    document = models.FileField(upload_to='documents', null=False, blank=False)
+    microbusiness = models.ForeignKey(MicroBusiness, on_delete=models.CASCADE)
+
+    #actions
+    created = models.DateTimeField(auto_now_add=True)
+    deleted = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'DocumentsPdf'
+        verbose_name_plural = 'DocumentsPdfs'
+
+    def __str__(self):
+        return str('pdf') +'-'+ str(self.id)
