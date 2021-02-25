@@ -146,7 +146,7 @@ class DocumentsPdf(models.Model):
 
     #actions
     created = models.DateTimeField(auto_now_add=True)
-    update = models.DateTimeField(auto_now=True)
+    deleted = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'DocumentPdf'

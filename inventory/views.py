@@ -415,7 +415,6 @@ def save_pdf(request,form,template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid(): 
-            print('form')
             form.save()
             data['form_is_valid'] = True
             pdfdoc = DocumentsPdf.objects.all()
