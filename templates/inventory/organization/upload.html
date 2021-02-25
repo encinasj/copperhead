@@ -1,0 +1,19 @@
+<form method="POST" data-url-pdf="{% url 'add_pdf' %}" class="create-pdf" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="modal-header"> 
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+		<h4 class="modal-title">Agregar PDF</h4> 
+	</div> 
+	<div class="modal-body"> 
+		<div class="form-row">
+			<!-- Name PDF-->
+	    	{{form.document}}
+		</div>
+	</div>
+    <br>
+	<div class="modal-footer">
+		<input type="button" value="Cancelar" class="btn btn-secundary" data-dismiss="modal">
+		<input type="submit" value="Agregar"  class="btn btn-primary">
+	</div>
+</form>
+

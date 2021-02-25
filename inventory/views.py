@@ -19,9 +19,9 @@ from django.conf import settings
 from xhtml2pdf import pisa
 
 #models
-from .models import Articles,Category,MicroBusiness,Brand,Supplier
+from .models import Articles,Category,MicroBusiness,Brand,Supplier,DocumentsPdf
 #forms
-from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,SupplierForm
+from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,SupplierForm,DocumentPdfForm
 
 @login_required
 def FeedView(request):
@@ -322,7 +322,7 @@ def write_pdf_view(request, *args, **kwargs):
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-#====================================================================================================
+#==================================organization========================================organization
 @permission_required('is_superuser')
 @login_required
 def organization(request):
@@ -331,7 +331,6 @@ def organization(request):
     context = {
         'microbusiness': microbusiness,
     }
-
     return render (request, 'inventory/organization/organization.html', context)
 
 @permission_required('is_superuser')
@@ -378,14 +377,23 @@ def delete_microbusiness(request, id):
 		context = {'microbusiness':microbusiness}
 		data['html_form'] = render_to_string('inventory/category/delete_microbusiness.html',context,request=request)
 	return JsonResponse(data)
-
+    
+@permission_required('is_superuser')
+@login_required
 def AreasViews(request, id):
+    pdfdoc = DocumentsPdf.objects.all()
     try:
         data = MicroBusiness.objects.get(id = id)
     except MicroBusiness.DoesNotExist:
         raise Http404('Data does not exist')
-    return render(request,'inventory/organization/Areas.html',{'data':data})
+    context ={
+        'pdfdoc':pdfdoc,
+        'data':data,
+    }
+    return render(request,'inventory/organization/Areas.html',context)
 
+@permission_required('is_superuser')
+@login_required
 def update_mb(request, id):
     post = get_object_or_404(MicroBusiness, id=id)
     if request.method == "POST":
@@ -399,4 +407,49 @@ def update_mb(request, id):
     else:
         data = MicroBussinesForm(instance=post)
     return render(request,'inventory/organization/update_area.html', {'data':data})
+#=====================================PDF========================================================PDF
+@permission_required('is_superuser')
+@login_required
+def save_pdf(request,form,template_name):
+    #function save documents
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid(): 
+            print('form')
+            form.save()
+            data['form_is_valid'] = True
+            pdfdoc = DocumentsPdf.objects.all()
+            data['areas_mb'] = render_to_string('inventory/organization/all_documents.html',{'pdfdoc':pdfdoc})
+        else:
+            data['form_is_valid'] = False
+    context = {
+    'form':form
+    }
+    data['html_form'] = render_to_string(template_name,context,request=request)
+    return JsonResponse(data)
 
+@permission_required('is_superuser')
+@login_required
+def createpdf(request):
+    #this function add document 
+    if request.method == 'POST':
+       form = DocumentPdfForm(request.POST, request.FILES)
+    else:
+        form = DocumentPdfForm()
+    return save_pdf(request,form,'inventory/organization/upload.html')
+
+@permission_required('is_superuser')
+@login_required
+def deletepdf(request, id):
+    #function delete document
+	microarea = get_object_or_404(MicroBusiness,id=id)
+	data = dict()
+	if request.method == 'POST':
+		microarea.delete()
+		data['form_is_valid'] = True  #This is just to play along with the existing code
+		microarea = MicroBusiness.objects.all()
+		data['feedc'] = render_to_string('inventory/organization/brand_list.html',{'microarea':microarea})
+	else:
+		context = {'microarea':microarea}
+		data['html_form'] = render_to_string('inventory/organization/delete_brand.html',context,request=request)
+	return JsonResponse(data) 

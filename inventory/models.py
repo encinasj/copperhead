@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 import qrcode
 from io import BytesIO
@@ -126,7 +127,6 @@ class MicroBusiness(models.Model):
     #models micro business
     name =  models.CharField(max_length=50)
     img = models.ImageField(upload_to='areas_logo', null=True, blank=True)
-    document = models.FileField(upload_to='documents', null=True, blank=True)
     comments = models.TextField(blank=True, null=True)
 
     #actions
@@ -140,4 +140,17 @@ class MicroBusiness(models.Model):
     def __str__(self):
         return self.name
 
+class DocumentsPdf(models.Model):
+    document = models.FileField(upload_to='documents', null=False)
+    microbusiness = models.ForeignKey(MicroBusiness, on_delete=models.CASCADE)
 
+    #actions
+    created = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'DocumentPdf'
+        verbose_name_plural = 'DocumentPdfs'
+
+    def __str__(self):
+        return self.document

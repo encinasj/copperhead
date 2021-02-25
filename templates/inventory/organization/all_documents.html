@@ -1,0 +1,17 @@
+
+{% for pdfdoc in pdfdocs %}
+    <tr>
+        <div class="col-md-8">
+            <td>{{pdfdoc.document}}</td>
+            <td>
+                <a class="show-form-delete pdf-delete lnr lnr-cross pull-right" data-url-pdf="#"></a>
+            </td>
+        </div>
+    </tr>     
+{% empty %}
+    <tr>
+        <div class="alert alert-warning" role="alert" style="max-width: 480px;">
+            No hay documentos!
+        </div>
+    </tr>
+{% endfor %}

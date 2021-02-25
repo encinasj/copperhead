@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm, Textarea
 #models
-from inventory.models import Supplier,MicroBusiness,TypeArticle,Category,Brand,Articles
+from inventory.models import Supplier,MicroBusiness,TypeArticle,Category,Brand,Articles,DocumentsPdf
 
 class SupplierForm(forms.ModelForm):
     #supplier forms
@@ -19,10 +19,19 @@ class MicroBussinesForm(forms.ModelForm):
     #Microbusiness Form
      class Meta():
         model = MicroBusiness
-        fields = ('name','img','document','comments')
+        fields = ('name','img','comments')
         widgets = {
             'comments': Textarea(attrs={'cols': 75, 'rows': 4})
             }
+class DocumentPdfForm(forms.ModelForm):
+    #Documents pdf
+    class Meta():
+        model = DocumentsPdf
+        fields = ('document','microbusiness')
+
+    def __init__(self, *args, **kwargs):
+        super(DocumentPdfForm,self).__init__(*args, **kwargs)
+        self.queryset = DocumentsPdf.objects.all()
 
 class TypeArticlesForm(forms.Form):
     #Type Article Form

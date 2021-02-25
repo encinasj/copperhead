@@ -14,7 +14,6 @@ $(document).ready(function(){
 			}
 		});
 	};
-
 	var SaveForm = function(){
         var parameters = new FormData(this); 
 		var form = $(this);
@@ -219,4 +218,48 @@ $('#modal-s').on("submit",".delete-form-s",Savesp)
 //++======================================
 function goBack() {
 	window.history.back()
-  }
+}
+//++==============PDF========================PDF
+$(document).ready(function(){
+	var ShowFormpdf = function(){
+		var btn = $(this);
+		$.ajax({
+			url: btn.attr("data-url-pdf"),
+			type: 'get',
+			dataType:'json',
+			beforeSend: function(){
+				$('#modal-action-pdf').modal('show');
+			},
+			success: function(data){
+				$('#modal-action-pdf .modal-content').html(data.html_form);
+			}
+		});
+	};
+	var Savepdf = function(){
+        var parameters = new FormData(this); 
+		var form = $(this);
+		$.ajax({
+			url: form.attr('data-url-pdf'),
+			data: parameters,
+			type: form.attr('method'),
+			dataType: 'json',
+			processData: false,
+            contentType: false,
+			success: function(data){
+				if(data.form_is_valid){
+					$('#table-pdf ul').html(data.areas_mb);
+					$('#modal-action-pdf').modal('hide');
+				} else {
+					$('#modal-action-pdf .modal-content').html(data.html_form)
+				}
+			} 
+		})
+		return false;
+	}
+//create
+$(".pdf-form").click(ShowFormpdf);
+$("#modal-action-pdf").on("submit",".create-pdf",Savepdf);
+//delete
+$('#table-pdf').on("click",".delete-pdf",ShowFormpdf);
+$('#modal-action-pdf').on("submit",".delete-pdf",Savepdf)
+});

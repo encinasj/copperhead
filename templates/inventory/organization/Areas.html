@@ -1,5 +1,4 @@
-{% extends "base.html" %}
-
+{% extends "base.html" %} 
 {% block title %}
 <div class="row">
     <div class="col-sm-12">
@@ -37,23 +36,35 @@
                 </div>
                 <!-- END articulos -->
             </div>
-            <div class="col-md-6">
-                <!-- Pdf list -->
+            <div class="col-md-6"> 
                 <div class="panel">
-                    <div class="panel-heading">
-                        <a type="button" class=" pull-right Microb-form" data-url-m="{% url 'add_m' %}">
-                          <span class="lnr lnr-plus-circle"></span>
-                          
-                        </a>
-                        <h3 class="panel-title">Documentos</h3>
+                    <div class="col-sm-12">
+                        <div class="panel-heading">
+                            <a type="button" class="pdf-form" data-url-pdf="{% url 'add_pdf' %}">
+                                <span class="lnr lnr-plus-circle pull-right"></span>
+                            </a>
+                            <h3 class="panel-title">Documentos</h3>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        {% if data %}
-                            <p>File uploaded at: <a href="{{ data }}">{{ data.document }}</a></p>
-                        {% endif %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="modal fade" id="modal-action-pdf">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="table-pdf">
+                            <ul>
+                                {% include "inventory/organization/all_documents.html" %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <!-- END Pdf list -->
+                <!-- END Pdf   -->
                 <!-- Usuarios -->
                 <div class="panel">
                     <div class="panel-heading">
