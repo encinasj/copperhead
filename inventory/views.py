@@ -381,8 +381,8 @@ def delete_microbusiness(request, id):
 @permission_required('is_superuser')
 @login_required
 def AreasViews(request, id):
-    pdfdoc = DocumentsPdf.objects.all()
     try:
+        pdfdoc = DocumentsPdf.objects.all()
         data = MicroBusiness.objects.get(id = id)
     except MicroBusiness.DoesNotExist:
         raise Http404('Data does not exist')
