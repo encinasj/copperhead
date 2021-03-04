@@ -151,12 +151,12 @@ class ImgArea(models.Model):
         return str('img') + '-' + str(self.id)
 
 class AllComment(models.Model):
+    microbusiness = models.ForeignKey(MicroBusiness, on_delete=models.CASCADE)
     comment = models.TextField(blank=False)
 
     #dates
     create = models.DateTimeField(auto_now_add=True)
     
-
     class Meta:
         verbose_name = 'AllComment'
         verbose_name_plural = 'AllComments' 
