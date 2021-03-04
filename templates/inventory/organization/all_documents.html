@@ -1,5 +1,5 @@
-
 {% for pdfdoc in pdfdoc %}
+{% if  data.name == pdfdoc.microbusiness.name %}  
     <tr>
         <div class="col-md-8">
             <td>{{pdfdoc.document}}</td>
@@ -7,11 +7,6 @@
                 <a class="show-form-delete pdf-delete lnr lnr-cross pull-right" data-url-pdf="#"></a>
             </td>
         </div>
-    </tr>     
-{% empty %}
-    <tr>
-        <div class="alert alert-warning" role="alert" style="max-width: 480px;">
-            No hay documentos!
-        </div>
-    </tr>
+    </tr>  
+{% endif %}
 {% endfor %}

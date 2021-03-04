@@ -357,8 +357,8 @@ def save_mb(request,form,template_name):
 def create_microbusiness(request):
     #function create organization or area
     if request.method == 'POST':
-        form = MicroBussinesForm(request.POST)
-    else:
+        form = MicroBussinesForm(request.POST, request.FILES)
+    else:   
         form = MicroBussinesForm()
     return save_mb(request,form,'inventory/category/create_microbusiness.html')
 

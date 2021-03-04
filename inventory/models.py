@@ -123,29 +123,39 @@ class Articles(models.Model):
         canvas.close()
         super().save(*args, **kwargs)
 
+
 class MicroBusiness(models.Model):
     #models micro business
-    name =  models.CharField(max_length=50)
-    img = models.ImageField(upload_to='areas_logo', null=True, blank=True)
+    name =  models.CharField(max_length=50, null=False, blank=False)
 
-    #actions
-    created = models.DateTimeField(auto_now_add=True)
-    update = models.DateTimeField(auto_now=True)
+    #dates
+    create = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'MicroBusiness'
         verbose_name_plural = 'MicroBusinesses'
 
     def __str__(self):
-        return self.name
+        return str(self.name)
+
+class ImgArea(models.Model):
+    img = models.ImageField(upload_to='ImgAreas', null=False, blank=False)
+        #dates
+    create = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'ImgArea'
+        verbose_name_plural = 'ImgAreas'
+
+    def __str__(self):
+        return str('img') + '-' + str(self.id)
 
 class AllComment(models.Model):
-    comment = models.TextField(blank=True, null=True)
-    microbusiness = models.ForeignKey(MicroBusiness, on_delete=models.CASCADE)
+    comment = models.TextField(blank=False)
 
-    #actions
-    created = models.DateTimeField(auto_now_add=True)
-    deleted = models.DateTimeField(auto_now=True)
+    #dates
+    create = models.DateTimeField(auto_now_add=True)
+    
 
     class Meta:
         verbose_name = 'AllComment'
@@ -155,12 +165,11 @@ class AllComment(models.Model):
         return str(self.comment) 
 
 class DocumentsPdf(models.Model):
-    document = models.FileField(upload_to='documents', null=False, blank=False)
     microbusiness = models.ForeignKey(MicroBusiness, on_delete=models.CASCADE)
+    document = models.FileField(upload_to='documents', null=False, blank=False)
 
-    #actions
-    created = models.DateTimeField(auto_now_add=True)
-    deleted = models.DateTimeField(auto_now=True)
+    #dates
+    create = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'DocumentsPdf'
