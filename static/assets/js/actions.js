@@ -261,5 +261,5 @@ $(".pdf-form").click(ShowFormpdf);
 $("#modal-action-pdf").on("submit",".create-pdf",Savepdf);
 //delete
 $('#table-pdf').on("click",".delete-pdf",ShowFormpdf);
-$('#modal-action-pdf').on("submit",".delete-pdf",Savepdf)
+$('#modal-action-pdf').on("submit",".delete-formpdf",Savepdf)
 });

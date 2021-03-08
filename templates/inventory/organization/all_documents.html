@@ -1,12 +1,14 @@
 {% for pdfdoc in pdfdoc %}
-{% if  data.name == pdfdoc.microbusiness.name %}  
-    <tr>
-        <div class="col-md-8">
-            <td>{{pdfdoc.document}}</td>
-            <td>
-                <a class="show-form-delete pdf-delete lnr lnr-cross pull-right" data-url-pdf="#"></a>
-            </td>
-        </div>
-    </tr>  
-{% endif %}
+    {% if  data.name == pdfdoc.microbusiness.name %}  
+        <tr>
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-11">
+                    <td>{{pdfdoc}}</td>
+                    <td>
+                        <a class="delete-pdf lnr lnr-cross pull-right" data-url-pdf="{% url 'delpdf' pdfdoc.id%}"></a>
+                    </td>
+                </div>
+            </div>
+        </tr>  
+    {% endif %}
 {% endfor %}

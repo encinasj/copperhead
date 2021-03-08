@@ -140,7 +140,7 @@ class MicroBusiness(models.Model):
 
 class ImgArea(models.Model):
     img = models.ImageField(upload_to='ImgAreas', null=False, blank=False)
-        #dates
+    #dates
     create = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -176,4 +176,4 @@ class DocumentsPdf(models.Model):
         verbose_name_plural = 'DocumentsPdfs'
 
     def __str__(self):
-        return str('pdf') +'-'+ str(self.id)
+        return str('Document') +'-'+ str(self.create)

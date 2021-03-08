@@ -302,7 +302,7 @@ def chart_reports(request):
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
 
-#====================================================================================================
+#====================================Pdf generator===============================================================
 def write_pdf_view(request, *args, **kwargs):
     data = Articles.objects.all()
     suma_total = Articles.objects.aggregate(Sum('cost_buy'))
@@ -381,8 +381,8 @@ def delete_microbusiness(request, id):
 @permission_required('is_superuser')
 @login_required
 def AreasViews(request, id):
+    pdfdoc = DocumentsPdf.objects.all()
     try:
-        pdfdoc = DocumentsPdf.objects.all()
         data = MicroBusiness.objects.get(id = id)
     except MicroBusiness.DoesNotExist:
         raise Http404('Data does not exist')
@@ -401,7 +401,6 @@ def update_mb(request, id):
         if data.is_valid():
             post = data.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
             post.save()
             return redirect('areas_mb', id=post.id)
     else:
@@ -414,7 +413,7 @@ def save_pdf(request,form,template_name):
     #function save documents
     data = dict()
     if request.method == 'POST':
-        if form.is_valid(): 
+        if form.is_valid():
             form.save()
             data['form_is_valid'] = True
             pdfdoc = DocumentsPdf.objects.all()
@@ -432,7 +431,7 @@ def save_pdf(request,form,template_name):
 def createpdf(request):
     #this function add document 
     if request.method == 'POST':
-       form = DocumentPdfForm(request.POST, request.FILES)
+        form = DocumentPdfForm(request.POST, request.FILES)
     else:
         form = DocumentPdfForm()
     return save_pdf(request,form,'inventory/organization/upload.html')
@@ -441,14 +440,14 @@ def createpdf(request):
 @login_required
 def deletepdf(request, id):
     #function delete document
-	microarea = get_object_or_404(MicroBusiness,id=id)
+	pdfdoc = get_object_or_404(DocumentsPdf,id=id)
 	data = dict()
 	if request.method == 'POST':
-		microarea.delete()
+		pdfdoc.delete()
 		data['form_is_valid'] = True  #This is just to play along with the existing code
-		microarea = MicroBusiness.objects.all()
-		data['feedc'] = render_to_string('inventory/organization/brand_list.html',{'microarea':microarea})
+		pdfdoc = DocumentsPdf.objects.all()
+		data['areas_mb'] = render_to_string('inventory/organization/all_documents.html',{'pdfdoc':pdfdoc})
 	else:
-		context = {'microarea':microarea}
-		data['html_form'] = render_to_string('inventory/organization/delete_brand.html',context,request=request)
-	return JsonResponse(data) 
+		context = {'pdfdoc':pdfdoc}
+		data['html_form'] = render_to_string('inventory/organization/DeletePdf.html',context,request=request)
+	return JsonResponse(data)  

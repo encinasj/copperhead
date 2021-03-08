@@ -21,6 +21,7 @@ urlpatterns = [
     path('add_m',login_required(views.create_microbusiness), name='add_m'),
     path('add_pdf',login_required(views.createpdf), name='add_pdf'),
     path('delete_m/<int:id>',login_required(views.delete_microbusiness), name='delete_m'),
+    path('delete_pdf/<int:id>',login_required(views.deletepdf),name='delpdf'),
     path('organizations/areas/<int:id>',login_required(views.AreasViews), name='areas_mb'),
     path('organizations/areas/update/<int:id>',login_required(views.update_mb), name='update_mb'),
     path('organizations',login_required(views.organization), name='corp'),
