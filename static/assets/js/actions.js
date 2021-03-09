@@ -249,6 +249,7 @@ $(document).ready(function(){
 				if(data.form_is_valid){
 					$('#table-pdf ul').html(data.areas_mb);
 					$('#modal-action-pdf').modal('hide');
+					location.reload();
 				} else {
 					$('#modal-action-pdf .modal-content').html(data.html_form)
 				}
