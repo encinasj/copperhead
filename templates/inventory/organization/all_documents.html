@@ -3,7 +3,7 @@
         <tr>
             <div class="row justify-content-md-center" id="updatepdf">
                 <div class="col col-lg-11">
-                    <td>{{pdfdoc}}</td>
+                    <td>  <a href="{{MEDIA_URL}}{{pdfdoc.document.url}}" target="_blank">{{pdfdoc}}</a>  </td>
                     <td>
                         <a class="delete-pdf lnr lnr-cross pull-right" data-url-pdf="{% url 'delpdf' pdfdoc.id%}"></a>
                     </td>

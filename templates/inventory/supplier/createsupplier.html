@@ -1,5 +1,5 @@
 
-<form method="POST" data-url-s="{% url 'add-s' %}" class="create-s">
+<form method="POST" data-url-s="{% url 'add-s' %}" class="create-s" name="f1" id="f1"> 
 	{% csrf_token %}
 	<div class="modal-header"> 
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
@@ -36,6 +36,9 @@
 			<div class="form-group col-md-12">
 				<input type="url" autocomplete="off" class="form-control {% if form.web.errors %}is-invalid{% endif %}" 
 					id="web" name="web" placeholder="Pagina web ">
+				<script>
+					document.f1.web.value = 'https://'
+				</script>
 			</div>
 			<!-- address-->
 			<div class="form-group col-md-12">

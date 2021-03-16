@@ -18,14 +18,14 @@
     <tbody>
         {% for supplier in supplier %}
             <tr>
-                <td>{{supplier.name_company}}</td>
-                <td>{{supplier.name_contact}}</td>
+                <td>{{supplier.name_company|truncatechars:10}}</td>
+                <td>{{supplier.name_contact|truncatechars:10}}</td>
                 <td>{{supplier.phone_number}}</td>
                 <td>{{supplier.cel_phone}}</td>
-                <td>{{supplier.address}}</td>
-                <td>{{supplier.web}}</td>
-                <td>{{supplier.email}}</td>
-                <td>{{supplier.comments}}</td>
+                <td>{{supplier.address|truncatechars:10}}</td>
+                <td>{{supplier.web|truncatechars:7}}</td>
+                <td>{{supplier.email|truncatechars:7}}</td>
+                <td>{{supplier.comments|truncatechars:15}}</td>
                 <td>
                     <a class="delete-s" data-url-s="{% url 'delete_s' supplier.id %}">
                         <span class="lnr lnr-trash"></span>

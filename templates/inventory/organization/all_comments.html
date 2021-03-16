@@ -1,9 +1,9 @@
 {% for allcomment in allcomment %}
     {% if  data.name == allcomment.microbusiness.name %}  
         <tr>
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center ">
                 <div class="col col-lg-11">
-                    <td> <a class="update-comment" data-url-comment="{% url 'update_comm' allcomment.id %}">{{allcomment}}</a></td>
+                    <td> <a class="update-comment" data-url-comment="{% url 'update_comm' allcomment.id %}">{{allcomment|truncatechars:60}}</a></td>
                     <td>
                         <a class="delete-comment lnr lnr-cross pull-right" data-url-comment="{% url 'delcomment' allcomment.id %}"></a>
                     </td>
