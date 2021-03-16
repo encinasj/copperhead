@@ -19,9 +19,9 @@ from django.conf import settings
 from xhtml2pdf import pisa
 
 #models
-from .models import Articles,Category,MicroBusiness,Brand,Supplier,DocumentsPdf
+from .models import *
 #forms
-from .forms import ArticlesForm,CategoryForm,MicroBussinesForm,BrandForm,SupplierForm,DocumentPdfForm
+from .forms import *
 
 @login_required
 def FeedView(request):
@@ -382,11 +382,13 @@ def delete_microbusiness(request, id):
 @login_required
 def AreasViews(request, id):
     pdfdoc = DocumentsPdf.objects.all()
+    allcomment =AllComment.objects.all()
     try:
         data = MicroBusiness.objects.get(id = id)
     except MicroBusiness.DoesNotExist:
         raise Http404('Data does not exist')
     context ={
+        'allcomment':allcomment,
         'pdfdoc':pdfdoc,
         'data':data,
     }
@@ -451,3 +453,49 @@ def deletepdf(request, id):
 		context = {'pdfdoc':pdfdoc}
 		data['html_form'] = render_to_string('inventory/organization/DeletePdf.html',context,request=request)
 	return JsonResponse(data)  
+#=====================================Comments========================================================Comments
+@permission_required('is_superuser')
+@login_required
+def save_comments(request,form,template_name):
+    #this function save all comments per area in organization
+    pass
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            allcomment = AllComment.objects.all()
+            data['area_mb'] = render_to_string('inventory/organization/all_comments.html',{'allcomment':allcomment})
+        else:
+            data['form_is_valid'] = False
+    context = {
+        'form':form
+    }
+    data['html_form'] = render_to_string(template_name,context,request=request)
+    return JsonResponse(data)
+
+@permission_required('is_superuser')
+@login_required
+def createcomment(request):
+    if request.method == 'POST':
+        form = AllCommentForm(request.POST or None)
+    else:
+        form = AllCommentForm()
+    return save_comments(request,form,'inventory/organization/createcomment.html')
+
+@permission_required('is_superuser')
+@login_required
+def deletecomment(request, id):
+    #this function delete comments
+    allcomment = get_object_or_404(AllComment, id=id)
+    data =dict()
+    if request.method == 'POST':
+        allcomment.delete()
+        data['form_is_valid'] = True  #This is just to play along with the existing code
+        allcomment = AllComment.objects.all()
+        data['areas_mb'] = render_to_string('inventory/organization/all_documents.html', {'allcomment':allcomment})
+    else:
+        context = {'allcomment':allcomment}
+        data['html_form'] = render_to_string('inventory/organization/delete_comment.html',context,request=request)
+    return JsonResponse(data)    
+

@@ -1,68 +1,16 @@
-{% extends "base.html" %}
+{% extends "base.html"  %}
 
-
-{% block body_block %}
-<form method="POST" class="post-form" enctype="multipart/form-data">
+{% block title %}
+<form method="POST" class="post-form">
     {% csrf_token %}
-    <ol class="breadcrumb pull-right">
-        <h6 class="">{{ data.img }}</h6>
-    </ol>
     <div class="main-content">
         <div class="col-sm-12">
             <h3 class="page-title">{{ data.name }}</h3>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Comments -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Comentarios</h3>
-                        </div>
-                        <div class="panel-body">
-                             {{ data.comments }}
-                        </div>
-                    </div>
-                    <!-- END Comments -->
-                    <!-- Articulos -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Articulos asignados</h3>
-                        </div>
-                        <div class="panel-body">
-                            
-                        </div>
-                    </div>
-                    <!-- END articulos -->
-                </div>
-                <div class="col-md-6">
-                    <!-- Pdf list -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Documentos</h3>
-                        </div>
-                        <div class="panel-body">
-                            {{ data.document }}
-                        </div>
-                    </div>
-                    <!-- END Pdf list -->
-                    <!-- Usuarios -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Usuarios</h3>
-                        </div>
-                        <div class="panel-body">
-                            
-                        </div>
-                    </div>
-                    <!-- END Usuarios -->
-                </div>
-            </div>
-        </div>
     </div>
-<button type="submit" class="btn btn-primary">Guardar</button>
-<a type="button" class="btn btn-danger" onclick="goBack()">
-    Cancelar
-</a>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a type="button" class="btn btn-danger" onclick="goBack()">
+        Cancelar
+    </a>
 </form>
-{% endblock body_block %}
+{% endblock title %}

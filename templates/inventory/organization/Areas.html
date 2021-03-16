@@ -2,10 +2,9 @@
 {% block title %}
 <div class="row">
     <div class="col-sm-12">
-        <h3 class="page-title">{{data.name}}</h3>
-        <ol class="breadcrumb pull-right">
+        <h3 class="page-title">{{data.name}}
             <a class="show-form-delete lnr lnr-pencil" href="{% url 'update_mb' data.id %}"></a>
-        </ol>
+        </h3>
         <a type="button" class="lnr lnr-chevron-left" onclick="goBack()"></a>
     </div>
 </div>
@@ -17,18 +16,42 @@
             <div class="col-md-6">
                 <!-- Comments -->
                 <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Comentarios</h3>
+                    <div class="col-sm-12">
+                        <div class="panel-heading">
+                            <a type="button" class="comment-form" data-url-comment="{% url 'add_comment' %}">
+                                <span class="lnr lnr-plus-circle pull-right"></span>
+                            </a>
+                            <h3 class="panel-title">Comentarios</h3>
+                            <hr>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        {{data.comments}}
+                    <div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="modal fade" id="modal-action-comment">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="table-comment">
+                            <ul id="add_comment">
+                                {% include "inventory/organization/all_comments.html" %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <!-- END Comments -->
                 <!-- Articulos -->
                 <div class="panel">
                     <div class="panel-heading">
+                        <a type="button" class="pdf-form" data-url-pdf="#">
+                            <span class="lnr lnr-plus-circle pull-right"></span>
+                        </a>
                         <h3 class="panel-title">Articulos asignados</h3>
+                        <hr>
                     </div>
                     <div class="panel-body">
                         
@@ -44,6 +67,7 @@
                                 <span class="lnr lnr-plus-circle pull-right"></span>
                             </a>
                             <h3 class="panel-title">Documentos</h3>
+                            <hr>
                         </div>
                     </div>
                     <div>
@@ -58,7 +82,7 @@
                             </div>
                         </div>
                         <div class="row" id="table-pdf">
-                            <ul>
+                            <ul id="uploadpdf">
                                 {% include "inventory/organization/all_documents.html" %}
                             </ul>
                         </div>
@@ -68,7 +92,11 @@
                 <!-- Usuarios -->
                 <div class="panel">
                     <div class="panel-heading">
+                        <a type="button" class="pdf-form" data-url-pdf="#">
+                            <span class="lnr lnr-plus-circle pull-right"></span>
+                        </a>
                         <h3 class="panel-title">Usuarios</h3>
+                        <hr>
                     </div>
                     <div class="panel-body">
                         

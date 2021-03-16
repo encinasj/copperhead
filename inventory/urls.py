@@ -27,6 +27,11 @@ urlpatterns = [
     path('organizations',login_required(views.organization), name='corp'),
     #End urls microbusiness
 
+    #CRUD urls comments
+    path('add_comment',login_required(views.createcomment), name='add_comment'),
+    #path('update_comment/'),
+    path('del_comment/<int:id>', login_required(views.deletecomment), name='delcomment'),
+
     #CRD urls brand
     path('add_b',login_required(views.createbrand), name='add_b'),
     path('delete_b/<int:id>',login_required(views.deletebrand), name='delete_b'),

@@ -29,7 +29,10 @@ class ImgAreasForm(forms.ModelForm):
 class AllCommentForm(forms.ModelForm):
     class Meta():
         model = AllComment
-        fields = ('comment',)
+        fields = ('comment','microbusiness')
+        widgets = {
+            'comment': Textarea(attrs={'cols': 80, 'rows': 8}),
+            }
 
 class DocumentPdfForm(forms.ModelForm):
     #Documents pdf

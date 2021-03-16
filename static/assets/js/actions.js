@@ -219,7 +219,7 @@ $('#modal-s').on("submit",".delete-form-s",Savesp)
 function goBack() {
 	window.history.back()
 }
-//++==============PDF========================PDF
+//================PDF========================PDF
 $(document).ready(function(){
 	var ShowFormpdf = function(){
 		var btn = $(this);
@@ -249,7 +249,7 @@ $(document).ready(function(){
 				if(data.form_is_valid){
 					$('#table-pdf ul').html(data.areas_mb);
 					$('#modal-action-pdf').modal('hide');
-					location.reload();
+					$( "#uploadpdf" ).load(window.location.href + " #uploadpdf");
 				} else {
 					$('#modal-action-pdf .modal-content').html(data.html_form)
 				}
@@ -263,4 +263,49 @@ $("#modal-action-pdf").on("submit",".create-pdf",Savepdf);
 //delete
 $('#table-pdf').on("click",".delete-pdf",ShowFormpdf);
 $('#modal-action-pdf').on("submit",".delete-formpdf",Savepdf)
+});
+
+//================Coment========================Comment
+$(document).ready(function(){
+	var ShowFormComment = function(){
+		var btn = $(this);
+		$.ajax({
+			url: btn.attr("data-url-comment"),
+			type: 'get',
+			dataType:'json',
+			beforeSend: function(){
+				$('#modal-action-comment').modal('show');
+			},
+			success: function(data){
+				$('#modal-action-comment .modal-content').html(data.html_form);
+			}
+		});
+	};
+	var SaveComment = function(){
+		var form = $(this);
+		$.ajax({
+			url: form.attr('data-url-comment'),
+			data: form.serialize(),
+			type: form.attr('method'),
+			dataType: 'json',	
+			success: function(data){
+				if(data.form_is_valid){
+					$('#table-comment ul').html(data.areas_mb);
+					$('#modal-action-comment').modal('hide');
+					$( "#add_comment" ).load(window.location.href + " #add_comment");
+				} else {
+					$('#modal-action-comment .modal-content').html(data.html_form)
+				}
+			} 
+		})
+		return false;
+	}
+
+//Create
+$(".comment-form").click(ShowFormComment);
+$("#modal-action-comment").on("submit",".create-comment",SaveComment);
+	
+//delete
+$('#table-comment').on("click",".delete-comment",ShowFormComment);
+$('#modal-action-comment').on("submit",".delete-comment",SaveComment)
 });
