@@ -485,6 +485,17 @@ def createcomment(request):
 
 @permission_required('is_superuser')
 @login_required
+def updatecomment(request, id):
+    #fucntion update comment
+    allcomment = get_object_or_404(AllComment, id=id)
+    if request.method == 'POST':
+	    form = AllCommentForm(request.POST or None, instance=allcomment)
+    else:
+	    form = AllCommentForm(instance=allcomment)
+    return save_comments(request, form, 'inventory/organization/update_comment.html')
+
+@permission_required('is_superuser')
+@login_required
 def deletecomment(request, id):
     #this function delete comments
     allcomment = get_object_or_404(AllComment, id=id)

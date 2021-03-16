@@ -304,7 +304,11 @@ $(document).ready(function(){
 //Create
 $(".comment-form").click(ShowFormComment);
 $("#modal-action-comment").on("submit",".create-comment",SaveComment);
-	
+
+//Update
+$('#table-comment').on("click",".update-comment",ShowFormComment);
+$('#modal-action-comment').on("submit",".update-comment",SaveComment)
+
 //delete
 $('#table-comment').on("click",".delete-comment",ShowFormComment);
 $('#modal-action-comment').on("submit",".delete-comment",SaveComment)

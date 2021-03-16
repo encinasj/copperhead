@@ -29,8 +29,8 @@ urlpatterns = [
 
     #CRUD urls comments
     path('add_comment',login_required(views.createcomment), name='add_comment'),
-    #path('update_comment/'),
-    path('del_comment/<int:id>', login_required(views.deletecomment), name='delcomment'),
+    path('comments/update_comment/<int:id>',login_required(views.updatecomment), name='update_comm'),
+    path('comments/del_comment/<int:id>', login_required(views.deletecomment), name='delcomment'),
 
     #CRD urls brand
     path('add_b',login_required(views.createbrand), name='add_b'),
