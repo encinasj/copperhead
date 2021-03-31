@@ -43,7 +43,6 @@ class RegisterForm(forms.Form):
                                 'placeholder': 'Correo',
                                 'autocomplete': 'off',
                                 }))
-                                
     def clean_username(self):
         #Username must be unique.
         username = self.cleaned_data['username']
@@ -71,7 +70,7 @@ class RegisterForm(forms.Form):
 
 class ProfileForm(forms.Form):
     #Profile forms    
-    website = forms.URLField(max_length=200 , required=True)
+    microbusiness = forms.ChoiceField()
     phone_number = forms.CharField(max_length=20, required=False)
     biography = forms.CharField(max_length=500, required=False)
     picture = forms.ImageField()

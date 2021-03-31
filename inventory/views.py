@@ -19,6 +19,7 @@ from django.conf import settings
 from xhtml2pdf import pisa
 
 #models
+from users.models import Profile
 from .models import *
 #forms
 from .forms import *
@@ -382,14 +383,18 @@ def delete_microbusiness(request, id):
 @login_required
 def AreasViews(request, id):
     pdfdoc = DocumentsPdf.objects.all()
-    allcomment =AllComment.objects.all()
+    allcomment = AllComment.objects.all()
+    articlein = AllArticles.objects.all()
+    usersin = Profile.objects.all()
     try:
         data = MicroBusiness.objects.get(id = id)
     except MicroBusiness.DoesNotExist:
         raise Http404('Data does not exist')
     context ={
-        'allcomment':allcomment,
         'pdfdoc':pdfdoc,
+        'allcomment':allcomment,
+        'articlein':articlein,
+        'usersin':usersin,
         'data':data,
     }
     return render(request,'inventory/organization/Areas.html',context)
@@ -510,3 +515,47 @@ def deletecomment(request, id):
         data['html_form'] = render_to_string('inventory/organization/delete_comment.html',context,request=request)
     return JsonResponse(data)    
 
+#=====================================Articles assigned========================================================Articles Assigned
+@permission_required('is_superuser')
+@login_required
+def save_artic(request,form,template_name):
+    #this function save all articles per area in organization
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            articlein = AllArticles.objects.all()
+            data['area_mb'] = render_to_string('inventory/organization/all_artic.html',{'articlein':articlein})
+        else:
+            data['form_is_valid'] = False
+    context = {
+        'form':form
+    }
+    data['html_form'] = render_to_string(template_name,context,request=request)
+    return JsonResponse(data)
+
+@permission_required('is_superuser')
+@login_required
+def addarticles(request):
+    if request.method == 'POST':
+        form = ArticlesAsignedForm(request.POST or None)
+    else:
+        form = ArticlesAsignedForm()
+    return save_artic(request,form,'inventory/organization/addarticle.html')
+
+@permission_required('is_superuser')
+@login_required
+def deleteartic(request, id):
+    #this function delete articles
+    articlein = get_object_or_404(AllArticles, id=id)
+    data =dict()
+    if request.method == 'POST':
+        articlein.delete()
+        data['form_is_valid'] = True  #This is just to play along with the existing code
+        articlein = AllArticles.objects.all()
+        data['areas_mb'] = render_to_string('inventory/organization/all_artic.html', {'articlein':articlein})
+    else:
+        context = {'articlein':articlein}
+        data['html_form'] = render_to_string('inventory/organization/delete_artics.html',context,request=request)
+    return JsonResponse(data)    

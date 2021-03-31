@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% load static %}
 {% block body_block %}
@@ -37,20 +38,6 @@
                             <div class="profile-info">
                                 <h4 class="heading">Información del usuario</h4>
                                 <ul class="list-unstyled list-justify">
-                                    <li>Website 
-                                        <span>
-                                            <input
-                                                class="form-control {% if form.website.errors %}is-invalid{% endif %}"
-                                                type="text" name="website" placeholder="Website"
-                                                value="{% if form.errors %}{{ form.website.value }}{% else %}{{ profile.website }}{% endif %}"
-                                            />
-                                            <div class="invalid-feedback">
-                                                {% for error in form.website.errors %}
-                                                    {{ error }}
-                                                {% endfor%}
-                                            </div>
-                                        </span>
-                                    </li>
                                     <br>
                                     <li>Celular 
                                         <span>
@@ -100,7 +87,7 @@
                                         <div class="hexagon">
                                             <span class="lnr lnr-sun award-icon"></span>
                                         </div>
-                                        <span>Logo del Micronegocio</span>
+                                        <span>Micronegocio</span>                                    
                                     </div>
                                 </div>
                             </div>

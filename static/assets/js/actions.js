@@ -313,3 +313,100 @@ $('#modal-action-comment').on("submit",".update-comment",SaveComment)
 $('#table-comment').on("click",".delete-comment",ShowFormComment);
 $('#modal-action-comment').on("submit",".delete-comment",SaveComment)
 });
+
+//================Users assigned========================Users assigned
+$(document).ready(function(){
+	var ShowFormUsers = function(){
+		var btn = $(this);
+		$.ajax({
+			url: btn.attr("data-url-users"),
+			type: 'get',
+			dataType:'json',
+			beforeSend: function(){
+				$('#modal-action-users').modal('show');
+			},
+			success: function(data){
+				$('#modal-action-users .modal-content').html(data.html_form);
+			}
+		});
+	};
+	var SaveUsers = function(){
+		var form = $(this);
+		$.ajax({
+			url: form.attr('data-url-users'),
+			data: form.serialize(),
+			type: form.attr('method'),
+			dataType: 'json',	
+			success: function(data){
+				if(data.form_is_valid){
+					$('#table-users ul').html(data.areas_mb);
+					$('#modal-action-users').modal('hide');
+					$( "#show_users" ).load(window.location.href + " #show_users");
+				} else {
+					$('#modal-action-users .modal-content').html(data.html_form)
+				}
+			} 
+		})
+		return false;
+	}
+
+//Create
+$(".users-form").click(ShowFormUsers);
+$("#modal-action-users").on("submit",".create-users",SaveUsers);
+
+//Update
+$('#table-users').on("click",".update-users",ShowFormUsers);
+$('#modal-action-users').on("submit",".update-users",SaveUsers)
+
+//delete
+$('#table-users').on("click",".delete-users",ShowFormUsers);
+$('#modal-action-users').on("submit",".delete-users",SaveUsers)
+});
+//================Articles assigned========================Articles assigned
+$(document).ready(function(){
+	var ShowFormArticles = function(){
+		var btn = $(this);
+		$.ajax({
+			url: btn.attr("data-url-articles"),
+			type: 'get',
+			dataType:'json',
+			beforeSend: function(){
+				$('#modal-action-articles').modal('show');
+			},
+			success: function(data){
+				$('#modal-action-articles .modal-content').html(data.html_form);
+			}
+		});
+	};
+	var SaveArticles = function(){
+		var form = $(this);
+		$.ajax({
+			url: form.attr('data-url-articles'),
+			data: form.serialize(),
+			type: form.attr('method'),
+			dataType: 'json',	
+			success: function(data){
+				if(data.form_is_valid){
+					$('#table-articles ul').html(data.areas_mb);
+					$('#modal-action-articles').modal('hide');
+					$( "#show_articles" ).load(window.location.href + " #show_articles");
+				} else {
+					$('#modal-action-articles .modal-content').html(data.html_form)
+				}
+			} 
+		})
+		return false;
+	}
+
+//Create
+$(".Artic-form").click(ShowFormArticles);
+$("#modal-action-articles").on("submit",".create-articles",SaveArticles);
+
+//Update
+$('#table-articles').on("click",".update-articles",ShowFormArticles);
+$('#modal-action-articles').on("submit",".update-articles",SaveArticles)
+
+//delete
+$('#table-articles').on("click",".delete-articles",ShowFormArticles);
+$('#modal-action-articles').on("submit",".delete-articles",SaveArticles)
+});

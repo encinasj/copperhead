@@ -1,13 +1,13 @@
 #Django
 from django.contrib.auth.models import User
 from django.db import models
-from inventory.models import Articles
+from inventory.models import MicroBusiness
 
 class Profile(models.Model):
     #Profile model.
     #Proxy models that extends the base data with other information
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    website = models.CharField(blank=True, max_length=200)
+    microbusiness = models.ForeignKey(MicroBusiness, null=True, on_delete=models.SET_NULL)
     biography = models.TextField(blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
     picture = models.ImageField(upload_to='users/pictures', blank=True, null=True)

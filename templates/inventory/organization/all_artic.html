@@ -1,0 +1,14 @@
+{% for articlein in articlein %}
+    {% if  data.name == articlein.microbusiness.name %}  
+        <tr>
+            <div class="row justify-content-md-center ">
+                <div class="col col-lg-11 overflow-auto">
+                    <td> <a class="show-articles" data-url-articles="#">{{articlein}}</a></td>
+                    <td>
+                        <a class="delete-articles lnr lnr-cross pull-right" data-url-articles="{% url 'deleteartics' articlein.id %}"></a>
+                    </td>
+                </div>
+            </div>
+        </tr>  
+    {% endif %}
+{% endfor %}

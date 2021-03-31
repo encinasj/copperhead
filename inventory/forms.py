@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm, Textarea
 #models
-from inventory.models import Supplier,MicroBusiness,TypeArticle,Category,Brand,Articles,DocumentsPdf,AllComment,ImgArea
+from inventory.models import Supplier,MicroBusiness,TypeArticle,Category,Brand,Articles,DocumentsPdf,AllComment,ImgArea,AllArticles
 
 class SupplierForm(forms.ModelForm):
     #supplier forms
@@ -55,6 +55,12 @@ class BrandForm(forms.ModelForm):
     class Meta():
         model = Brand
         fields = ('name',)
+
+class ArticlesAsignedForm(forms.ModelForm):
+    class Meta():
+        model = AllArticles
+        fields = ('microbusiness','articles',)
+
 
 class ArticlesForm(forms.ModelForm):
     #Article Form

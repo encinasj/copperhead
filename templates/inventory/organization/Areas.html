@@ -47,26 +47,41 @@
                 <!-- Articulos -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <a type="button" class="pdf-form" data-url-pdf="#">
+                        <a type="button" class="Artic-form" data-url-articles="{% url 'addarticle' %}">
                             <span class="lnr lnr-plus-circle pull-right"></span>
                         </a>
-                        <h3 class="panel-title">Articulos asignados</h3>
+                            <h3 class="panel-title">Articulos asignados</h3>
                         <hr>
                     </div>
-                    <div class="panel-body">
-                        
+                    <div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="modal fade" id="modal-action-articles">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="table-articles">
+                            <ul id="show_articles">
+                                {% include "inventory/organization/all_artic.html" %}
+                            </ul>
+                        </div> 
                     </div>
                 </div>
                 <!-- END articulos -->
             </div>
             <div class="col-md-6"> 
+                <!-- Pdf -->
                 <div class="panel">
                     <div class="col-sm-12">
                         <div class="panel-heading">
                             <a type="button" class="pdf-form" data-url-pdf="{% url 'add_pdf' %}">
                                 <span class="lnr lnr-plus-circle pull-right"></span>
                             </a>
-                            <h3 class="panel-title">Documentos</h3>
+                                <h3 class="panel-title">Documentos</h3>
                             <hr>
                         </div>
                     </div>
@@ -88,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- END Pdf   -->
+                <!-- END Pdf -->
                 <!-- Usuarios -->
                 <div class="panel">
                     <div class="panel-heading">
@@ -99,7 +114,19 @@
                         <hr>
                     </div>
                     <div class="panel-body">
-                        
+                        {% for usersin in usersin %}
+                            {% if  data.name == usersin.microbusiness.name %} 
+                                <tr>
+                                    <div class="row justify-content-md-center" id="updatepdf">
+                                        <div class="col col-lg-11">
+                                            <td>
+                                                {{usersin.user}}
+                                            </td>
+                                        </div>
+                                    </div>
+                                </tr>  
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
                 <!-- END Usuarios -->

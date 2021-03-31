@@ -108,7 +108,7 @@ class Articles(models.Model):
         verbose_name_plural = 'Articles'
 
     def __str__(self, *args, **kwargs):
-        return str(self.name,self.model,self.quantity,self.description)
+        return str(self.name)
 
     def save(self, *args, **kwargs):
         #Create a qr code and save it, generate a png image. 
@@ -122,7 +122,6 @@ class Articles(models.Model):
         self.qr.save(fname, File(buffer), save=False)
         canvas.close()
         super().save(*args, **kwargs)
-
 
 class MicroBusiness(models.Model):
     #models micro business
@@ -177,3 +176,19 @@ class DocumentsPdf(models.Model):
 
     def __str__(self):
         return str('Document') +'-'+ str(self.create)
+
+class AllArticles(models.Model):
+    articles = models.ForeignKey(Articles, on_delete=models.CASCADE)
+    microbusiness = models.ForeignKey(MicroBusiness, on_delete=models.CASCADE)
+
+    #adding
+    added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'AllArticle'
+        verbose_name_plural = 'AllArticles'
+
+    def __str__(self):
+        return str(self.articles)
+    
+    
