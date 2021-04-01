@@ -28,6 +28,7 @@ $(document).ready(function(){
 				if(data.form_is_valid){
 					$('#all-table ul').html(data.feed);
 					$('#modal-action').modal('hide');
+					$( "#show_items" ).load(window.location.href + " #show_items");
 				} else {
 					$('#modal-action .modal-content').html(data.html_form)
 				}

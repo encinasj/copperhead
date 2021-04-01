@@ -3,16 +3,9 @@
 {% for article in  article %}
     <div class="cards card-1">
         {% if request.user.is_superuser %}
-            <div id="navbar-menu">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class=" fa fa-ellipsis-v" data-toggle="dropdown"></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="show-form-update lnr lnr-pencil" data-url="{% url 'update' article.pk %}"> Actualizar</a></li>
-                            <li><a class="show-form-delete lnr lnr-trash" data-url="{% url 'delete' article.id %}"> Borrar</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div id="navbar-menu" class="pull-right">
+                <a class="show-form-update lnr lnr-pencil" data-url="{% url 'update' article.pk %}"></a>&nbsp;&nbsp;
+                <a class="show-form-delete lnr lnr-trash" data-url="{% url 'delete' article.id %}"></a>
             </div> 
         {% else %}
         ...
