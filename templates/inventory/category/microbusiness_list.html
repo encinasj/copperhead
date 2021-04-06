@@ -14,10 +14,10 @@
                 </a>
             </div>
             <div class="col-md-8">
-                <a class="show-form-delete  mb-delete  lnr lnr-cross pull-right" data-url-m="{% url 'delete_m' microbusiness.id %}">&nbsp;&nbsp;</a>
+                <a class="show-form-delete  mb-delete  lnr lnr-cross pull-right" data-url-m="{% url 'delete_m' microbusiness.id %}"></a>&nbsp;&nbsp;
                 <div class="card-body">
+                    <a class="mcb-update lnr lnr-pencil pull-right" data-url-m="{% url 'update_mcb' microbusiness.id %}"></a>
                     <h5 class="card-title"> <b> {{microbusiness.name}} </b></h5>
-                    <p class="card-text">{{microbusiness.comments}}</p>
                 </div>
             </div>
         </div>

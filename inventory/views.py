@@ -365,6 +365,17 @@ def create_microbusiness(request):
 
 @permission_required('is_superuser')
 @login_required
+def update_mb(request, id):
+    #this function update name of microbusiness area
+    microbusiness = get_object_or_404(MicroBusiness, id=id)
+    if request.method == 'POST':
+        form = MicroBussinesForm(request.POST or None, instance=microbusiness)
+    else:
+	    form = MicroBussinesForm(instance=microbusiness)
+    return save_mb(request, form, 'inventory/organization/update_area.html')
+
+@permission_required('is_superuser')
+@login_required
 def delete_microbusiness(request, id):
     #function delete organization or area
 	microbusiness = get_object_or_404(MicroBusiness,id=id)
@@ -398,21 +409,6 @@ def AreasViews(request, id):
         'data':data,
     }
     return render(request,'inventory/organization/Areas.html',context)
-
-@permission_required('is_superuser')
-@login_required
-def update_mb(request, id):
-    post = get_object_or_404(MicroBusiness, id=id)
-    if request.method == "POST":
-        data = MicroBussinesForm(request.POST or None, request.FILES, instance=post)
-        if data.is_valid():
-            post = data.save(commit=False)
-            post.author = request.user
-            post.save()
-            return redirect('areas_mb', id=post.id)
-    else:
-        data = MicroBussinesForm(instance=post)
-    return render(request,'inventory/organization/update_area.html', {'data':data})
 #=====================================PDF========================================================PDF
 @permission_required('is_superuser')
 @login_required

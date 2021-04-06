@@ -112,7 +112,6 @@ $(document).ready(function(){
 			url: form.attr('data-url-m'),
 			data: form.serialize(),
 			type: form.attr('method'),
-			dataType: 'json',
 			success: function(data){
 				if(data.form_is_valid){
 					$('#tableM ul').html(data.feedc);
@@ -124,13 +123,18 @@ $(document).ready(function(){
 		})
 		return false;
 	}
+
 //create
 $(".Microb-form").click(ShowFormmb);
 $("#modal-mb").on("submit",".create-mb",Savemb);
+//Update
+$('#tableM').on("click",".mcb-update",ShowFormmb);
+$('#modal-mb').on("submit",".mcb-update",Savemb)
 //delete
 $('#tableM').on("click",".mb-delete",ShowFormmb);
 $('#modal-mb').on("submit",".delete-formmb",Savemb)
 });
+
 //++======================================Brand
 $(document).ready(function(){
 	var ShowFormb = function(){

@@ -20,6 +20,9 @@ class MicroBussinesForm(forms.ModelForm):
      class Meta():
         model = MicroBusiness
         fields = ('name',)
+        labels = {
+            'name':'',
+        }
 
 class ImgAreasForm(forms.ModelForm):
     class Meta():

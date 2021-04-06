@@ -2,10 +2,10 @@
 {% block title %}
 <div class="row">
     <div class="col-sm-12">
-        <h3 class="page-title">{{data.name}}
-            <a class="show-form-delete lnr lnr-pencil" href="{% url 'update_mb' data.id %}"></a>
+        <h3 class="page-title">
+            <a type="button" class="lnr lnr-chevron-left" onclick="goBack()"></a>&nbsp;&nbsp;
+            {{data.name}} 
         </h3>
-        <a type="button" class="lnr lnr-chevron-left" onclick="goBack()"></a>
     </div>
 </div>
 {% endblock title %}

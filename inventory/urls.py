@@ -25,7 +25,7 @@ urlpatterns = [
     path('delete_pdf/<int:id>',login_required(views.deletepdf),name='delpdf'),
     
     path('organizations/areas/<int:id>',login_required(views.AreasViews), name='areas_mb'),
-    path('organizations/areas/update/<int:id>',login_required(views.update_mb), name='update_mb'),
+    path('organizations/areas/update/<int:id>',login_required(views.update_mb), name='update_mcb'),
     path('organizations',login_required(views.organization), name='corp'),
     
     path('addartic', login_required(views.addarticles), name='addarticle'),
