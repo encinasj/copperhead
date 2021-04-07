@@ -103,6 +103,7 @@ class Articles(models.Model):
     @property
     def total(self):
         return self.cost_buy*self.quantity
+
     class Meta:
         verbose_name = 'Article'
         verbose_name_plural = 'Articles'

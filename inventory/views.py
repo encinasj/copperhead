@@ -272,7 +272,6 @@ def details_suppliers(request, id):
     if request.method == 'POST':
         data['form_is_valid'] = True
         supplier = Supplier.objects.all()
-        data['feed'] = render_to_string('inventory/list_feed.html',{'supplier':supplier})
     else:
 	    context = {'supplier':supplier}
 	    data['html_form'] = render_to_string('inventory/supplier/details_suppliers.html',context,request=request)
@@ -308,25 +307,28 @@ def deletesupplier(request, id):
 @permission_required('is_superuser')
 def chart_reports(request):
     queryset = Articles.objects.all()
+    sumatotal = Articles.objects.only('cost_buy').aggregate(Sum('cost_buy'))
 
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
+    total = float(sumatotal['cost_buy__sum'])
 
     context = {
             'name': json.dumps(name),
-            'quantity': json.dumps(quantity),
+            'quantity': json.dumps(quantity),   
+            'total':total,
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
-
 #====================================Pdf generator===============================================================
 def write_pdf_view(request, *args, **kwargs):
     data = Articles.objects.all()
     suma_total = Articles.objects.aggregate(Sum('cost_buy'))
 
+    total = float(suma_total['cost_buy__sum']) 
     template = get_template('inventory/chartsandreports/PdfsReports.html')
     context = {
         'data': data,
-        'suma_total':suma_total,
+        'total':total,
     }
     html = template.render(context)
     # Create a Django response object, and specify content_type as pdf
@@ -498,6 +500,20 @@ def createcomment(request):
     else:
         form = AllCommentForm()
     return save_comments(request,form,'inventory/organization/createcomment.html')
+
+@permission_required('is_superuser')
+@login_required
+def details_comments(request, id):
+    #function detail suppliers
+    allcomment = get_object_or_404(AllComment,id=id)
+    data = dict() 
+    if request.method == 'POST':
+        data['form_is_valid'] = True
+        allcomment = AllComment.objects.all()
+    else:
+	    context = {'allcomment':allcomment}
+	    data['html_form'] = render_to_string('inventory/organization/details_comments.html',context,request=request)
+    return JsonResponse(data)
 
 @permission_required('is_superuser')
 @login_required

@@ -3,9 +3,13 @@
         <tr>
             <div class="row justify-content-md-center ">
                 <div class="col col-lg-11">
-                    <td> <a class="update-comment" data-url-comment="{% url 'update_comm' allcomment.id %}">{{allcomment|truncatechars:60}}</a></td>
+                    <a class="comment-details" data-url-comment="{% url 'details_comm' allcomment.id %}">{{allcomment|truncatechars:60}}</a>
                     <td>
                         <a class="delete-comment lnr lnr-cross pull-right" data-url-comment="{% url 'delcomment' allcomment.id %}"></a>
+                    </td>
+                    <td> 
+                        &nbsp;&nbsp;
+                        <a class="update-comment lnr lnr-pencil pull-right" data-url-comment="{% url 'update_comm' allcomment.id %}"></a>
                     </td>
                 </div>
             </div>

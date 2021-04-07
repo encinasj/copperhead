@@ -34,6 +34,7 @@ urlpatterns = [
 
     #CRUD urls comments
     path('add_comment',login_required(views.createcomment), name='add_comment'),
+    path('details_comments/<int:id>', login_required(views.details_comments), name='details_comm'),
     path('comments/update_comment/<int:id>',login_required(views.updatecomment), name='update_comm'),
     path('comments/del_comment/<int:id>', login_required(views.deletecomment), name='delcomment'),
 
