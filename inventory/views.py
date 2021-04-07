@@ -265,6 +265,21 @@ def createsupplier(request):
 
 @permission_required('is_superuser')
 @login_required
+def details_suppliers(request, id):
+    #function detail suppliers
+    supplier = get_object_or_404(Supplier,id=id)
+    data = dict() 
+    if request.method == 'POST':
+        data['form_is_valid'] = True
+        supplier = Supplier.objects.all()
+        data['feed'] = render_to_string('inventory/list_feed.html',{'supplier':supplier})
+    else:
+	    context = {'supplier':supplier}
+	    data['html_form'] = render_to_string('inventory/supplier/details_suppliers.html',context,request=request)
+    return JsonResponse(data)
+
+@permission_required('is_superuser')
+@login_required
 def updatesupplier(request,pk):
     #fucntion update supplier
     supplier = get_object_or_404(Supplier,pk=pk)

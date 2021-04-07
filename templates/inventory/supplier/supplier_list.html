@@ -27,13 +27,18 @@
                 <td>{{supplier.email|truncatechars:7}}</td>
                 <td>{{supplier.comments|truncatechars:15}}</td>
                 <td>
-                    <a class="delete-s" data-url-s="{% url 'delete_s' supplier.id %}">
-                        <span class="lnr lnr-trash"></span>
+                    <a class="supplier-details" data-url-s="{% url 'details_s' supplier.id %}">
+                        <span class="lnr lnr-eye"></span>
                     </a>
                 </td>
                 <td>
                     <a class="show-update-s" data-url-s="{% url 'update_s' supplier.pk %}">
                         <span class="lnr lnr-pencil"></span>
+                    </a>
+                </td>
+                <td>
+                    <a class="delete-s" data-url-s="{% url 'delete_s' supplier.id %}">
+                        <span class="lnr lnr-trash"></span>
                     </a>
                 </td>
             </tr>

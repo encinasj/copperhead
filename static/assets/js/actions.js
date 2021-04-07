@@ -213,6 +213,8 @@ $(document).ready(function(){
 //create
 $(".supplier-form").click(ShowFormsp);
 $("#modal-s").on("submit",".create-s",Savesp);
+//Details
+$(".supplier-details").click(ShowFormsp);
 //update
 $('#table-s').on("click",".show-update-s",ShowFormsp);
 $('#modal-s').on("submit",".update-form-s",Savesp)

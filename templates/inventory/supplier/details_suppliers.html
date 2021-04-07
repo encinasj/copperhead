@@ -1,0 +1,58 @@
+
+<form method="POST" data-url-s="details_s" class="supplier-details" > 
+	{% csrf_token %}
+	<div class="modal-header"> 
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+		<h4 class="modal-title">Nuevo provedor</h4> 
+	</div> 
+	<div class="modal-body"> 
+		<div class="form-row">
+			<!-- Name company-->
+			<div class="form-group col-md-5">
+                <h5><strong>Nombre de la compañia</strong></h5>
+                <p>{{supplier.name_company}}</p>
+			</div>
+			<!-- Name contact-->
+			<div class="form-group col-md-7">
+                <h5><strong>Nombre de contacto</strong></h5>
+                <p>{{supplier.name_contact}}</p>
+			</div>
+			<!-- Phone number-->
+			<div class="form-group col-md-6">
+                <h5><strong>Telefono</strong></h5>
+                <p>{{supplier.phone_number}}</p>
+		   	</div>
+		   	<!-- Phone celphone-->
+			<div class="form-group col-md-6">
+                <h5><strong>Celular</strong></h5>
+                <p>{{supplier.cel_phone}}</p>
+		   	</div>
+		 	<!-- address-->
+		 	<div class="form-group col-md-12">
+                 <h5><strong>Dirección de la empresa</strong></h5>
+				<p>{{supplier.address}}</p>
+			</div>
+			<!-- web-->
+			<div class="form-group col-md-12">
+                <h5> <strong> Dirección web</strong> </h5>
+				<p>{{supplier.web}}</p>
+			</div>
+			<!-- address-->
+			<div class="form-group col-md-12">
+                <h5> <strong>Correo</strong>  </h5>
+                <p>{{supplier.email}}</p>
+			</div>
+			<!-- Comments-->
+			<div class="form-row">
+                <div class="form-group col-md-12 mb-0">
+                    <h5> <strong>Comentarios</strong> </h5>
+                    <p>{{supplier.comments}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+    <br>
+    <div class="modal-footer">
+		<input type="button" value="Cerrar" class="btn btn-secundary" data-dismiss="modal">
+	</div>
+</form>

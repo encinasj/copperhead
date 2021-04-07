@@ -1,17 +1,26 @@
+
 {% for articlein in articlein %}
     {% if  data.name == articlein.microbusiness.name %}  
-        <tr>
-            <div class="row justify-content-md-center ">
-                <div class="col col-lg-11 overflow-auto">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <div class="col col-lg-11">
                     <td> 
-                        <a class="show-articles" data-url-articles="#">{{articlein}}</a>
+                        <a class="show-articles" >{{articlein}}</a>
                     </td>
+                    <td>{{articlein.articles.cost_buy}}</td>
                     <td>
-                        <a>{{articlein.articles.cost_buy}}</a>
-                        <a class="delete-articles lnr lnr-cross pull-right" data-url-articles="{% url 'deleteartics' articlein.id %}"></a>
+                        <a class="delete-articles lnr lnr-cross " data-url-articles="{% url 'deleteartics' articlein.id %}"></a>
                     </td>
                 </div>
-            </div>
-        </tr>  
+              </tr>
+            </tbody>
+          </table>
     {% endif %}
 {% endfor %}
