@@ -105,30 +105,7 @@
                 </div>
                 <!-- END Pdf -->
                 <!-- Usuarios -->
-                <div class="panel">
-                    <div class="panel-heading">
-                        <a type="button" class="pdf-form" data-url-pdf="#">
-                            <span class="lnr lnr-plus-circle pull-right"></span>
-                        </a>
-                        <h3 class="panel-title">Usuarios</h3>
-                        <hr>
-                    </div>
-                    <div class="panel-body">
-                        {% for usersin in usersin %}
-                            {% if  data.name == usersin.microbusiness.name %} 
-                                <tr>
-                                    <div class="row justify-content-md-center" id="updatepdf">
-                                        <div class="col col-lg-11">
-                                            <td>
-                                                {{usersin.user}}
-                                            </td>
-                                        </div>
-                                    </div>
-                                </tr>  
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
+                
                 <!-- END Usuarios -->
             </div>
         </div>
