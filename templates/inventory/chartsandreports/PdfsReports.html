@@ -1,9 +1,8 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>Reporte de inventario</title>
-    
+    <meta charset="utf-8">
     <style>
         .invoice-box {
             max-width: 800px;
@@ -117,6 +116,7 @@
                 <td>Cantidad</td>
                 <td>Marca</td>
                 <td>Precio/U</td>
+                <td>Total</td>
                 <td>Ubicación</td>
             </tr>
             {% for data in data  %}  
@@ -125,11 +125,12 @@
                     <td>{{data.quantity}}</td>
                     <td>{{data.fk_brand}}</td>
                     <td>{{data.cost_buy}}</td>
+                    <td>{{data.total}}</td>
                     <td>{{data.location}}</td>
                 </tr>
             {% endfor %}            
             <tr class="total">
-                <td colspan="5">Total: ${{total|floatformat}}</td>
+                <td colspan="5">Total: ${{ totals|floatformat}}</td>
             </tr>
         </table>
     </div>

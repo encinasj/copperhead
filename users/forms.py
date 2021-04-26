@@ -3,6 +3,7 @@ from django import forms
 #ours models
 from django.contrib.auth.models import User
 from users.models import Profile, Remplacement
+from inventory.models import MicroBusiness
 
 class RegisterForm(forms.Form):
     #Signup Forms, this classs is for register user with profile 

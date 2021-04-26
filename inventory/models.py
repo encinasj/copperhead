@@ -95,6 +95,7 @@ class Articles(models.Model):
     location = models.CharField(max_length=50)
     img = models.ImageField(upload_to='articles', null=True, blank=True)
     qr = models.ImageField(upload_to='qrcodes', null=True, blank=True, max_length=255)
+    total_todo = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     description = models.TextField(max_length=500, blank=True)
     #actions
     created = models.DateTimeField(auto_now_add=True)
@@ -102,7 +103,10 @@ class Articles(models.Model):
 
     @property
     def total(self):
-        return self.cost_buy*self.quantity
+        return (self.cost_buy*self.quantity)
+    
+    def calculate_amount(self):
+        self.total_todo = self.cost_buy * self.quantity
 
     class Meta:
         verbose_name = 'Article'
@@ -122,6 +126,7 @@ class Articles(models.Model):
         canvas.save(buffer,'PNG')
         self.qr.save(fname, File(buffer), save=False)
         canvas.close()
+        self.calculate_amount()
         super().save(*args, **kwargs)
 
 class MicroBusiness(models.Model):

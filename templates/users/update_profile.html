@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <form action="{% url 'users:update_profile' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="panel panel-profile" style="height:42em;">
+            <div class="panel panel-profile" style="height:37em;">
                 <div class="clearfix">
                     <!-- LEFT COLUMN -->
                     <div class="profile-left">
@@ -26,10 +26,7 @@
                             <div class="profile-stat">
                                 <div class="row">
                                     <div class="col-md-6 stat-item">
-                                        45 <span>Articulos</span>
-                                    </div>
-                                    <div class="col-md-6 stat-item">
-                                        15 <span>Reemplazo</span>
+                                        Micronegocio<span>{{form.microbusiness}} </span>
                                     </div>
                                 </div>
                             </div>
@@ -78,22 +75,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-right">
-                        <h4 class="heading">Micronegocio</h4>
-                        <div class="awards">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="award-item">
-                                        <div class="hexagon">
-                                            <span class="lnr lnr-sun award-icon"></span>
-                                        </div>
-                                        <span>Micronegocio</span>                                    
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                    </div>
+                    
                 </div>
                 <br>
             </div>

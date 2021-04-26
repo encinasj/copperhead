@@ -307,28 +307,35 @@ def deletesupplier(request, id):
 @permission_required('is_superuser')
 def chart_reports(request):
     queryset = Articles.objects.all()
-    sumatotal = Articles.objects.only('cost_buy').aggregate(Sum('cost_buy'))
+    sumatotal = Articles.objects.only('total_todo').aggregate(Sum('total_todo'))
+    sumatotala = Articles.objects.only('quantity').aggregate(Sum('quantity'))
 
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
-    total = float(sumatotal['cost_buy__sum'])
+    totals = float(sumatotal['total_todo__sum'])
+    totalsa = float(sumatotala['quantity__sum'])
 
     context = {
             'name': json.dumps(name),
-            'quantity': json.dumps(quantity),   
-            'total':total,
+            'quantity': json.dumps(quantity),
+            'totals': totals,
+            'totalsa':totalsa,
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
 #====================================Pdf generator===============================================================
 def write_pdf_view(request, *args, **kwargs):
     data = Articles.objects.all()
     suma_total = Articles.objects.aggregate(Sum('cost_buy'))
+    sumatotal = Articles.objects.only('total_todo').aggregate(Sum('total_todo'))
 
-    total = float(suma_total['cost_buy__sum']) 
+
+    total = float(suma_total['cost_buy__sum'])
+    totals = float(sumatotal['total_todo__sum']) 
     template = get_template('inventory/chartsandreports/PdfsReports.html')
     context = {
         'data': data,
         'total':total,
+        'totals': totals,
     }
     html = template.render(context)
     # Create a Django response object, and specify content_type as pdf

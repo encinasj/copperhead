@@ -2,16 +2,16 @@
 
 {% load static %}
 {% block body_block %}
-<div class="main-content">
+
     <div class="container-fluid">
         <div class="panel panel-profile" style="height:32em;">
-            <div class="clearfix">
                 <!-- LEFT COLUMN -->
                 <div class="profile-left">
                     <!-- PROFILE HEADER -->
                     <div class="profile-header">
                         <div class="overlay"></div>
                         <div class="profile-main">
+                            <a href="{% url 'users:update_profile' %}" class="pull-right">Editar perfil</a>
                             {% if  user.profile.picture %}
                                 <img  src="{{ user.profile.picture.url }}"  class="img-circle" alt="Avatar" width="90px">
                             {% else%}
@@ -22,11 +22,9 @@
                         <div class="profile-stat">
                             <div class="row">
                                 <div class="col-md-6 stat-item">
-                                    45 <span>Articulos</span>
+                                    Micronegocio<span>{{user.profile.microbusiness}} </span>
                                 </div>
-                                <div class="col-md-6 stat-item">
-                                    15 <span>Reemplazo</span>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -40,25 +38,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="profile-right">
-                    <a href="{% url 'users:update_profile' %}" class="pull-right">Editar perfil</a>
-                    <h4 class="heading">Micronegocio</h4>
-                    <div class="awards">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-6">
-                                <div class="award-item">
-                                    <div class="hexagon">
-                                        <span class="lnr lnr-sun award-icon"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-            </div>
             <br>
         </div>
     </div>
-</div>
+
 {% endblock body_block %}

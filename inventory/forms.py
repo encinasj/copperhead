@@ -73,7 +73,7 @@ class ArticlesForm(forms.ModelForm):
                 'name','quantity',
                 'fk_brand','model','fk_category', 
                 'cost_buy','fk_supplier','userful_life','actual_state',
-                'date_check','location', 'description','img')
+                'date_check','location','description','img')
         widgets = {
             'description': Textarea(attrs={'cols': 80, 'rows': 20}),
             }
