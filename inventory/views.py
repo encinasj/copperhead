@@ -312,8 +312,9 @@ def chart_reports(request):
 
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
-    totals = float(sumatotal['total_todo__sum'])
-    totalsa = float(sumatotala['quantity__sum'])
+
+    totals = str(sumatotal['total_todo__sum'])
+    totalsa = str(sumatotala['quantity__sum'])
 
     context = {
             'name': json.dumps(name),
@@ -329,8 +330,8 @@ def write_pdf_view(request, *args, **kwargs):
     sumatotal = Articles.objects.only('total_todo').aggregate(Sum('total_todo'))
 
 
-    total = float(suma_total['cost_buy__sum'])
-    totals = float(sumatotal['total_todo__sum']) 
+    total = str(suma_total['cost_buy__sum'])
+    totals = str(sumatotal['total_todo__sum']) 
     template = get_template('inventory/chartsandreports/PdfsReports.html')
     context = {
         'data': data,
