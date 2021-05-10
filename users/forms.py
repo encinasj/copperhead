@@ -3,7 +3,6 @@ from django import forms
 #ours models
 from django.contrib.auth.models import User
 from users.models import Profile, Remplacement
-from inventory.models import MicroBusiness
 
 class RegisterForm(forms.Form):
     #Signup Forms, this classs is for register user with profile 
@@ -44,6 +43,8 @@ class RegisterForm(forms.Form):
                                 'placeholder': 'Correo',
                                 'autocomplete': 'off',
                                 }))
+    is_superuser = forms.BooleanField(widget=forms.CheckboxInput())
+
     def clean_username(self):
         #Username must be unique.
         username = self.cleaned_data['username']
@@ -71,7 +72,6 @@ class RegisterForm(forms.Form):
 
 class ProfileForm(forms.Form):
     #Profile forms    
-    microbusiness = forms.ChoiceField()
     phone_number = forms.CharField(max_length=20, required=False)
     biography = forms.CharField(max_length=500, required=False)
     picture = forms.ImageField()
