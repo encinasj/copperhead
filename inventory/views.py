@@ -24,6 +24,7 @@ from .models import *
 #forms
 from .forms import *
 
+
 @login_required
 def FeedView(request):
     #list all articles on dashboard
@@ -312,8 +313,9 @@ def chart_reports(request):
 
     name = [obj.name for obj in queryset]
     quantity = [int(obj.quantity) for obj in queryset]
-    totals = float(sumatotal['total_todo__sum'])
-    totalsa = float(sumatotala['quantity__sum'])
+
+    totals = str(sumatotal['total_todo__sum'])
+    totalsa = str(sumatotala['quantity__sum'])
 
     context = {
             'name': json.dumps(name),
@@ -323,14 +325,15 @@ def chart_reports(request):
     }
     return render (request,'inventory/chartsandreports/reports.html', context)
 #====================================Pdf generator===============================================================
+@permission_required('is_superuser')
+@login_required
 def write_pdf_view(request, *args, **kwargs):
     data = Articles.objects.all()
     suma_total = Articles.objects.aggregate(Sum('cost_buy'))
     sumatotal = Articles.objects.only('total_todo').aggregate(Sum('total_todo'))
 
-
-    total = float(suma_total['cost_buy__sum'])
-    totals = float(sumatotal['total_todo__sum']) 
+    total = str(suma_total['cost_buy__sum'])
+    totals = str(sumatotal['total_todo__sum']) 
     template = get_template('inventory/chartsandreports/PdfsReports.html')
     context = {
         'data': data,
