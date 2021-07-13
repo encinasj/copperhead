@@ -1,6 +1,6 @@
 ## **Django Simple Inventory**
 
-![Python](http://www.spsstools.net/static/img/python-icon1.png "Python")  ![Django](https://cdn.iconscout.com/icon/free/png-128/django-13-1175187.png "Django") ![highcharts.js](https://www.highcharts.com/media/templates/highsoft_2015/images/logo.svg "highcharts.js")
+![Python](http://www.spsstools.net/static/img/python-icon1.png "Python")  ![Django](https://cdn.iconscout.com/icon/free/png-128/django-13-1175187.png "Django") ![highcharts.js](https://wp-assets.highcharts.com/svg/highcharts-logo-padded.svg "highcharts.js")
 
 `Project Version 1.0 - Django Version without DRF `
 
