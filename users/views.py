@@ -15,7 +15,6 @@ from django.urls import reverse
 #Models
 from django.contrib.auth.models import User
 from users.models import Profile, Remplacement
-from inventory.models import MicroBusiness
 #Forms
 from users.forms import RegisterForm,ProfileForm
 
@@ -78,7 +77,6 @@ def update_profile(request):
         form = ProfileForm(request.POST or None, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            profile.microbusiness = data['microbusiness']
             profile.phone_number = data['phone_number']
             profile.biography = data['biography']
             profile.picture = data['picture']
